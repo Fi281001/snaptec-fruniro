@@ -50,13 +50,15 @@
   padding: 0;
 }
 
-.nav ul li {
+.nav ul li a {
   cursor: pointer;
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
+  text-decoration: none;
+  color: black;
 }
-.nav ul li:hover {
+.nav ul li:hover a {
   font-size: 20px;
   color: #b88e2f;
 }
