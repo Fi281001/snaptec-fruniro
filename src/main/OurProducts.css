@@ -1,0 +1,20 @@
+.Ourproducts {
+  margin-top: 40px;
+  width: 81.15%;
+  height: 685px;
+  margin-left: 131px;
+  text-align: center;
+}
+
+.Ourproducts-title {
+  display: inline-block; /* Make the range-title behave like an inline block to respect the text-align */
+  margin: 0 auto;
+}
+
+.Ourproducts-title h2 {
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 48px;
+  margin-left: 40px;
+  margin-bottom: 40px;
+}

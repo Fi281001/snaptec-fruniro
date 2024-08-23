@@ -1,0 +1,108 @@
+.Products {
+  width: 1236px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  gap: 20px;
+}
+
+.product-item {
+  width: 285px;
+  height: 446px;
+  background-color: #f4f5f7;
+  display: flex;
+  flex-direction: column; /* Để các phần tử con sắp xếp theo cột */
+}
+.product-name,
+.product-title,
+.price {
+  text-align: left;
+  margin: 0;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+.product-image {
+  height: 301px;
+}
+
+.product-name {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 28.8px;
+}
+
+.product-title {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #898989;
+}
+
+.price {
+  display: flex; /* Sử dụng Flexbox để căn chỉnh các phần tử bên trong */
+  flex-direction: row; /* Đặt các phần tử con nằm trên cùng một hàng */
+  justify-content: space-between; /* Phân phối khoảng cách đều giữa các phần tử */
+  align-items: center; /* Căn chỉnh các phần tử theo chiều dọc giữa của hàng */
+  gap: 10px; /* Khoảng cách giữa các phần tử bên trong */
+}
+.product-price {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 30px;
+  color: #3a3a3a;
+}
+.product-price-sale {
+  text-decoration: line-through;
+  padding-right: 10px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #b0b0b0;
+}
+
+/* sale */
+/* src/main/Products.css */
+.image-container {
+  position: relative;
+}
+
+.sale-label {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: #e97171;
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 50%; /* Đặt hình dạng là hình tròn */
+  z-index: 10;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.new-label {
+  background-color: #2ec1ac; /* Màu xanh lá cây cho "new" */
+}
+
+/* but */
+.but {
+  margin-top: 20px;
+  display: flex; /* Sử dụng Flexbox để căn giữa nội dung */
+  justify-content: center; /* Căn giữa theo chiều ngang */
+  align-items: center;
+}
+.but button {
+  height: 48px;
+  width: 245px;
+  margin-left: 40px;
+  background-color: #fff;
+  color: #b88e2f;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  border: 1px solid #b88e2f;
+}

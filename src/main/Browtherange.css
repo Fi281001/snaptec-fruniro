@@ -1,0 +1,48 @@
+.range {
+  margin-top: 40px;
+  width: 81.15%;
+  height: 685px;
+  margin-left: 131px;
+  text-align: center;
+}
+
+.range-title {
+  display: inline-block; /* Make the range-title behave like an inline block to respect the text-align */
+  margin: 0 auto;
+}
+
+.range-title h2 {
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 48px;
+}
+
+.range-title > span {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  align-items: center;
+  margin-left: 43px;
+}
+.range-item span {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 36px;
+  align-items: center;
+}
+.range-item {
+  margin-top: 40px;
+  display: flex;
+  gap: 15px;
+  margin-left: 15px;
+}
+.range-item img {
+  box-sizing: border-box;
+  height: 480px;
+  /* width: 32.2%; */
+  width: calc((100% -20px) / 3); /* 20px là tổng khoảng cách giữa các ảnh */
+  margin-bottom: 19px;
+}
+.range-item > .bedroom {
+  margin-left: -2px;
+}

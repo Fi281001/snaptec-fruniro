@@ -1,0 +1,67 @@
+.banner {
+  position: relative;
+  width: 100%;
+  height: 716px;
+  overflow: hidden;
+}
+
+.banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.banner-title {
+  position: absolute;
+  top: 155px;
+  left: 739px; /* Align the container to the left */
+  bottom: 0;
+  display: flex;
+  align-items: center; /* Vertically center the container */
+  justify-content: flex-start; /* Align to the left */
+  background: #fff3e3;
+  color: #fff;
+  width: 42.96%;
+  height: 443px;
+  border-radius: 10px;
+}
+
+.banner-title .container {
+  width: 561px; /* Set the desired width of the box */
+  background: #fff3e3;
+  text-align: left; /* Align text to the left */
+  margin-left: 39px; /* Add some margin from the left edge */
+}
+.banner-title span {
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 24px;
+  color: black;
+}
+.banner-title h2 {
+  font-size: 52px;
+  font-weight: 700;
+  color: #b88e2f;
+  line-height: 65px;
+}
+.banner p {
+  width: 492px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  color: black;
+  padding-top: 10px;
+}
+
+.banner-title button {
+  margin-top: 62px;
+  padding: 10px 20px;
+  background-color: #b88e2f;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  width: 222px;
+  height: 74px;
+}
