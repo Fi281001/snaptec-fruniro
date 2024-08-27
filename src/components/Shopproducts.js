@@ -1,13 +1,12 @@
 import React from "react";
-import "../main/Products.css";
+import "../main/Shopproducts.css";
 import products from "../untils/Data";
 
-export default function Products() {
-  const limitedProducts = products.slice(0, 8);
+export default function Shopproducts() {
   return (
     <>
       <div className="Products">
-        {limitedProducts.map((product) => (
+        {products.map((product) => (
           <div key={product.id} className="product-item">
             <div class="overlay"></div>
             <div className="container">

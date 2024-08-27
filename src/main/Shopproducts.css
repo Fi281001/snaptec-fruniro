@@ -4,6 +4,7 @@
   flex-wrap: wrap;
   justify-content: start;
   gap: 20px;
+  margin-bottom: 40px;
 }
 
 .product-item {
@@ -90,26 +91,6 @@
 }
 .new-label {
   background-color: #2ec1ac; /* Màu xanh lá cây cho "new" */
-}
-
-/* but */
-.but {
-  margin-top: 40px;
-  display: flex; /* Sử dụng Flexbox để căn giữa nội dung */
-  justify-content: center; /* Căn giữa theo chiều ngang */
-  align-items: center;
-}
-.but button {
-  height: 48px;
-  width: 245px;
-  margin-left: 40px;
-  background-color: #fff;
-  color: #b88e2f;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 24px;
-  border: 1px solid #b88e2f;
-  margin-bottom: 40px;
 }
 
 /* Thêm lớp phủ màu sắc */

@@ -4,6 +4,7 @@ import Browtherange from "./HomePage/Browtherange";
 import Ourproduct from "./HomePage/Ourproduct";
 import { useState, useEffect } from "react";
 import ReactLoading from "react-loading";
+
 export default function Homepage() {
   const [loading, setLoading] = useState(true);
 

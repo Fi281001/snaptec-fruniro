@@ -1,0 +1,50 @@
+.img {
+  width: 100%;
+  height: 316px;
+}
+.text-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Căn giữa nội dung theo cả hai trục */
+  color: white; /* Màu chữ tùy chỉnh, có thể thay đổi */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Tạo bóng chữ để dễ đọc hơn */
+}
+.rectangle-container {
+  position: relative;
+  text-align: center; /* Căn giữa văn bản trong container */
+}
+.text-container h1 {
+  margin: 0;
+  color: black;
+  font-weight: 500;
+  line-height: 72px;
+  font-size: 48px; /* Kích thước chữ của dòng đầu tiên */
+}
+.nav {
+  display: flex;
+  gap: 10px;
+
+  align-items: center;
+  justify-content: center; /* Căn giữa nội dung trong breadcrumb */
+  font-size: 16px; /* Kích thước chữ của dòng thứ hai */
+  margin: 0;
+  padding: 0;
+}
+.home {
+  color: black;
+  font-weight: 500;
+  line-height: 24px;
+  font-size: 16px;
+}
+
+.separator {
+  margin: 0;
+  color: black;
+}
+.shop {
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 24px;
+  color: black;
+}

@@ -1,9 +1,9 @@
 import React from "react";
 import Rectangle from "./Rectangle.js";
-export default function Contact() {
+export default function Blog() {
   return (
     <div>
-      <Rectangle title="Contact" />
+      <Rectangle title="Blog" />
     </div>
   );
 }

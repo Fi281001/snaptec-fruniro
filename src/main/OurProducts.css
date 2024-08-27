@@ -1,9 +1,11 @@
 .Ourproducts {
   margin-top: 40px;
   width: 81.15%;
-  height: 685px;
+  /* min-height: 685px; */
+  /* height: 685px; */
   margin-left: 131px;
   text-align: center;
+  position: relative;
 }
 
 .Ourproducts-title {
@@ -16,5 +18,23 @@
   font-size: 32px;
   line-height: 48px;
   margin-left: 40px;
+  margin-bottom: 40px;
+}
+.but {
+  margin-top: 40px;
+  display: flex; /* Sử dụng Flexbox để căn giữa nội dung */
+  justify-content: center; /* Căn giữa theo chiều ngang */
+  align-items: center;
+}
+.but button {
+  height: 48px;
+  width: 245px;
+  margin-left: 40px;
+  background-color: #fff;
+  color: #b88e2f;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  border: 1px solid #b88e2f;
   margin-bottom: 40px;
 }

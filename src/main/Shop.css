@@ -1,0 +1,7 @@
+.block-products {
+  width: 90%; /* Điều chỉnh chiều rộng theo ý bạn */
+  margin: 0 auto; /* Căn giữa theo chiều ngang */
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; /* Đảm bảo các sản phẩm sẽ xuống dòng nếu không đủ chỗ */
+}
