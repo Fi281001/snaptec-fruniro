@@ -52,6 +52,9 @@ export default function Products() {
           </div>
         ))}
       </div>
+      <div className="but">
+        <button>Show More</button>
+      </div>
     </>
   );
 }

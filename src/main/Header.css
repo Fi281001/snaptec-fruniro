@@ -5,6 +5,7 @@
   display: flex;
   justify-content: space-between; /* Canh giữa nội dung của header */
   align-items: center;
+  position: relative;
 }
 
 .header-nav {
@@ -70,9 +71,49 @@
   justify-content: space-between;
 }
 
-.nav-icon i {
-  width: 28px;
-  font-size: 22px;
-  height: 28px;
-  cursor: pointer;
+.nav-icon {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Đặt các icon ở phía bên phải */
+}
+
+.cart-block {
+  position: absolute;
+  top: 0; /* Đặt bên dưới header, tùy chỉnh theo chiều cao của header */
+  right: 0;
+  width: 417px;
+  height: 700px;
+  padding: 20px;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.cart-block.hidden {
+  opacity: 0;
+  transform: translateY(-20px);
+  pointer-events: none;
+}
+.hr2 {
+  margin-left: -21px;
+  width: 417px;
+}
+/* Lớp phủ làm mờ toàn bộ trang khi giỏ hàng được bật lên */
+.overlay {
+  border-radius: 0 !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%; /* Chiều rộng toàn bộ viewport */ /* Chiều cao toàn bộ viewport */
+  background: rgba(0, 0, 0, 0.5); /* Màu nền đen với độ mờ 50% */
+  z-index: 999; /* Đặt lớp phủ ở trên cùng */
+  transition: opacity 0.1s ease; /* Hiệu ứng chuyển tiếp mờ dần */
+  opacity: 0; /* Ẩn lớp phủ khi không cần thiết */
+  pointer-events: none; /* Cho phép tương tác với các phần tử dưới lớp phủ */
+}
+
+.overlay.show {
+  opacity: 1;
 }

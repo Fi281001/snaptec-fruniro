@@ -92,11 +92,10 @@
   background-color: #2ec1ac; /* Màu xanh lá cây cho "new" */
 }
 
-/* but */
 .but {
   margin-top: 40px;
-  display: flex; /* Sử dụng Flexbox để căn giữa nội dung */
-  justify-content: center; /* Căn giữa theo chiều ngang */
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
 .but button {

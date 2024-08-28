@@ -1,10 +1,22 @@
-import Page from "@mui/material/Pagination";
-import Stack from "@mui/material/Stack";
-
+import "../main/Pagination.css";
 export default function Pagination() {
   return (
-    <Stack spacing={3}>
-      <Page count={3} variant="outlined" shape="rounded" />
-    </Stack>
+    <>
+      <div class="pagination">
+        <a href="#" class="page-item">
+          1
+        </a>
+        <a href="#" class="page-item">
+          2
+        </a>
+        <a href="#" class="page-item">
+          3
+        </a>
+
+        <a href="#" class="page-item">
+          Next
+        </a>
+      </div>
+    </>
   );
 }

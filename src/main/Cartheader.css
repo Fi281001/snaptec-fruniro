@@ -1,0 +1,117 @@
+.cart-title {
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 9px;
+  padding-inline: 7px;
+}
+.cart-title h3 {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 36px;
+}
+.cart-title i {
+  color: rgba(159, 159, 159, 1);
+  height: 19px;
+  width: 17px;
+  font-size: 24px;
+  padding-right: 35px;
+}
+.hr {
+  margin-left: 10px;
+  margin-top: 38px;
+  margin-bottom: 40px;
+  width: 287px;
+}
+.cart-body {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  margin-bottom: 20px;
+}
+.cart-body img {
+  width: 108px;
+  height: 105px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+.cart-body > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Căn lề trái cho nội dung */
+}
+
+.cart-body > div > span {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 5px; /* Khoảng cách giữa name và các thẻ p */
+}
+
+.cart-body > div > div {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.cart-body > div > div > p {
+  margin: 0;
+  font-size: 16px;
+  padding: 0 5px; /* Khoảng cách giữa các thẻ p */
+}
+
+.cart-body i {
+  color: rgba(159, 159, 159, 1);
+  font-size: 20px;
+  cursor: pointer;
+  margin-left: 15px; /* Khoảng cách giữa nội dung và icon xóa */
+}
+
+.price {
+  color: rgba(184, 142, 47, 1);
+}
+
+.cart-buttons {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  margin-top: 15px;
+}
+.btn {
+  background-color: white; /* Optional: Change the background color */
+  border: 1px solid rgba(0, 0, 0, 1);
+  width: Hug (135px) px;
+  height: Hug (30px) px;
+  padding: 6px 30px 6px 30px;
+  gap: 10px;
+  border-radius: 50px;
+  opacity: 0px;
+}
+.total {
+  margin-top: 200px;
+  margin-bottom: 25px;
+}
+.total-name {
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  width: 68px;
+  height: 24px;
+  top: 615px;
+  left: 1054px;
+  gap: 0px;
+  opacity: 0px;
+}
+.total-price {
+  padding-left: 113px;
+  width: 117px;
+  height: 24px;
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: left;
+  color: rgba(184, 142, 47, 1);
+}

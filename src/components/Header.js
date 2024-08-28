@@ -1,11 +1,47 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import logo from "../image/logo.png";
 import "../main/Header.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { Link } from "react-router-dom";
+import Cartheader from "./Cartheader";
+
 export default function Header() {
+  const [isCartVisible, setIsCartVisible] = useState(false);
+  const cartRef = useRef(null);
+
+  const toggleCartVisibility = () => {
+    setIsCartVisible(!isCartVisible);
+  };
+
+  const handleClickOutside = (event) => {
+    if (cartRef.current && !cartRef.current.contains(event.target)) {
+      setIsCartVisible(false);
+    }
+  };
+  const handleScroll = () => {
+    setIsCartVisible(false); // Ẩn giỏ hàng khi cuộn xuống
+  };
+
+  useEffect(() => {
+    if (isCartVisible) {
+      document.addEventListener("mousedown", handleClickOutside);
+      window.addEventListener("scroll", handleScroll); // Thêm sự kiện cuộn
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+      window.removeEventListener("scroll", handleScroll); // Xóa sự kiện cuộn
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [isCartVisible]);
+
   return (
     <>
+      {/* Lớp phủ làm mờ toàn bộ trang */}
+      <div className={`overlay ${isCartVisible ? "show" : ""}`} />
+
       <div className="header">
         <div className="header-nav">
           <div className="logo">
@@ -31,12 +67,21 @@ export default function Header() {
           </div>
 
           <div className="nav-icon">
-            <i class="bi bi-person-fill-exclamation"></i>
-            <i class="bi bi-search" title="search"></i>
-            <i class="bi bi-heart" title="heart"></i>
-            <i className="bi bi-cart" title="cart"></i>
+            <i className="bi bi-person-fill-exclamation"></i>
+            <i className="bi bi-search" title="search"></i>
+            <i className="bi bi-heart" title="heart"></i>
+            <i
+              className="bi bi-cart"
+              title="cart"
+              onClick={toggleCartVisibility}
+            ></i>
           </div>
         </div>
+        {isCartVisible && (
+          <div className="cart-block" ref={cartRef}>
+            <Cartheader onClose={toggleCartVisibility} />
+          </div>
+        )}
       </div>
     </>
   );
