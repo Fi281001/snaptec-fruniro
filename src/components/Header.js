@@ -21,11 +21,14 @@ export default function Header() {
               <li>
                 <Link to="/shop">Shop</Link>
               </li>
-              <li>
+              {/* <li>
                 <Link to="/Blog">Blog</Link>
               </li>
               <li>
                 <Link to="/contact">Contact</Link>
+              </li> */}
+              <li>
+                <Link to="/single-product">Single Product</Link>
               </li>
             </ul>
           </div>

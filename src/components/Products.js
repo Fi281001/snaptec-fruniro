@@ -2,8 +2,8 @@ import React from "react";
 import "../main/Products.css";
 import products from "../untils/Data";
 
-export default function Products() {
-  const limitedProducts = products.slice(0, 8);
+export default function Products({item}) {
+  const limitedProducts = products.slice(0, item);
   return (
     <>
       <div className="Products">

@@ -8,7 +8,7 @@ export default function Ourproduct() {
         <div className="Ourproducts-title">
           <h2>Our Products</h2>
         </div>
-        <Products />
+        <Products item={8}/>
       </div>
     </>
   );
