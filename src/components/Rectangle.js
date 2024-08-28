@@ -5,7 +5,7 @@ export default function Rectangle({ title }) {
   return (
     <>
       <div className="rectangle-container">
-        <img className="img" alt="ERROR" src={Rectangleimg} />
+        <img alt="ERROR" src={Rectangleimg} />
         <div className="text-container">
           <h1>{title}</h1>
           <div className="nav">
