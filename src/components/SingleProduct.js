@@ -146,9 +146,9 @@ export const SingleProduct = () => {
         <div className="related-item">
           <Products item={4} />
         </div>
-        <div className="but">
+        {/* <div className="but">
           <button>Show More</button>
-        </div>
+        </div> */}
       </div>
     </div>
   );

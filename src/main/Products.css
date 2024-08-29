@@ -1,4 +1,5 @@
 .Products {
+  margin-left: 25px;
   width: 1236px;
   display: flex;
   flex-wrap: wrap;
@@ -97,11 +98,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 1236px;
 }
 .but button {
   height: 48px;
   width: 245px;
-
   background-color: #fff;
   color: #b88e2f;
   font-weight: 600;
@@ -112,7 +113,7 @@
 }
 
 /* Thêm lớp phủ màu sắc */
-.overlay {
+.overlay-product {
   position: absolute;
   top: 0;
   left: 0;
@@ -131,7 +132,7 @@
 }
 
 /* Làm mờ toàn bộ khối sản phẩm khi hover */
-.product-item:hover .overlay {
+.product-item:hover .overlay-product {
   opacity: 1; /* Hiển thị lớp phủ */
 }
 .middle {
@@ -169,6 +170,9 @@
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;
+}
+.middle span i {
+  padding-right: 3px;
 }
 .title {
   margin-top: 10px;

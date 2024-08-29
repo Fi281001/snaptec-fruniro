@@ -9,7 +9,7 @@ export default function Products({ item }) {
       <div className="Products">
         {limitedProducts.map((product) => (
           <div key={product.id} className="product-item">
-            <div class="overlay"></div>
+            <div class="overlay-product"></div>
             <div className="container">
               <img
                 src={product.imgSrc}

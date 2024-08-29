@@ -82,7 +82,7 @@
   top: 0; /* Đặt bên dưới header, tùy chỉnh theo chiều cao của header */
   right: 0;
   width: 417px;
-  height: 700px;
+  height: 710px;
   padding: 20px;
   background-color: white;
   border: 1px solid #ccc;
@@ -95,25 +95,25 @@
   transform: translateY(-20px);
   pointer-events: none;
 }
-.hr2 {
-  margin-left: -21px;
-  width: 417px;
-}
+
 /* Lớp phủ làm mờ toàn bộ trang khi giỏ hàng được bật lên */
 .overlay {
   border-radius: 0 !important;
   position: fixed;
   top: 0;
   left: 0;
-  height: 100%;
-  width: 100%; /* Chiều rộng toàn bộ viewport */ /* Chiều cao toàn bộ viewport */
+  height: 100vh;
+  width: 50vw; /* Chiều rộng toàn bộ viewport */ /* Chiều cao toàn bộ viewport */
   background: rgba(0, 0, 0, 0.5); /* Màu nền đen với độ mờ 50% */
-  z-index: 999; /* Đặt lớp phủ ở trên cùng */
-  transition: opacity 0.2s ease; /* Hiệu ứng chuyển tiếp mờ dần */
+  z-index: 999999 !important;
+  transition: opacity 0.3s ease; /* Hiệu ứng chuyển tiếp mờ dần */
   opacity: 0; /* Ẩn lớp phủ khi không cần thiết */
   pointer-events: none; /* Cho phép tương tác với các phần tử dưới lớp phủ */
 }
 
 .overlay.show {
   opacity: 1;
+  height: 100vh;
+  width: 70%; /* Chiều rộng toàn bộ viewport */ /* Chiều cao toàn bộ viewport */
+  pointer-events: none;
 }

@@ -6,7 +6,7 @@ import Frame from "./Frame";
 const Cart = () => {
   return (
     <>
-      <Rectangle />
+      <Rectangle title="Cart" />
       <div className="set-width-height">
         <div className="container-left">
           <table class="content-table">

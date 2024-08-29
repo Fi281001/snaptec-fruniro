@@ -1,150 +1,148 @@
 .set-width-height {
-    width: 100%;
-    height: 525px;
-    display: flex;
-    gap: 10px;
-    padding: 67px 67px;
-    justify-content: space-evenly;
-
+  width: 100%;
+  height: 525px;
+  display: flex;
+  gap: 10px;
+  padding: 67px 67px;
+  justify-content: space-evenly;
 }
 
 .container-left {
-    width: 817px;
+  width: 817px;
 }
 
 .content-table {
-    border-collapse: collapse;
-    margin: 0px;
-    font-size: 0.9em;
-    width: 817px;
+  border-collapse: collapse;
+  margin: 0px;
+  font-size: 0.9em;
+  width: 817px;
 }
 
 .content-table thead tr {
-    background-color: #F9F1E7;
-    color: #F9F1E7;
-    text-align: left;
-    font-weight: bold;
+  background-color: #f9f1e7;
+  color: #f9f1e7;
+  text-align: left;
+  font-weight: bold;
 }
 
 .content-table th {
-    padding: 25px 0px;
-    text-align: left;
-    font-family: 'Poppins';
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 24px;
-    text-align: left;
-    color: #000000;
+  padding: 25px 0px;
+  text-align: left;
+  font-family: "Poppins";
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+  color: #000000;
 }
 
 .content-table td {
-    padding: 35px 0px 25px 0px;
-    text-align: left;
-    font-family: 'Poppins';
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 24px;
-    text-align: left;
-    color: #9F9F9F;
+  padding: 35px 0px 25px 0px;
+  text-align: left;
+  font-family: "Poppins";
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+  color: #9f9f9f;
 }
 
 .content-table__th {
-    padding: 35px 0px 25px 0px !important;
+  padding: 35px 0px 25px 0px !important;
 }
 
 .content-table tbody tr th img {
-    width: 105px;
-    height: 105px;
+  width: 105px;
+  height: 105px;
 }
 
 .content-table tbody tr {
-    border-bottom: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
 }
 
 .color-black {
-    color: #000000 !important;
-    text-align: center;
+  color: #000000 !important;
+  text-align: center;
 }
 
 .reatangle_input {
-    width: 32px;
-    height: 32px;
-    text-align: center;
-    border: 1px solid #9F9F9F;
-    border-radius: 5px;
+  margin-left: 20px;
+  width: 32px;
+  height: 32px;
+  text-align: center;
+  border: 1px solid #9f9f9f;
+  border-radius: 5px;
 }
 
 .bi-trash-fill {
-    color: #B88E2F;
-    ;
+  color: #b88e2f;
 }
 
 .container-right {
-    width: 393px;
-    height: 390px;
-    background: #F9F1E7;
+  width: 393px;
+  height: 390px;
+  background: #f9f1e7;
 }
 
 .container-right__cart-totals {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding: 25px;
-    font-family: 'Poppins';
-    font-size: 32px;
-    font-weight: 600;
-    line-height: 48px;
-    text-align: left;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 25px;
+  font-family: "Poppins";
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 48px;
+  text-align: left;
 }
 
 .container-right__display-flex {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    margin-top: 40px;
-    padding: 0px 80px 0px 80px;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-top: 40px;
+  padding: 0px 80px 0px 80px;
 }
 
 .container-right__display-flex span {
-    font-family: 'Poppins';
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 24px;
-    text-align: left;
-    color: #000000;
+  font-family: "Poppins";
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+  color: #000000;
 }
 
 .container-right__display-flex p {
-    font-family: 'Poppins';
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 24px;
-    text-align: left;
-    color: #9F9F9F;
-    ;
+  font-family: "Poppins";
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  color: #9f9f9f;
 }
 
 .container-right__p {
-    font-size: 20px !important;
-    font-weight: 600 !important;
-    color: #B88E2F !important;
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  color: #b88e2f !important;
 }
 
 .container-right__w-100 {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-top: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
 }
 
 .container-right__btn-checkout {
-    width: 222px;
-    height: 58.95px;
-    border-radius: 15px;
-    border: 1px solid #000000;
-    font-family: 'Poppins';
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 30px;
-    color: #000000;
+  width: 222px;
+  height: 58.95px;
+  border-radius: 15px;
+  border: 1px solid #000000;
+  font-family: "Poppins";
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
+  color: #000000;
 }

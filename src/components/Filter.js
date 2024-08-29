@@ -18,7 +18,7 @@ export default function Filter() {
       </div>
       <div className="options">
         <span className="show-page">Show</span>
-        <select className="show">
+        <select className="show-option">
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
