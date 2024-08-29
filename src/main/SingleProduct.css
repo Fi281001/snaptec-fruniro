@@ -343,8 +343,7 @@ hr {
     width: 1236px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 30px;
+    justify-content: center;
     margin-left: 100px;
 }
 

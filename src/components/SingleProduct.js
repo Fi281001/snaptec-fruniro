@@ -146,11 +146,6 @@ export const SingleProduct = () => {
         <div className="related-products_Products">
           <Products item={4} />
         </div>
-        <div className="w-100">
-          <button className="related-products_showmore">
-            Show More
-          </button>
-        </div>
       </div>
     </div>
   );
