@@ -143,13 +143,11 @@ export const SingleProduct = () => {
       </div>
       <div className="related-products">
         <h1>Related Products</h1>
-        <div className="related-products_Products">
+        <div className="related-item">
           <Products item={4} />
         </div>
-        <div className="w-100">
-          <button className="related-products_showmore">
-            Show More
-          </button>
+        <div className="but">
+          <button>Show More</button>
         </div>
       </div>
     </div>

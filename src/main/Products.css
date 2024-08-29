@@ -101,7 +101,7 @@
 .but button {
   height: 48px;
   width: 245px;
-  margin-left: 40px;
+
   background-color: #fff;
   color: #b88e2f;
   font-weight: 600;
@@ -152,13 +152,17 @@
 .product-item:hover .middle {
   opacity: 1; /* Hiển thị lớp middle khi hover */
 }
-.text {
+.butadd {
   background-color: #fff;
   color: rgba(184, 142, 47, 1);
   font-size: 16px;
   padding: 16px 16px;
   width: 202px;
   height: 48px;
+}
+.butadd a {
+  color: rgba(184, 142, 47, 1);
+  text-decoration: none;
 }
 .middle span {
   color: white;

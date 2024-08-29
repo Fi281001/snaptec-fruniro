@@ -7,8 +7,11 @@ export default function Ourproduct() {
       <div className="Ourproducts">
         <div className="Ourproducts-title">
           <h2>Our Products</h2>
+          <Products item={8} />
+          <div className="but">
+            <button>Show More</button>
+          </div>
         </div>
-        <Products item={8}/>
       </div>
     </>
   );

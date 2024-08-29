@@ -5,3 +5,6 @@
   justify-content: center;
   flex-wrap: wrap; /* Đảm bảo các sản phẩm sẽ xuống dòng nếu không đủ chỗ */
 }
+.item {
+  margin-left: 50px;
+}
