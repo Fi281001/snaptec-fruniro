@@ -4,6 +4,6 @@
   box-sizing: border-box;
 }
 .App {
-  width: 1440px;
-  margin: 0 auto;
+  /* max-width: 1440px; */
+  width: 100%;
 }

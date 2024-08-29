@@ -1,5 +1,6 @@
 import React from "react";
 import "../main/Cartheader.css";
+import { Link, NavLink } from "react-router-dom";
 import image1 from "../image/products/image 1.png";
 export default function Cartheader({ onClose }) {
   return (
@@ -40,7 +41,9 @@ export default function Cartheader({ onClose }) {
         </div>
         <hr className="hr2" />
         <div className="cart-buttons">
-          <button className="btn ">Cart</button>
+          <NavLink to="/cart" onClick={onClose} className="btn">
+            Cart
+          </NavLink>
           <button className="btn">Checkout</button>
           <button className="btn ">Comparison</button>
         </div>

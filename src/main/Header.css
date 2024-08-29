@@ -14,10 +14,11 @@
   display: flex;
   justify-content: space-between; /* Phân phối không gian giữa các phần tử */
   align-items: center;
-  margin-left: 57px; /* Thay padding-top bằng padding để căn chỉnh đồng đều */
+  margin-left: -66px; /* Thay padding-top bằng padding để căn chỉnh đồng đều */
 }
 
 .logo {
+  margin-left: 117px;
   display: flex;
   align-items: center;
   gap: 5px;
@@ -47,14 +48,14 @@
   display: flex;
   justify-content: space-between;
   gap: 65px; /* Khoảng cách giữa các liên kết */
-  margin-left: 54px;
+  margin-left: -52px;
   padding: 0;
 }
 
 .nav ul li a {
   cursor: pointer;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 24px;
   text-decoration: none;
   color: black;
@@ -65,7 +66,7 @@
 }
 .nav-icon {
   margin-right: 85px;
-  width: 300px;
+  width: 4.3%;
   display: flex;
   gap: 38px; /* Khoảng cách giữa các biểu tượng */
   justify-content: space-between;
@@ -81,7 +82,7 @@
   position: absolute;
   top: 0; /* Đặt bên dưới header, tùy chỉnh theo chiều cao của header */
   right: 0;
-  width: 417px;
+  width: 30%;
   height: 710px;
   padding: 20px;
   background-color: white;
@@ -102,11 +103,11 @@
   position: fixed;
   top: 0;
   left: 0;
-  height: 100vh;
-  width: 50vw; /* Chiều rộng toàn bộ viewport */ /* Chiều cao toàn bộ viewport */
+  transform: translate(0);
+  /* Chiều cao toàn bộ viewport */
   background: rgba(0, 0, 0, 0.5); /* Màu nền đen với độ mờ 50% */
   z-index: 999999 !important;
-  transition: opacity 0.3s ease; /* Hiệu ứng chuyển tiếp mờ dần */
+  transition: all 0.2s ease; /* Hiệu ứng chuyển tiếp mờ dần */
   opacity: 0; /* Ẩn lớp phủ khi không cần thiết */
   pointer-events: none; /* Cho phép tương tác với các phần tử dưới lớp phủ */
 }
@@ -116,4 +117,8 @@
   height: 100vh;
   width: 70%; /* Chiều rộng toàn bộ viewport */ /* Chiều cao toàn bộ viewport */
   pointer-events: none;
+  transform: translate(0);
+}
+.nav-icon i {
+  font-size: 26px;
 }

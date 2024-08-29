@@ -37,8 +37,12 @@ export default function Homepage() {
         ) : (
           <div>
             <Banner />
-            <Browtherange />
-            <Ourproduct />
+            <div className="hp-container">
+              <Browtherange />
+            </div>
+            <div className="hp-container">
+              <Ourproduct />
+            </div>
           </div>
         )}
       </div>
