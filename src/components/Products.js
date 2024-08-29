@@ -10,7 +10,7 @@ export default function Products({ item }) {
         {limitedProducts.map((product) => (
           <div key={product.id} className="product-item">
             <div class="overlay-product"></div>
-            <div className="container">
+           
               <img
                 src={product.imgSrc}
                 alt={product.name}
@@ -43,7 +43,7 @@ export default function Products({ item }) {
                   {product.sale}
                 </div>
               )}
-            </div>
+          
             <div className="product-name">{product.name}</div>
             <div className="product-title">{product.title}</div>
             <div className="price">

@@ -79,8 +79,8 @@ export const SingleProduct = () => {
             </div>
             <div className="display-flex">
               <div className="quatity">
-                {/* <i class="bi bi-dash"></i> */}1
-                {/* <i class="bi bi-plus"></i> */}
+                <i class="bi bi-dash"></i>1
+                <i class="bi bi-plus"></i>
               </div>
               <div className="cart">Add To Card</div>
               <div className="compare">+ Compare</div>
@@ -113,6 +113,7 @@ export const SingleProduct = () => {
           </div>
         </div>
       </div>
+      <hr />
       <div className="description-information-review">
         <div className="df">
           <span className="description">Description</span>
@@ -141,6 +142,7 @@ export const SingleProduct = () => {
           <img src={img2} alt="image-2" />
         </div>
       </div>
+      <hr />
       <div className="related-products">
         <h1>Related Products</h1>
         <div className="related-item">
