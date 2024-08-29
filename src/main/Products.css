@@ -150,7 +150,7 @@
 }
 
 /* Làm mờ toàn bộ khối sản phẩm khi hover */
-.product-item:hover .overlay {
+.product-item:hover .overlay-product {
   opacity: 1; /* Hiển thị lớp phủ */
 }
 
@@ -191,6 +191,9 @@
   font-weight: 600;
   line-height: 24px;
 }
+.middle span i {
+  margin-right: 3px;
+}
 .title {
   margin-top: 10px;
 
@@ -198,4 +201,16 @@
   display: flex;
   gap: 10px;
   justify-content: space-between;
+}
+.butadd {
+  background-color: #fff;
+  color: rgba(184, 142, 47, 1);
+  font-size: 16px;
+  padding: 16px 16px;
+  width: 202px;
+  height: 48px;
+}
+.butadd a {
+  color: rgba(184, 142, 47, 1);
+  text-decoration: none;
 }
