@@ -2,7 +2,7 @@
   width: 1236px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: start;
+  justify-content: center;
   gap: 20px;
 }
 
@@ -111,13 +111,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 1236px;
+  width: 100%;
 }
 
 .but button {
   height: 48px;
   width: 245px;
-  /* margin-left: 40px; */
   background-color: #fff;
   color: #b88e2f;
   font-weight: 600;
@@ -187,7 +186,6 @@
   width: 202px;
   height: 48px;
 }
-
 .middle span {
   color: white;
   font-size: 16px;

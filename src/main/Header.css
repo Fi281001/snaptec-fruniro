@@ -109,7 +109,7 @@
   width: 100%; /* Chiều rộng toàn bộ viewport */ /* Chiều cao toàn bộ viewport */
   background: rgba(0, 0, 0, 0.5); /* Màu nền đen với độ mờ 50% */
   z-index: 999; /* Đặt lớp phủ ở trên cùng */
-  transition: opacity 0.1s ease; /* Hiệu ứng chuyển tiếp mờ dần */
+  transition: opacity 0.2s ease; /* Hiệu ứng chuyển tiếp mờ dần */
   opacity: 0; /* Ẩn lớp phủ khi không cần thiết */
   pointer-events: none; /* Cho phép tương tác với các phần tử dưới lớp phủ */
 }

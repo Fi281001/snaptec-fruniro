@@ -1,8 +1,8 @@
 import React from "react";
 import "../main/Products.css";
 import products from "../untils/Data";
-
-export default function Products({item}) {
+import { Link } from "react-router-dom";
+export default function Products({ item }) {
   const limitedProducts = products.slice(0, item);
   return (
     <>
@@ -18,7 +18,10 @@ export default function Products({item}) {
               />
 
               <div className="middle">
-                <div className="text">Add to cart</div>
+                <button className="butadd">
+                  <Link to="/single-product">Add to card</Link>
+                </button>
+
                 <div className="title">
                   <span>
                     <i class="bi bi-share"></i>Share
@@ -51,9 +54,6 @@ export default function Products({item}) {
             </div>
           </div>
         ))}
-      </div>
-      <div className="but">
-        <button>Show More</button>
       </div>
     </>
   );
