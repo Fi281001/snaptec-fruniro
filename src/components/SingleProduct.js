@@ -79,8 +79,7 @@ export const SingleProduct = () => {
             </div>
             <div className="display-flex">
               <div className="quatity">
-                <i class="bi bi-dash"></i>1
-                <i class="bi bi-plus"></i>
+                <i class="bi bi-dash"></i>1<i class="bi bi-plus"></i>
               </div>
               <div className="cart">Add To Card</div>
               <div className="compare">+ Compare</div>

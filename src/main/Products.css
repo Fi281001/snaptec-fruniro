@@ -10,8 +10,8 @@
   position: relative;
   overflow: hidden;
   /* Đảm bảo lớp phủ không tràn ra ngoài */
-  width: 270px;
-  height: 446px;
+  width: 296px;
+  height: 459px;
   background-color: #f4f5f7;
   display: flex;
   flex-direction: column;
