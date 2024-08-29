@@ -311,12 +311,13 @@ hr {
 }
 
 .img {
-    width: 1239px;
+    width: 100%;
     height: 348px;
     display: flex;
-    margin-left: 100px;
     margin-top: 30px;
     justify-content: space-between;
+    padding-left: 100px;
+    padding-right: 100px;
 }
 
 .img img {
@@ -349,4 +350,23 @@ hr {
 .related-item {
     display: flex;
     justify-content: center;
+}
+
+.but-show-more {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1440px;
+}
+
+.but-show-more button {
+    height: 48px;
+    width: 245px;
+    background-color: #fff;
+    color: #b88e2f;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    border: 1px solid #b88e2f;
 }
