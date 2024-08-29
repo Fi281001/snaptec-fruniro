@@ -45,7 +45,7 @@ export default function Header() {
       <div className="header">
         <div className="header-nav">
           <div className="logo">
-            <img src={logo} />
+            <img src={logo} alt="" />
             <h2>Funiro</h2>
           </div>
 
@@ -65,6 +65,9 @@ export default function Header() {
               </li> */}
               <li>
                 <Link to="/single-product">Single Product</Link>
+              </li>
+              <li>
+                <Link to="/cart">Cart</Link>
               </li>
             </ul>
           </div>
