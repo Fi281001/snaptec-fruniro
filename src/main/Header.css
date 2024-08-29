@@ -52,6 +52,11 @@
   padding: 0;
 }
 
+.nav ul li {
+  display: flex;
+  align-items: center;
+}
+
 .nav ul li a {
   cursor: pointer;
   font-weight: 500;

@@ -51,7 +51,7 @@ export default function Header() {
 
           <div className="nav">
             <ul>
-              <li>
+              <li >
                 <Link to="/">Home</Link>
               </li>
               <li>
@@ -73,7 +73,7 @@ export default function Header() {
           </div>
 
           <div className="nav-icon">
-            <i className="bi bi-person-fill-exclamation"></i>
+            <i class="bi bi-person"></i>
             <i className="bi bi-search" title="search"></i>
             <i className="bi bi-heart" title="heart"></i>
             <i
