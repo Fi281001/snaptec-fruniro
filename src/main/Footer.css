@@ -71,7 +71,7 @@
 }
 
 .button-underline:hover {
-  border-bottom-color: rgba(184, 142, 47, 1); /* Thay đổi màu viền khi hover */
+  border-bottom-color: #fff3e3; /* Thay đổi màu viền khi hover */
   color: #fff3e3; /* Thay đổi màu chữ khi hover */
 }
 
