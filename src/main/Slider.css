@@ -78,7 +78,6 @@
   height: 582px;
 }
 
-/* Specific styles for other images */
 .other-img {
   width: 372px;
   height: 486px;
@@ -96,3 +95,6 @@
 .slick-next {
   right: 56px !important;
 }
+/* .slick-slide {
+  width: 404px !important;
+} */

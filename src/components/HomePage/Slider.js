@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Living from "../../image/Image-living room.png";
 import Bedroom from "../../image/Mask Group (1).png";
 import Dining from "../../image/Mask Group.png";
+
 export default function Slider() {
   const settings = {
     dots: true,
@@ -14,6 +15,16 @@ export default function Slider() {
     slidesToShow: 2,
     slidesToScroll: 2,
   };
+
+  const slides = [
+    { id: 1, src: Living },
+    { id: 2, src: Bedroom },
+    { id: 3, src: Dining },
+    { id: 4, src: Living },
+    { id: 5, src: Bedroom },
+    { id: 6, src: Dining },
+  ];
+
   return (
     <div className="slider-main">
       <div className="slider-title">
@@ -29,24 +40,15 @@ export default function Slider() {
       <div className="slider-content">
         <div className="slider-container">
           <Slick {...settings}>
-            <div>
-              <img alt="" src={Living} className="first-img" />
-            </div>
-            <div>
-              <img alt="" src={Bedroom} className="other-img" />
-            </div>
-            <div>
-              <img alt="" src={Dining} className="other-img" />
-            </div>
-            <div>
-              <img alt="" src={Living} className="other-img" />
-            </div>
-            <div>
-              <img alt="" src={Bedroom} className="other-img" />
-            </div>
-            <div>
-              <img alt="" src={Dining} className="other-img" />
-            </div>
+            {slides.map((slide, index) => (
+              <div key={slide.id}>
+                <img
+                  alt=""
+                  src={slide.src}
+                  className={index % 2 === 0 ? "first-img" : "other-img"}
+                />
+              </div>
+            ))}
           </Slick>
         </div>
       </div>
