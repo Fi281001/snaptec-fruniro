@@ -21,7 +21,7 @@
   justify-content: flex-start; /* Align to the left */
   background: #fff3e3;
   color: #fff;
-  width: 42.96%;
+  width: 45%;
   height: 443px;
   border-radius: 10px;
 }
@@ -45,7 +45,7 @@
   line-height: 65px;
 }
 .banner p {
-  width: 492px;
+  width: 100%;
   font-weight: 500;
   font-size: 18px;
   line-height: 24px;
@@ -64,4 +64,27 @@
   transition: background-color 0.3s ease;
   width: 222px;
   height: 74px;
+}
+@media (max-width: 1380px) {
+  .banner-title {
+    left: 33%;
+  }
+}
+@media (max-width: 1335px) {
+  .banner-title {
+    left: 33%;
+  }
+}
+@media (max-width: 1330px) {
+  .nav ul {
+    margin-left: -170px;
+  }
+  .nav-icon {
+    margin-right: -15px;
+  }
+}
+@media (min-width: 1440px) {
+  .banner-title {
+    left: 50%;
+  }
 }

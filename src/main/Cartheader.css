@@ -101,7 +101,7 @@
   height: 24px;
   top: 615px;
   left: 1054px;
-  gap: 0px;
+
   opacity: 0px;
 }
 .total-price {
@@ -114,4 +114,42 @@
   line-height: 24px;
   text-align: left;
   color: rgba(184, 142, 47, 1);
+}
+.cart-buttons a {
+  text-decoration: none;
+  color: black;
+}
+.cart-buttons :hover {
+  background-color: rgba(249, 241, 231, 1);
+}
+@media ((max-width: 1250px)) {
+  .cart-body img {
+    width: 83px;
+    height: 80px;
+  }
+  .cart-body {
+    gap: 10px;
+  }
+  .cart-buttons {
+    gap: 7px;
+    flex-direction: column;
+  }
+}
+@media ((max-width: 1128px)) {
+  .total-price {
+    font-size: 14px;
+  }
+  .total-name {
+    font-size: 14px;
+    text-align: center;
+  }
+}
+@media ((max-width: 1051px)) {
+  .total-price {
+    font-size: 12px;
+  }
+  .total-name {
+    font-size: 12px;
+    text-align: center;
+  }
 }
