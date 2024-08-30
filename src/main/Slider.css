@@ -1,0 +1,98 @@
+.slider-main {
+  width: 100%;
+  height: 670px;
+  background: rgba(252, 248, 243, 1);
+  display: flex;
+  justify-content: center;
+}
+
+.slider-title {
+  width: 30%;
+  display: flex;
+  flex-direction: column; /* Aligns children in a column */
+  justify-content: center; /* Centers children vertically */
+  height: 100%;
+  margin-left: 100px;
+}
+
+.slider-content {
+  width: 60%;
+  display: flex;
+  justify-content: center; /* Centers the block horizontally */
+  align-items: center; /* Centers the block vertically */
+}
+
+.slider-container {
+  margin-left: 40px;
+  width: 100%; /* Ensures the slider takes up only as much width as needed */
+}
+
+.slider-title h3 {
+  width: 35%;
+  height: 96px;
+  gap: 0px;
+  opacity: 0px;
+  font-family: Poppins;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 48px;
+  text-align: left;
+}
+.slider-title p {
+  width: 91%;
+  height: 48px;
+  top: 3089px;
+  left: 100px;
+  gap: 0px;
+  opacity: 0px;
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+}
+
+.slider-title button {
+  width: 176px;
+  height: 48px;
+  top: 3162px;
+  left: 100px;
+  gap: 0px;
+  opacity: 0px;
+  background: rgba(184, 142, 47, 1);
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.slider-container img {
+  /* width: 404px;
+  height: 582px; */
+  object-fit: cover;
+}
+.first-img {
+  width: 404px;
+  height: 582px;
+}
+
+/* Specific styles for other images */
+.other-img {
+  width: 372px;
+  height: 486px;
+}
+.slick-prev:before {
+  display: None !important;
+}
+.slick-next:before {
+  font-family: "slick";
+  font-size: 48px !important;
+  line-height: 1;
+  opacity: 0.75;
+  color: rgba(0, 0, 0, 0.16) !important;
+}
+.slick-next {
+  right: 56px !important;
+}
