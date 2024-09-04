@@ -16,7 +16,7 @@ export default function Blog() {
   return (
     <>
       <Rectangle title="Blog" />
-      <div className="container">
+      <div className="container-blog">
         <div className="container__blog-left">
           {/* blog 1 */}
           <img src={imgblog1} alt="thumbnail-1" />
@@ -144,43 +144,43 @@ export default function Blog() {
           </div>
 
           <div className="recent-posts">
-              <div className="recent-posts__span">Recent Posts</div>
-              <div className="recent-posts__group">
-                <img src={recentpost1} alt="recent-post-1" />
-                <div className="recent-posts__name-post">
-                  <span>Going all-in with millennial design</span>
-                  <p>03 Aug 2022</p>
-                </div>
-              </div>{" "}
-              <div className="recent-posts__group">
-                <img src={recentpost2} alt="recent-post-2" />
-                <div className="recent-posts__name-post">
-                  <span>Going all-in with millennial design</span>
-                  <p>03 Aug 2022</p>
-                </div>
-              </div>{" "}
-              <div className="recent-posts__group">
-                <img src={recentpost3} alt="recent-post-3" />
-                <div className="recent-posts__name-post">
-                  <span>Going all-in with millennial design</span>
-                  <p>03 Aug 2022</p>
-                </div>
-              </div>{" "}
-              <div className="recent-posts__group">
-                <img src={recentpost4} alt="recent-post-4" />
-                <div className="recent-posts__name-post">
-                  <span>Going all-in with millennial design</span>
-                  <p>03 Aug 2022</p>
-                </div>
-              </div>{" "}
-              <div className="recent-posts__group">
-                <img src={recentpost5} alt="recent-post-5" />
-                <div className="recent-posts__name-post">
-                  <span>Going all-in with millennial design</span>
-                  <p>03 Aug 2022</p>
-                </div>
+            <div className="recent-posts__span">Recent Posts</div>
+            <div className="recent-posts__group">
+              <img src={recentpost1} alt="recent-post-1" />
+              <div className="recent-posts__name-post">
+                <span>Going all-in with millennial design</span>
+                <p>03 Aug 2022</p>
+              </div>
+            </div>{" "}
+            <div className="recent-posts__group">
+              <img src={recentpost2} alt="recent-post-2" />
+              <div className="recent-posts__name-post">
+                <span>Going all-in with millennial design</span>
+                <p>03 Aug 2022</p>
+              </div>
+            </div>{" "}
+            <div className="recent-posts__group">
+              <img src={recentpost3} alt="recent-post-3" />
+              <div className="recent-posts__name-post">
+                <span>Going all-in with millennial design</span>
+                <p>03 Aug 2022</p>
+              </div>
+            </div>{" "}
+            <div className="recent-posts__group">
+              <img src={recentpost4} alt="recent-post-4" />
+              <div className="recent-posts__name-post">
+                <span>Going all-in with millennial design</span>
+                <p>03 Aug 2022</p>
+              </div>
+            </div>{" "}
+            <div className="recent-posts__group">
+              <img src={recentpost5} alt="recent-post-5" />
+              <div className="recent-posts__name-post">
+                <span>Going all-in with millennial design</span>
+                <p>03 Aug 2022</p>
               </div>
             </div>
+          </div>
         </div>
       </div>
       <Pagination className="paginate-blog" />
