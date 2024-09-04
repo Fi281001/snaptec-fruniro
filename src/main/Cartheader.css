@@ -17,17 +17,18 @@
   font-size: 24px;
   padding-right: 35px;
 }
-.hr {
+.cart-title__hr {
+  margin-top: 15px;
+  margin-bottom: 30px;
   margin-left: 10px;
-  margin-top: 38px;
-  margin-bottom: 40px;
   width: 287px;
 }
 .cart-body {
   display: flex;
   align-items: center;
+  justify-content: space-around;
   gap: 25px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .cart-body img {
   width: 108px;
@@ -74,8 +75,8 @@
 .cart-buttons {
   display: flex;
   justify-content: space-between;
-  padding: 5px;
-  margin-top: -30px;
+
+  margin-top: -18px;
 }
 .btn {
   text-align: center;
@@ -88,9 +89,9 @@
   border-radius: 50px;
   opacity: 0px;
 }
+
 .total {
-  margin-top: 50%;
-  margin-bottom: -31px;
+  margin-top: 30px;
 }
 .total-name {
   font-family: Poppins;
@@ -123,6 +124,14 @@
 }
 .cart-buttons :hover {
   background-color: rgba(249, 241, 231, 1);
+}
+
+.cart-list {
+  height: 65vh;
+  overflow-y: auto;
+}
+.total-block {
+  height: 15vh;
 }
 @media ((max-width: 1250px)) {
   .cart-body img {
