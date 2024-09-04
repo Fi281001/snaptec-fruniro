@@ -127,20 +127,20 @@ export default function Blog() {
             <p>2</p>
           </div>
           <div className="content">
-            <span>Crafts</span>
-            <p>2</p>
+            <span>Design</span>
+            <p>8</p>
           </div>
           <div className="content">
-            <span>Crafts</span>
-            <p>2</p>
+            <span>Handmade</span>
+            <p>7</p>
           </div>
           <div className="content">
-            <span>Crafts</span>
-            <p>2</p>
+            <span>Interior</span>
+            <p>1</p>
           </div>
           <div className="content">
-            <span>Crafts</span>
-            <p>2</p>
+            <span>Wood</span>
+            <p>6</p>
           </div>
 
           <div className="recent-posts">
