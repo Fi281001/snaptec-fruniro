@@ -14,6 +14,8 @@ export default function Slider() {
     speed: 500,
     slidesToShow: 2,
     slidesToScroll: 2,
+    autoplay: true,
+    autoplaySpeed: 2000,
   };
 
   const slides = [
