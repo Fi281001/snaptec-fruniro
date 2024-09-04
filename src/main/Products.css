@@ -181,6 +181,7 @@
   padding: 16px 16px;
   width: 202px;
   height: 48px;
+  border: none;
 }
 .middle span {
   color: white;

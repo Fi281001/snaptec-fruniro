@@ -12,7 +12,7 @@ export default function Slider() {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 2,
+    slidesToShow: 2.1,
     slidesToScroll: 2,
   };
 
@@ -41,7 +41,10 @@ export default function Slider() {
         <div className="slider-container">
           <Slick {...settings}>
             {slides.map((slide, index) => (
-              <div key={slide.id}>
+              <div
+                key={slide.id}
+                className={index % 2 === 0 ? "slider-div" : "slider-div2"}
+              >
                 <img
                   alt=""
                   src={slide.src}
