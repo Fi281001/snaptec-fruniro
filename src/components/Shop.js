@@ -13,7 +13,7 @@ export default function Shop() {
       <Filter />
       <div className="block-products">
         <div className="item">
-          <Products item={16} />
+          <Products />
         </div>
         <Page />
       </div>
