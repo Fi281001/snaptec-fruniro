@@ -4,14 +4,15 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 15px;
+  padding-left: 100px;
+  padding-right: 100px;
 }
 
 .product-item {
   position: relative;
   overflow: hidden;
   /* Đảm bảo lớp phủ không tràn ra ngoài */
-  width: 296px;
-  height: 459px;
+  width: 24%;
   background-color: #f4f5f7;
   display: flex;
   flex-direction: column;
@@ -25,10 +26,6 @@
   margin: 0;
   padding-left: 10px;
   padding-top: 10px;
-}
-
-.product-image {
-  height: 301px;
 }
 
 .product-name {
