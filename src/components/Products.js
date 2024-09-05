@@ -2,12 +2,11 @@ import React from "react";
 import { useState, useEffect } from "react";
 import "../main/Products.css";
 
-import products from "../untils/Data";
 import { Link } from "react-router-dom";
 import { database } from "../firebase";
 import { getDatabase, ref, onValue, get, child } from "firebase/database";
 export default function Products({ item }) {
-  const [products2, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     // Hàm để lấy dữ liệu từ Firebase
@@ -27,9 +26,8 @@ export default function Products({ item }) {
 
     fetchData();
   }, []);
-
-  // const limitedProducts = products.slice(0, item);
-  const limitedProducts = products2.slice(0, item);
+  console.log("products", products);
+  const limitedProducts = products.slice(0, item);
   return (
     <>
       <div className="Products">

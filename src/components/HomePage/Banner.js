@@ -3,7 +3,6 @@ import banner from "../../image/banner2.png";
 import "../../main/Banner.css";
 
 export default function Banner() {
-  console.log("banner", banner);
   return (
     <div className="banner">
       <img src={banner} />

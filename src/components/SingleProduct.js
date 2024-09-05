@@ -1,6 +1,7 @@
 import React from "react";
 import "../main/SingleProduct.css";
 import Products from "./Products.js";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import thumbnail1 from "../image/single-product/Thumbnail1.png";
 import thumbnail2 from "../image/single-product/Thumbnail2.png";
@@ -11,6 +12,11 @@ import img1 from "../image/single-product/Image1.png";
 import img2 from "../image/single-product/Image2.png";
 
 export const SingleProduct = () => {
+  const [items, setItems] = useState(5); // Số lượng sản phẩm ban đầu
+
+  const showMore = () => {
+    setItems((prevItems) => prevItems + 4); // Tăng thêm 4 sản phẩm
+  };
   return (
     <div>
       <div className="breadcrumb">
@@ -145,10 +151,10 @@ export const SingleProduct = () => {
       <div className="related-products">
         <h1>Related Products</h1>
         <div className="related-item">
-          <Products item={5} />
+          <Products item={items} />
         </div>
         <div className="but-show-more">
-          <button>Show More</button>
+          <button onClick={showMore}>Show More</button>
         </div>
       </div>
     </div>
