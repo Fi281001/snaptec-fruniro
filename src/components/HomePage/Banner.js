@@ -1,5 +1,5 @@
 import React from "react";
-import banner from "../../image/banner.png";
+import banner from "../../image/banner2.png";
 import "../../main/Banner.css";
 
 export default function Banner() {
@@ -7,7 +7,7 @@ export default function Banner() {
   return (
     <div className="banner">
       <img src={banner} />
-      <div className="banner-title">
+      {/* <div className="banner-title">
         <div className="container">
           <span>New Arrial</span>
           <h2>Discover Our</h2>
@@ -18,7 +18,7 @@ export default function Banner() {
           </p>
           <button>BUY NOW</button>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

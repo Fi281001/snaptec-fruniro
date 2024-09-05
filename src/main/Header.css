@@ -5,7 +5,12 @@
   display: flex;
   justify-content: space-between; /* Canh giữa nội dung của header */
   align-items: center;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  padding: 0;
+  /* position: relative; */
 }
 
 .header-nav {
@@ -126,4 +131,14 @@
 }
 .nav-icon i {
   font-size: 26px;
+}
+@media ((max-width: 1350px)) {
+  .nav-icon {
+    margin-right: 0px;
+  }
+}
+@media ((max-width: 1110px)) {
+  .nav ul {
+    margin-left: -131px;
+  }
 }

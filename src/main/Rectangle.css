@@ -11,6 +11,7 @@
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Tạo bóng chữ để dễ đọc hơn */
 }
 .rectangle-container {
+  margin-top: 100px;
   position: relative;
   text-align: center; /* Căn giữa văn bản trong container */
 }
