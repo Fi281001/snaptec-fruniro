@@ -1,7 +1,8 @@
 .banner {
   position: relative;
   width: 100%;
-  height: 716px;
+  height: auto;
+  /* height: 716px; */
   overflow: hidden;
 }
 
@@ -11,14 +12,14 @@
   object-fit: cover;
 }
 
-.banner-title {
+/* .banner-title {
   position: absolute;
   top: 155px;
-  left: 739px; /* Align the container to the left */
+  left: 739px; 
   bottom: 0;
   display: flex;
-  align-items: center; /* Vertically center the container */
-  justify-content: flex-start; /* Align to the left */
+  align-items: center; 
+  justify-content: flex-start; 
   background: #fff3e3;
   color: #fff;
   width: 45%;
@@ -27,10 +28,10 @@
 }
 
 .banner-title .container {
-  width: 561px; /* Set the desired width of the box */
+  width: 561px; 
   background: #fff3e3;
-  text-align: left; /* Align text to the left */
-  margin-left: 39px; /* Add some margin from the left edge */
+  text-align: left; 
+  margin-left: 39px; 
 }
 .banner-title span {
   font-size: 16px;
@@ -87,4 +88,4 @@
   .banner-title {
     left: 50%;
   }
-}
+} */
