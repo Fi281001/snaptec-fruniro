@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import "../main/Products.css";
-
+import axios from "axios";
 import { Link } from "react-router-dom";
 import { database } from "../firebase";
 import { getDatabase, ref, onValue, get, child } from "firebase/database";
@@ -9,13 +9,14 @@ export default function Products({ item }) {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    // Hàm để lấy dữ liệu từ Firebase
+    // Hàm để lấy dữ liệu từ Firebase qua axios
     const fetchData = async () => {
       try {
-        const dbRef = ref(getDatabase());
-        const snapshot = await get(child(dbRef, "product/"));
-        if (snapshot.exists()) {
-          setProducts(snapshot.val()); // Cập nhật state với dữ liệu nhận được
+        const response = await axios.get(
+          "https://furino-2343b-default-rtdb.firebaseio.com/product.json"
+        );
+        if (response.data) {
+          setProducts(response.data); // Cập nhật state với dữ liệu nhận được
         } else {
           console.log("No data available");
         }
@@ -26,24 +27,24 @@ export default function Products({ item }) {
 
     fetchData();
   }, []);
-  console.log("products", products);
-  const limitedProducts = products.slice(0, item);
+
+  const limitedProducts = products.slice(1, item);
   return (
     <>
       <div className="Products">
         {limitedProducts.map((product) => (
-          <div key={product.id} className="product-item">
+          <div key={product?.id} className="product-item">
             <div class="overlay-product"></div>
 
             <img
-              src={`${product.imgSrc}`} // Đường dẫn từ thư mục public
-              alt={product.name}
+              src={product?.imgSrc}
+              alt={product?.name}
               className="image product-image"
             />
 
             <div className="middle">
               <button className="butadd">
-                <Link to="/single-product">Add to card</Link>
+                <Link to={`/single-product/${product?.id}`}>Add to card</Link>
               </button>
 
               <div className="title">
@@ -58,22 +59,22 @@ export default function Products({ item }) {
                 </span>
               </div>
             </div>
-            {product.sale && (
+            {product?.sale && (
               <div
                 className={`sale-label ${
-                  product.sale === "New" ? "new-label" : ""
+                  product?.sale === "New" ? "new-label" : ""
                 }`}
               >
-                {product.sale}
+                {product?.sale}
               </div>
             )}
 
-            <div className="product-name">{product.name}</div>
-            <div className="product-title">{product.title}</div>
+            <div className="product-name">{product?.name}</div>
+            <div className="product-title">{product?.title}</div>
             <div className="price">
-              <div className="product-price">Rp {product.pricesale}</div>
+              <div className="product-price">Rp {product?.pricesale}</div>
               <div className="product-price-sale">
-                {product.price === "" ? "" : `Rp ${product.price}`}
+                {product?.price === "" ? "" : `Rp ${product?.price}`}
               </div>
             </div>
           </div>
