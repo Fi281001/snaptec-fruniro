@@ -14,6 +14,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom"; // Nếu bạn sử dụng React Router
 
 export const SingleProduct = () => {
+  const [productLength, setProductLength] = useState(0);
   const [items, setItems] = useState(5); // Số lượng sản phẩm ban đầu
 
   const showMore = () => {
@@ -42,8 +43,10 @@ export const SingleProduct = () => {
 
     fetchProductDetail();
   }, [productId]);
-
-  console.log("detail", product);
+  const handleLengthChange = (length) => {
+    setProductLength(length); // Cập nhật length từ Products
+  };
+  const allItemsDisplayed = items >= productLength;
   return (
     <div>
       <div className="breadcrumb">
@@ -179,10 +182,18 @@ export const SingleProduct = () => {
       <div className="related-products">
         <h1>Related Products</h1>
         <div className="related-item">
-          <Products item={items} />
+          <Products item={items} onLengthChange={handleLengthChange} />
         </div>
         <div className="but-show-more">
-          <button onClick={showMore}>Show More</button>
+          <button
+            onClick={showMore}
+            style={{
+              opacity: allItemsDisplayed ? 0.5 : 1, // Làm mờ nút nếu đã hết sản phẩm
+              cursor: allItemsDisplayed ? "not-allowed" : "pointer",
+            }}
+          >
+            {allItemsDisplayed ? "Out of product" : "Show More"}
+          </button>
         </div>
       </div>
     </div>
