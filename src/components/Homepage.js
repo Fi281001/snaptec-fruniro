@@ -13,7 +13,7 @@ export default function Homepage() {
     // Simulate a delay to show the loading spinner
     setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 1000);
   }, []);
   return (
     <>

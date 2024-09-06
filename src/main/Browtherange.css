@@ -2,7 +2,7 @@
   margin-top: 40px;
   display: flex;
   justify-content: center; /* Căn giữa theo chiều ngang */
-  align-items: center; /* Căn giữa theo chiều dọc */
+  align-items: center;
 }
 .range {
   width: 81.15%;
