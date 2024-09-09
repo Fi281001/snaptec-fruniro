@@ -64,7 +64,7 @@ export default function Header() {
                 <Link to="/contact">Contact</Link>
               </li>
               {/* <li>
-                <Link to="/single-product">Single Product</Link>
+                
               </li>
               <li>
                 <Link to="/cart">Cart</Link>
@@ -73,7 +73,10 @@ export default function Header() {
           </div>
 
           <div className="nav-icon">
-            <i class="bi bi-person"></i>
+            <Link to="/loginregister">
+              <i class="bi bi-person"></i>
+            </Link>
+
             <i className="bi bi-search" title="search"></i>
             <i className="bi bi-heart" title="heart"></i>
             <i

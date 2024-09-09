@@ -13,6 +13,7 @@ import Blog from "./components/Blog.js";
 import Contact from "./components/Contact.js";
 import { SingleProduct } from "./components/SingleProduct.js";
 import Cart from "./components/Cart.js";
+import { LoginRegister } from "./authentication/LoginRegister.js";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Errorpage from "./components/Errorpage.js";
@@ -39,6 +40,7 @@ function App() {
             element={<SingleProduct />}
           />
           <Route path="/cart" element={<Cart />} />
+<<<<<<< HEAD
 
           <Route path="*" element={<Errorpage />} />
         </Routes>
@@ -51,7 +53,11 @@ function App() {
       <Router>
         <Routes>
           <Route path="/*" element={<Layout />} />
+=======
+          <Route path="/loginregister" element={<LoginRegister />} />
+>>>>>>> db4d984778e2f6850082fec46a8701b9f99b41ee
         </Routes>
+        <Footer />
       </Router>
     </div>
   );
