@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import "./LoginRegister.css";
 import bg from "./bg-login-register.png";
 import logo from "../image/logo.png";
-
+import { useNavigate } from "react-router-dom";
+import { database } from "../firebase";
+import { getDatabase, ref, onValue, get, child } from "firebase/database";
 export const LoginRegister = () => {
   const [isActive, setIsActive] = useState(false);
 
@@ -19,6 +21,45 @@ export const LoginRegister = () => {
     });
   }, []);
 
+  ///login
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      // Tạo một ref đến nơi lưu trữ thông tin người dùng trong Realtime Database
+      const usersRef = database.ref("users");
+
+      // Lấy tất cả người dùng và kiểm tra email và mật khẩu
+      const snapshot = await usersRef.once("value");
+      const users = snapshot.val();
+
+      let isValidUser = false;
+
+      for (let key in users) {
+        if (users[key].email === email && users[key].password === password) {
+          isValidUser = true;
+          break;
+        }
+      }
+
+      if (isValidUser) {
+        // Chuyển hướng đến trang chính nếu đăng nhập thành công
+        navigate("/");
+      } else {
+        // Hiển thị lỗi nếu thông tin đăng nhập không hợp lệ
+        setError(
+          "Đăng nhập không thành công. Vui lòng kiểm tra lại email và mật khẩu."
+        );
+      }
+    } catch (error) {
+      // Xử lý lỗi nếu có
+      setError("Đã xảy ra lỗi: " + error.message);
+    }
+  };
   return (
     <div>
       <img className="img-bg" src={bg} alt="bg" />
@@ -37,8 +78,18 @@ export const LoginRegister = () => {
             <span>or use your email for registeration</span>
             <input type="text" placeholder="Name" />
 
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
             <button type="submit">Sign Up</button>
           </form>
         </div>

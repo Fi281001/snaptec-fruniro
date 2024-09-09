@@ -73,7 +73,7 @@ export default function Header() {
           </div>
 
           <div className="nav-icon">
-            <Link to="/loginregister">
+            <Link to="/login">
               <i class="bi bi-person"></i>
             </Link>
 

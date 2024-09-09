@@ -4,7 +4,7 @@ import "../main/Errorpage.css";
 export default function Errorpage() {
   return (
     <div>
-      <img alt="not found" src={errorpage} />
+      <img className="error" s alt="not found" src={errorpage} />
     </div>
   );
 }

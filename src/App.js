@@ -13,54 +13,64 @@ import Blog from "./components/Blog.js";
 import Contact from "./components/Contact.js";
 import { SingleProduct } from "./components/SingleProduct.js";
 import Cart from "./components/Cart.js";
-import { LoginRegister } from "./authentication/LoginRegister.js";
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Errorpage from "./components/Errorpage.js";
+import { LoginRegister } from "./authentication/LoginRegister.js";
 
 function App() {
-  // Các trang mà không cần hiển thị Header và Footer
-
-  const Layout = () => {
-    const location = useLocation();
-
-    // Các trang mà không cần hiển thị Header và Footer
-    const hideHeaderFooter = location.pathname === "*";
-
-    return (
-      <>
-        {!hideHeaderFooter && <Header />}
-        <Routes>
-          <Route path="/" element={<Homepage />} />
-          <Route path="/shop" element={<Shop />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route
-            path="/single-product/:productId"
-            element={<SingleProduct />}
-          />
-          <Route path="/cart" element={<Cart />} />
-<<<<<<< HEAD
-
-          <Route path="*" element={<Errorpage />} />
-        </Routes>
-        {!hideHeaderFooter && <Footer />}
-      </>
-    );
-  };
   return (
     <div className="App">
       <Router>
         <Routes>
-          <Route path="/*" element={<Layout />} />
-=======
-          <Route path="/loginregister" element={<LoginRegister />} />
->>>>>>> db4d984778e2f6850082fec46a8701b9f99b41ee
+          {/* Route cho trang login */}
+          <Route path="/login" element={<LoginRegister />} />
+
+          {/* Các route cho các trang chính */}
+          <Route element={<Layout />}>
+            <Route path="/" element={<Homepage />} />
+            <Route path="/shop" element={<Shop />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route
+              path="/single-product/:productId"
+              element={<SingleProduct />}
+            />
+            <Route path="/cart" element={<Cart />} />
+          </Route>
+
+          {/* Route cho trang lỗi, không có Header và Footer */}
+          <Route path="*" element={<Errorpage />} />
         </Routes>
-        <Footer />
       </Router>
     </div>
   );
 }
+
+// Component Layout
+const Layout = () => {
+  const location = useLocation();
+
+  // Chỉ cần hiển thị Header và Footer nếu không phải là trang lỗi
+  const hideHeaderFooter =
+    location.pathname === "/login" || location.pathname === "*";
+
+  return (
+    <>
+      {!hideHeaderFooter && <Header />}
+      <Routes>
+        {/* Route cho các trang chính */}
+        <Route path="/" element={<Homepage />} />
+        <Route path="/shop" element={<Shop />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/single-product/:productId" element={<SingleProduct />} />
+        <Route path="/cart" element={<Cart />} />
+      </Routes>
+      {!hideHeaderFooter && <Footer />}
+    </>
+  );
+};
 
 export default App;
