@@ -5,7 +5,7 @@ import logo from "../image/logo.png";
 import { useNavigate } from "react-router-dom";
 
 import { database } from "../firebase";
-import { auth, signInWithEmailAndPassword } from "../firebase";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 export const LoginRegister = () => {
   const navigate = useNavigate();
   const [isActive, setIsActive] = useState(false);
@@ -24,21 +24,22 @@ export const LoginRegister = () => {
   }, []);
 
   ///login
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const handleLogin = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     // Đăng nhập người dùng với Firebase Authentication
-  //     await auth.signInWithEmailAndPassword(email, password);
-  //     // Chuyển hướng đến trang chính sau khi đăng nhập thành công
-  //     navigate("/");
-  //   } catch (error) {
-  //     // Xử lý lỗi nếu có
-  //     alert("Đăng nhập không thành công: ");
-  //   }
-  // };
+  const [error, setError] = useState("");
+  const auth = getAuth();
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+
+        // Redirect to homepage or other page
+        navigate("/");
+      })
+      .catch((error) => {});
+  };
   return (
     <div>
       <img className="img-bg" src={bg} alt="bg" />
@@ -73,27 +74,39 @@ export const LoginRegister = () => {
           </form>
         </div>
         <div class="form-container sign-in">
-          <form>
+          <form onSubmit={handleSubmit}>
             <h1>Sign In</h1>
 
             <span>or use your email password</span>
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
             <a href="#5">Forget Your Password?</a>
-            <button>Sign In</button>
+            <button type="submit">Sign In</button>
             <span className="span-orSignInUsing">Or Sign In Using: </span>
-            <div class="social-icons">
-              <a href="#1" class="icon">
-                <i class="fa-brands fa-google-plus-g"></i>
+            <div className="social-icons">
+              <a href="#1" className="icon">
+                <i className="fa-brands fa-google-plus-g"></i>
               </a>
-              <a href="#2" class="icon">
-                <i class="fa-brands fa-facebook-f"></i>
+              <a href="#2" className="icon">
+                <i className="fa-brands fa-facebook-f"></i>
               </a>
-              <a href="#3" class="icon">
-                <i class="fa-brands fa-github"></i>
+              <a href="#3" className="icon">
+                <i className="fa-brands fa-github"></i>
               </a>
-              <a href="#4" class="icon">
-                <i class="fa-brands fa-linkedin-in"></i>
+              <a href="#4" className="icon">
+                <i className="fa-brands fa-linkedin-in"></i>
               </a>
             </div>
           </form>
