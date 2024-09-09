@@ -3,9 +3,11 @@ import "./LoginRegister.css";
 import bg from "./bg-login-register.png";
 import logo from "../image/logo.png";
 import { useNavigate } from "react-router-dom";
+
 import { database } from "../firebase";
-import { getDatabase, ref, onValue, get, child } from "firebase/database";
+import { auth, signInWithEmailAndPassword } from "../firebase";
 export const LoginRegister = () => {
+  const navigate = useNavigate();
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
@@ -22,44 +24,21 @@ export const LoginRegister = () => {
   }, []);
 
   ///login
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
-  const handleLogin = async (e) => {
-    e.preventDefault();
-
-    try {
-      // Tạo một ref đến nơi lưu trữ thông tin người dùng trong Realtime Database
-      const usersRef = database.ref("users");
-
-      // Lấy tất cả người dùng và kiểm tra email và mật khẩu
-      const snapshot = await usersRef.once("value");
-      const users = snapshot.val();
-
-      let isValidUser = false;
-
-      for (let key in users) {
-        if (users[key].email === email && users[key].password === password) {
-          isValidUser = true;
-          break;
-        }
-      }
-
-      if (isValidUser) {
-        // Chuyển hướng đến trang chính nếu đăng nhập thành công
-        navigate("/");
-      } else {
-        // Hiển thị lỗi nếu thông tin đăng nhập không hợp lệ
-        setError(
-          "Đăng nhập không thành công. Vui lòng kiểm tra lại email và mật khẩu."
-        );
-      }
-    } catch (error) {
-      // Xử lý lỗi nếu có
-      setError("Đã xảy ra lỗi: " + error.message);
-    }
-  };
+  // const handleLogin = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     // Đăng nhập người dùng với Firebase Authentication
+  //     await auth.signInWithEmailAndPassword(email, password);
+  //     // Chuyển hướng đến trang chính sau khi đăng nhập thành công
+  //     navigate("/");
+  //   } catch (error) {
+  //     // Xử lý lỗi nếu có
+  //     alert("Đăng nhập không thành công: ");
+  //   }
+  // };
   return (
     <div>
       <img className="img-bg" src={bg} alt="bg" />
