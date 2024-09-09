@@ -1,7 +1,7 @@
 import React from "react";
 import "../main/SingleProduct.css";
 import Products from "./Products.js";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import thumbnail1 from "../image/single-product/Thumbnail1.png";
 import thumbnail2 from "../image/single-product/Thumbnail2.png";
@@ -10,13 +10,43 @@ import thumbnail4 from "../image/single-product/Thumbnail4.png";
 import productImage from "../image/single-product/Product-image.png";
 import img1 from "../image/single-product/Image1.png";
 import img2 from "../image/single-product/Image2.png";
+import axios from "axios";
+import { useParams } from "react-router-dom"; // Nếu bạn sử dụng React Router
 
 export const SingleProduct = () => {
+  const [productLength, setProductLength] = useState(0);
   const [items, setItems] = useState(5); // Số lượng sản phẩm ban đầu
 
   const showMore = () => {
     setItems((prevItems) => prevItems + 4); // Tăng thêm 4 sản phẩm
   };
+
+  const { productId } = useParams(); // Lấy productId từ URL (nếu dùng React Router)
+  const [product, setProduct] = useState(null);
+
+  useEffect(() => {
+    // Hàm để lấy dữ liệu chi tiết sản phẩm từ Firebase
+    const fetchProductDetail = async () => {
+      try {
+        const response = await axios.get(
+          `https://furino-2343b-default-rtdb.firebaseio.com/product/${productId}.json`
+        );
+        if (response.data) {
+          setProduct(response.data);
+        } else {
+          console.log("No product data available");
+        }
+      } catch (error) {
+        console.error("Error fetching product details: ", error);
+      }
+    };
+
+    fetchProductDetail();
+  }, [productId]);
+  const handleLengthChange = (length) => {
+    setProductLength(length); // Cập nhật length từ Products
+  };
+  const allItemsDisplayed = items >= productLength;
   return (
     <div>
       <div className="breadcrumb">
@@ -46,13 +76,14 @@ export const SingleProduct = () => {
             {/* <img src={bgproductImage} alt="" /> */}
             <img
               className="product-detail__product-image"
-              src={productImage}
+              src={product?.imgSrc}
               alt="product"
             />
           </div>
           <div className="product-detail__product-content">
-            <h1 className="product-detail__h1">Asgaard sofa</h1>
-            <h2 className="product-detail__h2">Rs. 250,000.00</h2>
+            <h1 className="product-detail__h1">{product?.name}</h1>
+            <h2 className="product-detail__h2_sale">{product?.pricesale}</h2>
+            <h2 className="product-detail__h2">{product?.price}</h2>
             <div className="product-detail__i">
               <i class="bi bi-star"></i>
               <i class="bi bi-star"></i>
@@ -151,10 +182,18 @@ export const SingleProduct = () => {
       <div className="related-products">
         <h1>Related Products</h1>
         <div className="related-item">
-          <Products item={items} />
+          <Products item={items} onLengthChange={handleLengthChange} />
         </div>
         <div className="but-show-more">
-          <button onClick={showMore}>Show More</button>
+          <button
+            onClick={showMore}
+            style={{
+              opacity: allItemsDisplayed ? 0.5 : 1, // Làm mờ nút nếu đã hết sản phẩm
+              cursor: allItemsDisplayed ? "not-allowed" : "pointer",
+            }}
+          >
+            {allItemsDisplayed ? "Out of product" : "Show More"}
+          </button>
         </div>
       </div>
     </div>
