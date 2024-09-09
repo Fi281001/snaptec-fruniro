@@ -18,22 +18,22 @@ export default function Header() {
       setIsCartVisible(false);
     }
   };
-  const handleScroll = () => {
-    setIsCartVisible(false); // Ẩn giỏ hàng khi cuộn xuống
-  };
+  // const handleScroll = () => {
+  //   setIsCartVisible(false); // Ẩn giỏ hàng khi cuộn xuống
+  // };
 
   useEffect(() => {
     if (isCartVisible) {
       document.addEventListener("mousedown", handleClickOutside);
-      window.addEventListener("scroll", handleScroll); // Thêm sự kiện cuộn
+      // window.addEventListener("scroll", handleScroll);
     } else {
       document.removeEventListener("mousedown", handleClickOutside);
-      window.removeEventListener("scroll", handleScroll); // Xóa sự kiện cuộn
+      // window.removeEventListener("scroll", handleScroll); // Xóa sự kiện cuộn
     }
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
-      window.removeEventListener("scroll", handleScroll);
+      // window.removeEventListener("scroll", handleScroll);
     };
   }, [isCartVisible]);
 
@@ -51,7 +51,7 @@ export default function Header() {
 
           <div className="nav">
             <ul>
-              <li >
+              <li>
                 <Link to="/">Home</Link>
               </li>
               <li>

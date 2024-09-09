@@ -29,7 +29,7 @@ export default function Filter() {
         <select className="short">
           <option value="default">Default</option>
           <option value="A-Z">A - Z</option>
-          <option value="Price">Price</option>
+          <option value="Price">Z - A</option>
         </select>
       </div>
     </div>

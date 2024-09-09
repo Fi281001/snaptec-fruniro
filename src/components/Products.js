@@ -28,7 +28,7 @@ export default function Products({ item, onLengthChange }) {
 
     fetchData();
   }, [onLengthChange]);
-  const length = products.length;
+
   const limitedProducts = products.slice(1, item);
   return (
     <>
