@@ -3,9 +3,14 @@ import "./LoginRegister.css";
 import bg from "./bg-login-register.png";
 import logo from "../image/logo.png";
 import { useNavigate } from "react-router-dom";
-
+import "react-toastify/dist/ReactToastify.css";
 import { database } from "../firebase";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { toast } from "react-toastify";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
 export const LoginRegister = () => {
   const navigate = useNavigate();
   const [isActive, setIsActive] = useState(false);
@@ -26,19 +31,68 @@ export const LoginRegister = () => {
   ///login
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [passwordAgain, setPasswordAgain] = useState("");
+
   const auth = getAuth();
+
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    if (password.length < 6) {
+      toast.error("Passwords at least 6 chacter");
+      return;
+    }
+
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-
+        localStorage.setItem("user", JSON.stringify(user));
+        toast.success("Login successfully");
         // Redirect to homepage or other page
-        navigate("/");
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
       })
-      .catch((error) => {});
+      .catch((error) => {
+        toast.error("wrong password or account");
+      });
+  };
+
+  // register
+  const handleRegister = (event) => {
+    event.preventDefault();
+
+    // Lấy giá trị từ các input
+
+    // Kiểm tra xem mật khẩu có khớp không
+    if (password !== passwordAgain) {
+      toast.error("Passwords do not match");
+      return;
+    }
+
+    // Thực hiện đăng ký
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Đăng ký thành công
+        const user = userCredential.user;
+        toast.success("Registration successful");
+
+        // Chuyển hướng người dùng sau khi đăng ký thành công
+        setTimeout(() => {
+          navigate("/"); // Chuyển về trang chủ
+        }, 2000);
+      })
+      .catch((error) => {
+        // Xử lý các lỗi khi đăng ký
+        if (error.code === "auth/email-already-in-use") {
+          // Email đã tồn tại
+          toast.error("Email is already in use. Please try another one.");
+        } else {
+          // Xử lý các lỗi khác
+          toast.error("Error during registration: " + error.message);
+        }
+      });
   };
   return (
     <div>
@@ -53,22 +107,27 @@ export const LoginRegister = () => {
       >
         {/* <img src={bg} alt="bg"/> */}
         <div class="form-container sign-up">
-          <form>
+          <form onSubmit={handleRegister}>
             <h1 className="h1-create-account">Create Account</h1>
             <span>or use your email for registeration</span>
-            <input type="text" placeholder="Name" />
-
             <input
               type="email"
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
+
             <input
               type="password"
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="Password again"
+              value={passwordAgain}
+              onChange={(e) => setPasswordAgain(e.target.value)}
             />
             <button type="submit">Sign Up</button>
           </form>

@@ -13,15 +13,18 @@ import Blog from "./components/Blog.js";
 import Contact from "./components/Contact.js";
 import { SingleProduct } from "./components/SingleProduct.js";
 import Cart from "./components/Cart.js";
-
+import PrivateRoute from "./components/PrivateRoute.js";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Errorpage from "./components/Errorpage.js";
 import { LoginRegister } from "./authentication/LoginRegister.js";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
     <div className="App">
+      <ToastContainer position="top-center" autoClose={1000} />
       <Router>
         <Routes>
           {/* Route cho trang login */}
@@ -37,7 +40,14 @@ function App() {
               path="/single-product/:productId"
               element={<SingleProduct />}
             />
-            <Route path="/cart" element={<Cart />} />
+            <Route
+              path="/cart"
+              element={
+                <PrivateRoute>
+                  <Cart />
+                </PrivateRoute>
+              }
+            />
           </Route>
 
           {/* Route cho trang lỗi, không có Header và Footer */}
@@ -66,7 +76,14 @@ const Layout = () => {
         <Route path="/blog" element={<Blog />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/single-product/:productId" element={<SingleProduct />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route
+          path="/cart"
+          element={
+            <PrivateRoute>
+              <Cart />
+            </PrivateRoute>
+          }
+        />
       </Routes>
       {!hideHeaderFooter && <Footer />}
     </>
