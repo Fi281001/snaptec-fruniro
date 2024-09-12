@@ -20,7 +20,8 @@ import Errorpage from "./components/Errorpage.js";
 import { LoginRegister } from "./authentication/LoginRegister.js";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { Provider } from "react-redux";
+import store from "./store";
 function App() {
   return (
     <div className="App">
@@ -62,7 +63,6 @@ function App() {
 const Layout = () => {
   const location = useLocation();
 
-  // Chỉ cần hiển thị Header và Footer nếu không phải là trang lỗi
   const hideHeaderFooter =
     location.pathname === "/login" || location.pathname === "*";
 
