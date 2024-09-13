@@ -5,6 +5,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { database } from "../firebase";
 import { getDatabase, ref, onValue, get, child } from "firebase/database";
+
 export default function Products({ item, onLengthChange }) {
   const [products, setProducts] = useState([]);
 

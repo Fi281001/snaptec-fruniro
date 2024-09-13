@@ -12,7 +12,8 @@ import img1 from "../image/single-product/Image1.png";
 import img2 from "../image/single-product/Image2.png";
 import axios from "axios";
 import { useParams } from "react-router-dom"; // Nếu bạn sử dụng React Router
-
+import { useDispatch } from "react-redux";
+import { addToCartAsync } from "../redux/CartSlice";
 export const SingleProduct = () => {
   const [productLength, setProductLength] = useState(0);
   const [items, setItems] = useState(5); // Số lượng sản phẩm ban đầu
@@ -47,6 +48,13 @@ export const SingleProduct = () => {
     setProductLength(length); // Cập nhật length từ Products
   };
   const allItemsDisplayed = items >= productLength;
+
+  // add to cart
+  const dispatch = useDispatch();
+
+  const handleAddToCart = () => {
+    dispatch(addToCartAsync(productId));
+  };
   return (
     <div>
       <div className="breadcrumb">
@@ -118,7 +126,9 @@ export const SingleProduct = () => {
               <div className="quatity">
                 <i class="bi bi-dash"></i>1<i class="bi bi-plus"></i>
               </div>
-              <div className="cart">Add To Card</div>
+              <div className="cart" onClick={handleAddToCart}>
+                Add To Card
+              </div>
               <div className="compare">+ Compare</div>
             </div>
             <hr />
