@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import logo from "../image/logo.png";
 import "../main/Header.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import Cartheader from "./Cartheader";
 
 export default function Header() {
@@ -84,13 +84,14 @@ export default function Header() {
           </div>
 
           <div className="nav-icon">
-            <Link to="/login" onClick={isLoggedIn ? handleLogout : null}>
+            <NavLink to="/login" onClick={isLoggedIn ? handleLogout : null}>
               {isLoggedIn ? (
-                <i className="bi bi-person"></i> // Hiển thị icon nếu đã đăng nhập
+                <i class="bi bi-box-arrow-right"></i>
               ) : (
-                "Login" // Hiển thị chữ Login nếu chưa đăng nhập
+                // Hiển thị icon nếu đã đăng nhập
+                <i className="bi bi-person"></i> // Hiển thị chữ Login nếu chưa đăng nhập
               )}
-            </Link>
+            </NavLink>
 
             <i className="bi bi-search" title="search"></i>
             <i className="bi bi-heart" title="heart"></i>

@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../main/Cartheader.css";
-import { Link, NavLink } from "react-router-dom";
-import image1 from "../image/products/image 1.png";
+import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getCartAsync } from "../redux/CartSlice";
 export default function Cartheader({ onClose }) {
+  const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state.cart.cart); // Lấy danh sách items từ Redux store
+
+  useEffect(() => {
+    dispatch(getCartAsync()); // Lấy giỏ hàng khi người dùng đăng nhập
+  }, [dispatch]);
+  const reversedCartItems = cartItems ? [...cartItems].reverse() : [];
   return (
     <>
       <div className="block">
@@ -15,102 +23,27 @@ export default function Cartheader({ onClose }) {
         </div>
 
         <div className="cart-list">
-          <div className="cart-body">
-            <img alt=" " src={image1} />
-            <div>
-              <span>name</span>
-              <div>
-                <p>1</p>
-                <p>x</p>
-                <p className="price">Rs. 250,000.000</p>
+          {reversedCartItems && reversedCartItems.length > 0 ? (
+            reversedCartItems.map((item, index) => (
+              <div key={index} className="cart-body">
+                <img alt={item.name} src={item.imgSrc} />{" "}
+                {/* Hiển thị hình ảnh sản phẩm */}
+                <div>
+                  <span>{item.name}</span> {/* Tên sản phẩm */}
+                  <div>
+                    <p>{item.quantity}</p> {/* Số lượng sản phẩm */}
+                    <p>x</p>
+                    <p className="price">Rs. {item.price}</p>{" "}
+                    {/* Giá sản phẩm */}
+                  </div>
+                </div>
+                <i className="bi bi-x-circle-fill"></i>{" "}
+                {/* Icon xóa sản phẩm */}
               </div>
-            </div>
-            <i class="bi bi-x-circle-fill"></i>
-          </div>
-          <div className="cart-body">
-            <img alt=" " src={image1} />
-            <div>
-              <span>name</span>
-              <div>
-                <p>1</p>
-                <p>x</p>
-                <p className="price">Rs. 250,000.000</p>
-              </div>
-            </div>
-            <i class="bi bi-x-circle-fill"></i>
-          </div>
-          <div className="cart-body">
-            <img alt=" " src={image1} />
-            <div>
-              <span>name</span>
-              <div>
-                <p>1</p>
-                <p>x</p>
-                <p className="price">Rs. 250,000.000</p>
-              </div>
-            </div>
-            <i class="bi bi-x-circle-fill"></i>
-          </div>
-          <div className="cart-body">
-            <img alt=" " src={image1} />
-            <div>
-              <span>name</span>
-              <div>
-                <p>1</p>
-                <p>x</p>
-                <p className="price">Rs. 250,000.000</p>
-              </div>
-            </div>
-            <i class="bi bi-x-circle-fill"></i>
-          </div>
-          <div className="cart-body">
-            <img alt=" " src={image1} />
-            <div>
-              <span>name</span>
-              <div>
-                <p>1</p>
-                <p>x</p>
-                <p className="price">Rs. 250,000.000</p>
-              </div>
-            </div>
-            <i class="bi bi-x-circle-fill"></i>
-          </div>
-          <div className="cart-body">
-            <img alt=" " src={image1} />
-            <div>
-              <span>name</span>
-              <div>
-                <p>1</p>
-                <p>x</p>
-                <p className="price">Rs. 250,000.000</p>
-              </div>
-            </div>
-            <i class="bi bi-x-circle-fill"></i>
-          </div>
-          <div className="cart-body">
-            <img alt=" " src={image1} />
-            <div>
-              <span>name</span>
-              <div>
-                <p>1</p>
-                <p>x</p>
-                <p className="price">Rs. 250,000.000</p>
-              </div>
-            </div>
-            <i class="bi bi-x-circle-fill"></i>
-          </div>
-          <div className="cart-body">
-            <img alt=" " src={image1} />
-            <div>
-              <span>name</span>
-              <div>
-                <p>1</p>
-                <p>x</p>
-                <p className="price">Rs. 250,000.000</p>
-              </div>
-            </div>
-            <i class="bi bi-x-circle-fill"></i>
-          </div>
+            ))
+          ) : (
+            <p>Giỏ hàng của bạn hiện đang trống.</p>
+          )}
         </div>
 
         <div className="total-block">

@@ -1,7 +1,7 @@
 // cartSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 import { database } from "../firebase";
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { ref, set, push, get } from "firebase/database";
 
 const cartSlice = createSlice({
@@ -25,7 +25,7 @@ export default cartSlice.reducer;
 
 // Async actions with Firebase
 // add
-export const addToCartAsync = (productId) => async (dispatch) => {
+export const addToCartAsync = (cartItem) => async (dispatch) => {
   const auth = getAuth();
   const user = auth.currentUser;
 
@@ -33,34 +33,30 @@ export const addToCartAsync = (productId) => async (dispatch) => {
     const cartRef = ref(database, `carts/${user.uid}`);
     const newCartItemRef = push(cartRef);
 
-    const cartItem = {
-      productId: productId,
-    };
-
-    await set(newCartItemRef, cartItem);
+    await set(newCartItemRef, cartItem); // Lưu toàn bộ thông tin sản phẩm vào Firebase
     dispatch(addToCart(cartItem)); // Cập nhật Redux store
+    console.log("cartslice", cartItem);
   } else {
-    console.error("User is not logged in.");
   }
 };
 
 // hiển thị giỏ
 export const getCartAsync = () => async (dispatch) => {
   const auth = getAuth();
-  const user = auth.currentUser;
 
-  if (user) {
-    const cartRef = ref(database, `carts/${user.uid}`);
-    const cartSnapshot = await get(cartRef);
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      const cartRef = ref(database, `carts/${user.uid}`);
+      const cartSnapshot = await get(cartRef);
 
-    if (cartSnapshot.exists()) {
-      const cartData = cartSnapshot.val();
-      const cartcart = Object.values(cartData);
-      dispatch(setCart(cartcart)); // Lưu giỏ hàng vào Redux store
+      if (cartSnapshot.exists()) {
+        const cartData = cartSnapshot.val();
+        const cartcart = Object.values(cartData);
+        dispatch(setCart(cartcart)); // Lưu giỏ hàng vào Redux store
+      } else {
+        dispatch(setCart([])); // Giỏ hàng rỗng
+      }
     } else {
-      dispatch(setCart([])); // Giỏ hàng rỗng
     }
-  } else {
-    console.error("User is not logged in.");
-  }
+  });
 };

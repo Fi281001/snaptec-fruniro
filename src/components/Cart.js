@@ -7,11 +7,12 @@ import { getCartAsync } from "../redux/CartSlice";
 
 const Cart = () => {
   const dispatch = useDispatch();
-  const cartItems = useSelector((state) => state.cart.items || []); // Lấy danh sách items từ Redux store
+  const cartItems = useSelector((state) => state.cart.cart); // Lấy danh sách items từ Redux store
 
   useEffect(() => {
     dispatch(getCartAsync()); // Lấy giỏ hàng khi người dùng đăng nhập
   }, [dispatch]);
+  const reversedCartItems = cartItems ? [...cartItems].reverse() : [];
 
   return (
     <>
@@ -30,14 +31,14 @@ const Cart = () => {
               </tr>
             </thead>
             <tbody>
-              {cartItems && cartItems.length > 0 ? (
-                cartItems.map((item, index) => (
+              {reversedCartItems && reversedCartItems.length > 0 ? (
+                reversedCartItems.map((item, index) => (
                   <tr key={index}>
                     <th scope="row" className="content-table__th">
-                      <img src={item.image || ""} alt={item.name} />
+                      <img src={item.imgSrc || ""} alt={item.name} />
                     </th>
                     <td>{item.name}</td>
-                    <td>{item.price}</td>
+                    <td>{item.pricesale}</td>
                     <td className="color-black">
                       <input
                         required

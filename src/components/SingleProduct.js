@@ -7,13 +7,13 @@ import thumbnail1 from "../image/single-product/Thumbnail1.png";
 import thumbnail2 from "../image/single-product/Thumbnail2.png";
 import thumbnail3 from "../image/single-product/Thumbnail3.png";
 import thumbnail4 from "../image/single-product/Thumbnail4.png";
-import productImage from "../image/single-product/Product-image.png";
 import img1 from "../image/single-product/Image1.png";
 import img2 from "../image/single-product/Image2.png";
 import axios from "axios";
 import { useParams } from "react-router-dom"; // Nếu bạn sử dụng React Router
 import { useDispatch } from "react-redux";
 import { addToCartAsync } from "../redux/CartSlice";
+import { toast } from "react-toastify";
 export const SingleProduct = () => {
   const [productLength, setProductLength] = useState(0);
   const [items, setItems] = useState(5); // Số lượng sản phẩm ban đầu
@@ -22,7 +22,7 @@ export const SingleProduct = () => {
     setItems((prevItems) => prevItems + 4); // Tăng thêm 4 sản phẩm
   };
 
-  const { productId } = useParams(); // Lấy productId từ URL (nếu dùng React Router)
+  const { productId } = useParams(); // Lấy productId từ URL khi dùng router
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
@@ -53,7 +53,20 @@ export const SingleProduct = () => {
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
-    dispatch(addToCartAsync(productId));
+    if (product) {
+      // Kiểm tra product trước khi thêm vào giỏ hàng
+      const cartItem = {
+        productId: productId,
+        name: product.name || "Unknown", // Đảm bảo name không undefined
+        pricesale: product.pricesale, // Đảm bảo price có giá trị
+        imgSrc: product.imgSrc, // Đảm bảo img không undefined
+        quantity: 1,
+      };
+      toast.success("Add to cart successfully");
+      dispatch(addToCartAsync(cartItem));
+    } else {
+      console.log("Product data is not available");
+    }
   };
   return (
     <div>
