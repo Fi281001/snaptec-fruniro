@@ -30,13 +30,38 @@ export const addToCartAsync = (cartItem) => async (dispatch) => {
   const user = auth.currentUser;
 
   if (user) {
-    const cartRef = ref(database, `carts/${user.uid}`);
-    const newCartItemRef = push(cartRef);
+    // Sử dụng productId của sản phẩm làm key
+    const cartRef = ref(database, `carts/${user.uid}/${cartItem.productId}`);
 
-    await set(newCartItemRef, cartItem); // Lưu toàn bộ thông tin sản phẩm vào Firebase
-    dispatch(addToCart(cartItem)); // Cập nhật Redux store
-    console.log("cartslice", cartItem);
+    // Lấy thông tin sản phẩm hiện tại từ Firebase
+    const cartSnapshot = await get(cartRef);
+
+    if (cartSnapshot.exists()) {
+      // Nếu sản phẩm đã tồn tại, tăng quantity lên 1
+      const existingProduct = cartSnapshot.val();
+      const updatedQuantity = existingProduct.quantity + 1;
+
+      console.log("Sản phẩm đã tồn tại, tăng số lượng: ", existingProduct);
+      await set(cartRef, {
+        ...existingProduct,
+        quantity: updatedQuantity, // Cập nhật số lượng sản phẩm
+      });
+
+      console.log(`Updated quantity for ${cartItem.name}:`, updatedQuantity);
+    } else {
+      // Nếu sản phẩm chưa tồn tại, thêm mới sản phẩm vào giỏ hàng
+      await set(cartRef, {
+        ...cartItem,
+        quantity: 1, // Đặt quantity ban đầu là 1
+      });
+
+      console.log("Thêm sản phẩm mới: ", cartItem);
+    }
+
+    // Cập nhật Redux store
+    dispatch(addToCart(cartItem));
   } else {
+    console.error("User is not authenticated");
   }
 };
 

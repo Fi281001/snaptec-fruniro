@@ -42,14 +42,14 @@
   object-fit: cover;
 }
 
-.cart-body>div {
+.cart-body > div {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   /* Căn lề trái cho nội dung */
 }
 
-.cart-body>div>span {
+.cart-body > div > span {
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
@@ -57,13 +57,13 @@
   /* Khoảng cách giữa name và các thẻ p */
 }
 
-.cart-body>div>div {
+.cart-body > div > div {
   display: flex;
   justify-content: space-between;
   width: 100%;
 }
 
-.cart-body>div>div>p {
+.cart-body > div > div > p {
   margin: 0;
   font-size: 16px;
   padding: 0 5px;
@@ -98,7 +98,7 @@
   gap: 10px;
   border-radius: 50px;
   font-size: 16px;
-  font-family: 'Poppins';
+  font-family: "Poppins";
 }
 
 ::-webkit-scrollbar {
@@ -107,7 +107,13 @@
 
 ::-webkit-scrollbar-thumb {
   border-radius: 20px;
-  background: -webkit-gradient(linear, left top, left bottom, from(#b88e2f), to(#0e0e0e));
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(#b88e2f),
+    to(#0e0e0e)
+  );
 }
 
 ::-webkit-scrollbar-track {
@@ -161,6 +167,10 @@
 
 .total-block {
   height: 15vh;
+}
+.p {
+  font-size: 30px;
+  color: #b88e2f;
 }
 
 @media ((max-width: 1250px)) {

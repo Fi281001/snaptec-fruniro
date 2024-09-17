@@ -43,7 +43,7 @@ export default function Header() {
 
   const handleLogout = () => {
     // Xóa thông tin người dùng và điều hướng về trang login
-    localStorage.removeItem("user");
+    localStorage.clear();
     setIsLoggedIn(false);
     navigate("/login");
   };

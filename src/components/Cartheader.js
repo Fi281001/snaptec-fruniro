@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "../main/Cartheader.css";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,10 +7,21 @@ export default function Cartheader({ onClose }) {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cart); // Lấy danh sách items từ Redux store
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   useEffect(() => {
-    dispatch(getCartAsync()); // Lấy giỏ hàng khi người dùng đăng nhập
+    // Kiểm tra người dùng có tồn tại trong localStorage không
+    const user = localStorage.getItem("user");
+    if (user) {
+      setIsLoggedIn(true);
+      dispatch(getCartAsync()); // Lấy giỏ hàng khi người dùng đăng nhập
+    } else {
+      setIsLoggedIn(false);
+    }
   }, [dispatch]);
+
   const reversedCartItems = cartItems ? [...cartItems].reverse() : [];
+
   return (
     <>
       <div className="block">
@@ -41,8 +52,10 @@ export default function Cartheader({ onClose }) {
                 {/* Icon xóa sản phẩm */}
               </div>
             ))
+          ) : isLoggedIn === false ? (
+            <p className="p">Please log in to view your cart.</p>
           ) : (
-            <p>Giỏ hàng của bạn hiện đang trống.</p>
+            <p className="p">No items</p>
           )}
         </div>
 

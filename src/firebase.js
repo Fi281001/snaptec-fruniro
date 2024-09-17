@@ -26,14 +26,4 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const auth = getAuth(app);
 
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    // User đã đăng nhập, có thể lấy user.uid
-    console.log("User ID:", user.uid);
-  } else {
-    // Không có user nào đăng nhập
-    console.log("No user is logged in.");
-  }
-});
-
 export { auth, signInWithEmailAndPassword, database, onAuthStateChanged };

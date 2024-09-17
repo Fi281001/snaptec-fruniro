@@ -19,6 +19,7 @@ export default function Products({ item, onLengthChange }) {
         if (response.data) {
           setProducts(response.data); // Cập nhật state với dữ liệu nhận được
           onLengthChange(response.data.length);
+          const slicedProducts = products.slice(0, 10);
         } else {
           console.log("No data available");
         }
