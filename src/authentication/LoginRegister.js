@@ -5,6 +5,7 @@ import logo from "../image/logo.png";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { database } from "../firebase";
+import { ref, set } from "firebase/database";
 import { toast } from "react-toastify";
 import {
   getAuth,
@@ -35,28 +36,52 @@ export const LoginRegister = () => {
 
   const auth = getAuth();
 
-  const handleSubmit = (event) => {
+  const saveUserData = (userId, name, email, token) => {
+    const db = database(); // Tạo kết nối tới Firebase Realtime Database
+    set(ref(db, "users/" + userId), {
+      username: name,
+      email: email,
+      token: token,
+    })
+      .then(() => {
+        console.log("User data saved successfully!");
+      })
+      .catch((error) => {
+        console.error("Error saving user data:", error);
+      });
+  };
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (password.length < 6) {
-      toast.error("Passwords at least 6 chacter");
+      toast.error("Passwords must be at least 6 characters");
       return;
     }
 
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        localStorage.setItem("user", JSON.stringify(user));
-        toast.success("Login successfully");
-        // Redirect to homepage or other page
-        setTimeout(() => {
-          navigate("/");
-        }, 2000);
-      })
-      .catch((error) => {
-        toast.error("wrong password or account");
-      });
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password,
+        token
+      );
+      const user = userCredential.user;
+      // Lấy token từ user
+      const token = await user.getIdToken();
+      // Lưu token vào localStorage
+
+      // Lưu thông tin người dùng vào Firebase Realtime Database
+      saveUserData(user.uid, user.email, token);
+
+      toast.success("Login successfully");
+
+      // Điều hướng về trang chủ
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
+    } catch (error) {
+      toast.error("Wrong password or account");
+    }
   };
 
   // register
@@ -80,7 +105,8 @@ export const LoginRegister = () => {
 
         // Chuyển hướng người dùng sau khi đăng ký thành công
         setTimeout(() => {
-          navigate("/"); // Chuyển về trang chủ
+          // navigate("/"); // Chuyển về trang chủ
+          setIsActive(false);
         }, 2000);
       })
       .catch((error) => {

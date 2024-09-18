@@ -24,20 +24,19 @@
   margin-top: 15px;
   margin-bottom: 30px;
   margin-left: 10px;
-  width: 287px;
+  width: 85%;
 }
 
 .cart-body {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  gap: 25px;
+
   margin-bottom: 10px;
 }
 
 .cart-body img {
-  width: 108px;
-  height: 105px;
+  width: 25%;
   border-radius: 10px;
   object-fit: cover;
 }
@@ -173,16 +172,7 @@
   color: #b88e2f;
 }
 
-@media ((max-width: 1250px)) {
-  .cart-body img {
-    width: 83px;
-    height: 80px;
-  }
-
-  .cart-body {
-    gap: 10px;
-  }
-
+@media ((max-width: 1500px)) {
   .cart-buttons {
     gap: 7px;
     flex-direction: column;

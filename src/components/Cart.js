@@ -59,10 +59,8 @@ const Cart = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        // Nếu người dùng chọn xác nhận xóa
         toast.success("Delete successfully");
         dispatch(removeFromCartAsync(item.productId));
-        // Thực hiện hành động xóa sản phẩm ở đây
       }
     });
     dispatch(removeFromCartAsync(cartItems.productId));
