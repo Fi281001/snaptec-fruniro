@@ -2,7 +2,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { database } from "../firebase";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { ref, set, push, get } from "firebase/database";
+import { ref, set, get, remove } from "firebase/database";
 
 const cartSlice = createSlice({
   name: "cart",
@@ -16,10 +16,16 @@ const cartSlice = createSlice({
     addToCart: (state, action) => {
       state.cart.push(action.payload);
     },
+    removeFromCart: (state, action) => {
+      // Xóa sản phẩm khỏi Redux store
+      state.cart = state.cart.filter(
+        (item) => item.productId !== action.payload
+      );
+    },
   },
 });
 
-export const { setCart, addToCart } = cartSlice.actions;
+export const { setCart, addToCart, removeFromCart } = cartSlice.actions;
 
 export default cartSlice.reducer;
 
@@ -84,4 +90,17 @@ export const getCartAsync = () => async (dispatch) => {
     } else {
     }
   });
+};
+
+// delete cart
+export const removeFromCartAsync = (productId) => async (dispatch) => {
+  const auth = getAuth();
+  const user = auth.currentUser;
+
+  if (user) {
+    const cartRef = ref(database, `carts/${user.uid}/${productId}`);
+    await remove(cartRef);
+    dispatch(removeFromCart(productId));
+  } else {
+  }
 };
