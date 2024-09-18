@@ -4,7 +4,6 @@ import {
   Routes,
   Route,
   useLocation,
-  ScrollRestoration,
 } from "react-router-dom";
 import Header from "./components/Header.js";
 import Footer from "./components/Footer.js";
@@ -21,13 +20,14 @@ import Errorpage from "./components/Errorpage.js";
 import { LoginRegister } from "./authentication/LoginRegister.js";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import ScrollPosition from "./components/ScrollPosition.js";
 function App() {
   return (
     <div className="App">
       <ToastContainer position="top-center" autoClose={1000} />
       <Router>
         {/* <ScrollRestoration /> */}
+        <ScrollPosition /> {/* Thêm component ScrollPosition */}
         <Routes>
           {/* Route cho trang login */}
           <Route path="/login" element={<LoginRegister />} />

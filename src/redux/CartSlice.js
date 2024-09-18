@@ -60,9 +60,6 @@ export const addToCartAsync = (cartItem) => async (dispatch) => {
 
       console.log("Thêm sản phẩm mới: ", cartItem);
     }
-
-    // Cập nhật Redux store
-    dispatch(addToCart(cartItem));
   } else {
     console.error("User is not authenticated");
   }
