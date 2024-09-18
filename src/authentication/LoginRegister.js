@@ -5,7 +5,7 @@ import logo from "../image/logo.png";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { database } from "../firebase";
-import { ref, set } from "firebase/database";
+import { getDatabase, ref, set } from "firebase/database";
 import { toast } from "react-toastify";
 import {
   getAuth,
@@ -36,10 +36,9 @@ export const LoginRegister = () => {
 
   const auth = getAuth();
 
-  const saveUserData = (userId, name, email, token) => {
-    const db = database(); // Tạo kết nối tới Firebase Realtime Database
+  const saveUserData = (userId, email, token) => {
+    const db = getDatabase(); // Tạo kết nối tới Firebase Realtime Database
     set(ref(db, "users/" + userId), {
-      username: name,
       email: email,
       token: token,
     })
@@ -62,17 +61,21 @@ export const LoginRegister = () => {
       const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
-        password,
-        token
+        password
       );
       const user = userCredential.user;
+
       // Lấy token từ user
       const token = await user.getIdToken();
-      // Lưu token vào localStorage
+      console.log("Token:", token); // Kiểm tra token
+
+      if (!token) {
+        throw new Error("Token is undefined");
+      }
 
       // Lưu thông tin người dùng vào Firebase Realtime Database
       saveUserData(user.uid, user.email, token);
-
+      localStorage.setItem("user", token);
       toast.success("Login successfully");
 
       // Điều hướng về trang chủ
@@ -80,6 +83,7 @@ export const LoginRegister = () => {
         navigate("/");
       }, 2000);
     } catch (error) {
+      console.error("Login error:", error); // In lỗi ra console
       toast.error("Wrong password or account");
     }
   };

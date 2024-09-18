@@ -47,13 +47,10 @@ export const addToCartAsync = (cartItem) => async (dispatch) => {
       const existingProduct = cartSnapshot.val();
       const updatedQuantity = existingProduct.quantity + 1;
 
-      console.log("Sản phẩm đã tồn tại, tăng số lượng: ", existingProduct);
       await set(cartRef, {
         ...existingProduct,
         quantity: updatedQuantity, // Cập nhật số lượng sản phẩm
       });
-
-      console.log(`Updated quantity for ${cartItem.name}:`, updatedQuantity);
     } else {
       // Nếu sản phẩm chưa tồn tại, thêm mới sản phẩm vào giỏ hàng
       await set(cartRef, {
