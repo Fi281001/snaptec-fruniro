@@ -2,13 +2,23 @@ import React, { useState, useEffect, useRef } from "react";
 import logo from "../image/logo.png";
 import "../main/Header.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import { Link } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import Cartheader from "./Cartheader";
 
 export default function Header() {
   const [isCartVisible, setIsCartVisible] = useState(false);
   const cartRef = useRef(null);
+  const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (user) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
   const toggleCartVisibility = () => {
     setIsCartVisible(!isCartVisible);
   };
@@ -18,24 +28,25 @@ export default function Header() {
       setIsCartVisible(false);
     }
   };
-  // const handleScroll = () => {
-  //   setIsCartVisible(false); // Ẩn giỏ hàng khi cuộn xuống
-  // };
 
   useEffect(() => {
     if (isCartVisible) {
       document.addEventListener("mousedown", handleClickOutside);
-      // window.addEventListener("scroll", handleScroll);
     } else {
       document.removeEventListener("mousedown", handleClickOutside);
-      // window.removeEventListener("scroll", handleScroll); // Xóa sự kiện cuộn
     }
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
-      // window.removeEventListener("scroll", handleScroll);
     };
   }, [isCartVisible]);
+
+  const handleLogout = () => {
+    // Xóa thông tin người dùng và điều hướng về trang login
+    localStorage.clear();
+    setIsLoggedIn(false);
+    navigate("/login");
+  };
 
   return (
     <>
@@ -73,9 +84,14 @@ export default function Header() {
           </div>
 
           <div className="nav-icon">
-            <Link to="/login">
-              <i class="bi bi-person"></i>
-            </Link>
+            <NavLink to="/login" onClick={isLoggedIn ? handleLogout : null}>
+              {isLoggedIn ? (
+                <i class="bi bi-box-arrow-right"></i>
+              ) : (
+                // Hiển thị icon nếu đã đăng nhập
+                <i className="bi bi-person"></i> // Hiển thị chữ Login nếu chưa đăng nhập
+              )}
+            </NavLink>
 
             <i className="bi bi-search" title="search"></i>
             <i className="bi bi-heart" title="heart"></i>

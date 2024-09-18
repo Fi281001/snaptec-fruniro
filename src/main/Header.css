@@ -132,6 +132,12 @@
 .nav-icon i {
   font-size: 26px;
 }
+.nav-icon a {
+  text-decoration: none;
+  font-size: 26px;
+  color: black;
+  padding-top: 10px;
+}
 @media ((max-width: 1350px)) {
   .nav-icon {
     margin-right: 0px;

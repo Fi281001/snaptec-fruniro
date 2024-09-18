@@ -4,6 +4,7 @@ import {
   Routes,
   Route,
   useLocation,
+  ScrollRestoration,
 } from "react-router-dom";
 import Header from "./components/Header.js";
 import Footer from "./components/Footer.js";
@@ -13,17 +14,21 @@ import Blog from "./components/Blog.js";
 import Contact from "./components/Contact.js";
 import { SingleProduct } from "./components/SingleProduct.js";
 import Cart from "./components/Cart.js";
-
+import PrivateRoute from "./components/PrivateRoute.js";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Errorpage from "./components/Errorpage.js";
 import { LoginRegister } from "./authentication/LoginRegister.js";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Dashboard from "./components/Dashboard.js";
 
 function App() {
   return (
     <div className="App">
+      <ToastContainer position="top-center" autoClose={1000} />
       <Router>
+        {/* <ScrollRestoration /> */}
         <Routes>
           {/* Route cho trang login */}
           <Route path="/login" element={<LoginRegister />} />
@@ -35,11 +40,19 @@ function App() {
             <Route path="/blog" element={<Blog />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/dashboard" element={<Dashboard />} />
+
             <Route
               path="/single-product/:productId"
               element={<SingleProduct />}
             />
-            <Route path="/cart" element={<Cart />} />
+            <Route
+              path="/cart"
+              element={
+                <PrivateRoute>
+                  <Cart />
+                </PrivateRoute>
+              }
+            />
           </Route>
 
           {/* Route cho trang lỗi, không có Header và Footer */}
@@ -54,7 +67,6 @@ function App() {
 const Layout = () => {
   const location = useLocation();
 
-  // Chỉ cần hiển thị Header và Footer nếu không phải là trang lỗi
   const hideHeaderFooter =
     location.pathname === "/login" || location.pathname === "*";
 
@@ -68,8 +80,15 @@ const Layout = () => {
         <Route path="/blog" element={<Blog />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/single-product/:productId" element={<SingleProduct />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+        <Route
+          path="/cart"
+          element={
+            <PrivateRoute>
+              <Cart />
+            </PrivateRoute>
+          }
+        />
       </Routes>
       {!hideHeaderFooter && <Footer />}
     </>

@@ -5,6 +5,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { database } from "../firebase";
 import { getDatabase, ref, onValue, get, child } from "firebase/database";
+
 export default function Products({ item, onLengthChange }) {
   const [products, setProducts] = useState([]);
 
@@ -18,6 +19,7 @@ export default function Products({ item, onLengthChange }) {
         if (response.data) {
           setProducts(response.data); // Cập nhật state với dữ liệu nhận được
           onLengthChange(response.data.length);
+          const slicedProducts = products.slice(0, 10);
         } else {
           console.log("No data available");
         }
