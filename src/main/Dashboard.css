@@ -1,0 +1,127 @@
+.container-dashboard {
+    max-width: 700px;
+    width: 100%;
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    padding: 25px 30px;
+    border-radius: 5px;
+    margin: 0 auto;
+}
+
+.container-dashboard__title {
+    font-size: 25px;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    position: relative;
+}
+
+
+.container-dashboard__title::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 30px;
+    background: #9b59b6;
+}
+
+.group-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    font-weight: 500;
+}
+
+.input-box {
+    margin: 20px 0 12px 0;
+    width: calc(100% / 2 - 20px);
+    position: relative;
+}
+
+.input-box input {
+    height: 45px;
+    width: 100%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding-left: 15px;
+    font-size: 16px;
+    font-family: none;
+}
+
+.input-box-title {
+    margin-top: 16px;
+}
+
+.input-box-title span,
+.details {
+    font-weight: 500;
+    padding-bottom: 50px;
+    color: #fff
+}
+
+.input-box-title textarea {
+    height: 150px;
+    width: 100%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    overflow: auto;
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 45px;
+    max-height: 100vh;
+    padding: 10px 0px 0px 15px;
+    font-family: none;
+}
+
+.div-button-add {
+    display: flex;
+    justify-content: center;
+}
+
+.button-add {
+    cursor: pointer;
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    background: linear-gradient(135deg, #9b59b6, #71b7e6);
+}
+
+.error-message {
+    position: absolute;
+    color: brown;
+    font-size: 12px;
+}
+
+img,
+.display-img {
+    width: 300px;
+    margin: 10px;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ff8a00), to(#da1b60));
+}
+
+@media only screen and (max-width: 520px) {
+    .group-form {
+        display: block;
+    }
+
+    .input-box {
+        width: unset;
+    }
+}

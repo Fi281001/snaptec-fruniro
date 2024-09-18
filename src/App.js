@@ -18,6 +18,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Errorpage from "./components/Errorpage.js";
 import { LoginRegister } from "./authentication/LoginRegister.js";
+import Dashboard from "./components/Dashboard.js";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
             <Route path="/shop" element={<Shop />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route
               path="/single-product/:productId"
               element={<SingleProduct />}
@@ -67,6 +69,7 @@ const Layout = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/single-product/:productId" element={<SingleProduct />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
       {!hideHeaderFooter && <Footer />}
     </>
