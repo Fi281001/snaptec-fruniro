@@ -21,14 +21,14 @@ import { LoginRegister } from "./authentication/LoginRegister.js";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Dashboard from "./components/Dashboard.js";
+import Routerposition from "./components/Routerposition.js";
 
 function App() {
   return (
     <div className="App">
       <ToastContainer position="top-center" autoClose={1000} />
       <Router>
-        {/* <ScrollRestoration /> */}
-
+        <Routerposition />
         <Routes>
           {/* Route cho trang login */}
           <Route path="/login" element={<LoginRegister />} />
