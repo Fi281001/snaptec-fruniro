@@ -18,7 +18,6 @@ const Cart = () => {
   // hàm tính subtotal
   const ProductRow = ({ priceString, quantity }) => {
     if (!priceString) {
-      console.error("priceString is undefined or null");
       return null; // Hoặc xử lý lỗi theo cách khác
     }
 
@@ -48,7 +47,6 @@ const Cart = () => {
   const formattedSubTotal = SubTotal.toLocaleString("id-ID");
   // delete cart
   const handleRemove = (item) => {
-    console.log("Product ID:", item.productId);
     Swal.fire({
       title: "Are you sure?",
       text: `Do you want to delete the product ${item.name}?`,
@@ -65,8 +63,6 @@ const Cart = () => {
     });
     dispatch(removeFromCartAsync(cartItems.productId));
   };
-
-  console.log("item", cartItems); // Check if productId exists here
 
   return (
     <>

@@ -20,18 +20,19 @@ import Errorpage from "./components/Errorpage.js";
 import { LoginRegister } from "./authentication/LoginRegister.js";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import ScrollPosition from "./components/ScrollPosition.js";
+import Dashboard from "./components/Dashboard.js";
+
 function App() {
   return (
     <div className="App">
       <ToastContainer position="top-center" autoClose={1000} />
       <Router>
         {/* <ScrollRestoration /> */}
-        <ScrollPosition /> {/* Thêm component ScrollPosition */}
+
         <Routes>
           {/* Route cho trang login */}
           <Route path="/login" element={<LoginRegister />} />
-
+          <Route path="/dashboard" element={<Dashboard />} />
           {/* Các route cho các trang chính */}
           <Route element={<Layout />}>
             <Route path="/" element={<Homepage />} />
@@ -77,6 +78,7 @@ const Layout = () => {
         <Route path="/blog" element={<Blog />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/single-product/:productId" element={<SingleProduct />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route
           path="/cart"
           element={

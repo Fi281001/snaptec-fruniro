@@ -1,4 +1,3 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
 import {
@@ -6,11 +5,10 @@ import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
 } from "firebase/auth";
+//upload-image
+import { getStorage } from "firebase/storage";
+import { getFirestore } from "firebase/firestore";
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: "furino-2343b.firebaseapp.com",
@@ -25,5 +23,13 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const auth = getAuth(app);
+//upload-image
+const imageDB = getStorage(app);
 
-export { auth, signInWithEmailAndPassword, database, onAuthStateChanged };
+export {
+  auth,
+  signInWithEmailAndPassword,
+  database,
+  onAuthStateChanged,
+  imageDB,
+};
