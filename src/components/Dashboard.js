@@ -16,15 +16,12 @@ import * as yup from "yup";
 import axios from "axios";
 
 function Dashboard() {
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
-  const [pricesale, setPricesale] = useState("");
-  const [sale, setSale] = useState("");
-  const [title, setTitle] = useState("");
   const [imgSrc, setImgSrc] = useState("");
+  const [image, setImage] = useState(null);
+  const [priceSale, setPriceSale] = useState(0); // Thêm state cho pricesale
 
+  /* Lấy độ dài của product để set id*/
   const [length, setLenght] = useState("");
-
   useEffect(() => {
     // Hàm để lấy dữ liệu từ Firebase qua axios
     const fetchData = async () => {
@@ -41,70 +38,124 @@ function Dashboard() {
         console.error("Error fetching data: ", error);
       }
     };
-
     fetchData();
   }, []);
 
+  /* formik and yup validation messeage*/
   const formik = useFormik({
     initialValues: {
       name: "",
       price: "",
-      pricesale: "",
+      pricesale: 0,
       sale: "",
       title: "",
     },
     validationSchema: yup.object({
       name: yup
         .string()
-        .required("Required")
         .min(4, "Please enter more than 4 characters")
         .matches(
-          /^[a-zA-Z_0-9]{3,20}$/,
+          /^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂÁẠẢÃÂẦẤẬẨẪÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸýỳỵỷỹ0-9\s\-\$]{1,50}$/,
           "Please do not enter more than 20 characters"
         ),
       price: yup
         .string()
-        .required("Required")
+        .max(10, "Please do not enter more than 10 numbers")
         .matches(
-          /\d{0,8}[.]?\d{1,4}$/,
+          /^(0|[1-9][0-9]{0,8}|1000000000)$/,
           "Please do not enter spaces and characters"
         ),
       sale: yup
         .string()
         .matches(
-          /^([0-9]|[1-9][0-9]|100)$/,
-          "Please enter a number from 0 to 100"
+          /^(100|[1-9]?[0-9])$/,
+          "Please enter a number from 0 to 100 and do not space"
         ),
     }),
     onSubmit: (values) => {
       console.log(values);
     },
   });
-  //write
+
+  // Hàm tính giá sau khi giảm
+  const calculatePriceSale = () => {
+    const priceValue = parseFloat(formik.values.price) || 0; // Chuyển đổi sang số
+    const saleValue = parseFloat(formik.values.sale) || 0; // Chuyển đổi sang số
+    const pricesale = (priceValue * (100 - saleValue)) / 100; // Tính giá sau khi giảm
+    formik.setFieldValue("pricesale", pricesale); // Cập nhật giá vào formik
+  };
+  useEffect(() => {
+    calculatePriceSale();
+  }, [formik.values.price, formik.values.sale]);
+  /*write*/
   const writeToDatabase = async () => {
+    // Kiểm tra xem người dùng đã nhập tất cả các trường cần thiết chưa
+    const { name, price, title, sale } = formik.values;
+    if (!name || !price || !title || !sale) {
+      const customId = "custom-id-yes";
+      toast.error("Please fill in all required fields.", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+        toastId: customId,
+      });
+      return; // Dừng lại nếu có trường thiếu
+    }
+
+    // Kiểm tra xem ảnh có định dạng hợp lệ không
+    const validImageTypes = ["image/jpeg", "image/png", "image/gif"];
+    if (!image || !validImageTypes.includes(image.type)) {
+      toast.error("Please upload an image file (png, jpg, jpeg, gif).", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+      return; // Dừng lại nếu tệp không phải là hình ảnh hợp lệ
+    }
+
     const imgRef = storageRef(imageDB, `images/${v4()}`);
-    await uploadBytes(imgRef, imgSrc);
+    await uploadBytes(imgRef, image);
 
-    //Lấy ra URL image từ storage
+    // Lấy ra URL image từ storage
     const downloadURL = await getDownloadURL(imgRef);
-
+    console.log(downloadURL);
     setImgSrc(downloadURL);
 
+    // Tính pricesale
+    const priceValue = parseFloat(formik.values.price); // Chuyển đổi giá sang số
+    const saleValue = parseFloat(formik.values.sale); // Chuyển đổi tỷ lệ giảm sang số
+    const pricesale = (priceValue * (100 - saleValue)) / 100; // Tính giá sau khi giảm
+    setPriceSale(pricesale);
+
     let id = length - 1 + 1;
+
+    // Lưu sản phẩm vào Firebase
     set(ref(database, `product/${id}`), {
       id,
       imgSrc: downloadURL,
       name: formik.values.name,
       price: formik.values.price,
-      pricesale: formik.values.pricesale,
+      pricesale: pricesale,
       sale: formik.values.sale,
       title: formik.values.title,
     })
       .then(() => {
-        const customId = "custom-id-yes";
+        const customId1 = "custom-id-yes";
         toast.success("Data added successfully!", {
-          position: "top-center",
-          autoClose: 1500,
+          position: "top-right",
+          autoClose: 2000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -112,103 +163,154 @@ function Dashboard() {
           progress: undefined,
           theme: "light",
           transition: Bounce,
-          toastId: customId,
+          toastId: customId1,
         });
       })
-      .catch((error) => {
-        console.error("Error", error);
+      .catch(() => {
+        toast.error("Error Added Data", {
+          position: "right-center",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       });
-    setName("");
-    setPrice("");
-    setPricesale("");
-    setSale("");
-    setTitle("");
+    // window.location.reload(); // Reload lại trang
   };
-  console.log(imgSrc);
-  //update
-  //delete
+
+  // Hàm xử lý khi người dùng chọn file
+  const handleImageChange = (event) => {
+    const file = event.target.files[0]; // Lấy file đầu tiên được chọn
+    if (file) {
+      setImage(file); // Lưu trữ tệp vào state image
+
+      // Sử dụng FileReader để tạo URL ảnh
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImgSrc(reader.result); // Cập nhật state URL để render
+      };
+      reader.readAsDataURL(file); // Đọc file ảnh dưới dạng Data URL
+    }
+  };
+
   return (
     <>
-      <div className="container-dashboard">
-        <div className="container-dashboard__title">Add Product</div>
-        <form className="group-form" onSubmit={formik.handleSubmit}>
-          <div className="input-box">
-            <span className="details">Name Product</span>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              placeholder="Enter name product..."
-              value={formik.values.name}
-              onChange={formik.handleChange}
-            />
-            {formik.errors.name && (
-              <p className="error-message">{formik.errors.name}</p>
-            )}
-          </div>
-          <div className="input-box">
-            <span className="details">Sale</span>
-            <input
-              name="sale"
-              id="sale"
-              placeholder="Enter sale..."
-              value={formik.values.sale}
-              onChange={formik.handleChange}
-            />
-            {formik.errors.sale && (
-              <p className="error-message">{formik.errors.sale}</p>
-            )}
-          </div>
-          <div className="input-box">
-            <span className="details">Price Product</span>
-            <input
-              name="price"
-              id="price"
-              placeholder="Enter price product..."
-              value={formik.values.price}
-              onChange={formik.handleChange}
-            />
-            {formik.errors.price && (
-              <p className="error-message">{formik.errors.price}</p>
-            )}
-          </div>
-          <div className="input-box">
-            <span className="details">Price Sale</span>
-            <input
-              disabled
-              name="pricesale"
-              id="pricesale"
-              placeholder="Enter price sale..."
-              value={formik.values.pricesale}
-              onChange={formik.handleChange}
-            />
-          </div>
-          <div className="input-box-title">
-            <span className="details">Title Product</span>
-            <textarea
-              type="text"
-              name="title"
-              id="title"
-              placeholder="Enter title product..."
-              value={formik.values.title}
-              onChange={formik.handleChange}
-            ></textarea>
-          </div>
-          <div className="input-box-path-image">
-            <input type="file" onChange={(e) => setImgSrc(e.target.files[0])} />
-            <img className="display-img" alt="" src={imgSrc} />
-          </div>
-          <div className="div-button-add">
-            <button
-              className="button-add"
-              type="submit"
-              onClick={writeToDatabase}
-            >
-              Add Product
-            </button>
-            <ToastContainer />
-          </div>
-        </form>
+      <div class="formbold-main-wrapper">
+        <div class="formbold-form-wrapper">
+          <div className="formbold-title-product">Add New Product</div>
+          <form onSubmit={formik.handleSubmit}>
+            <div class="formbold-input-flex">
+              <div>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  value={formik.values.name}
+                  onChange={formik.handleChange}
+                  class="formbold-form-input"
+                />
+                {formik.errors.name && (
+                  <p className="error-message">{formik.errors.name}</p>
+                )}
+                <label for="firstname" class="formbold-form-label">
+                  Name Product
+                </label>
+              </div>
+              <div>
+                <input
+                  name="sale"
+                  id="sale"
+                  value={formik.values.sale}
+                  onChange={formik.handleChange}
+                  class="formbold-form-input"
+                />
+                {formik.errors.sale && (
+                  <p className="error-message">{formik.errors.sale}</p>
+                )}
+                <label for="lastname" class="formbold-form-label">
+                  Sale
+                </label>
+              </div>
+            </div>
+
+            <div class="formbold-input-flex">
+              <div>
+                <input
+                  name="price"
+                  id="price"
+                  value={formik.values.price}
+                  onChange={formik.handleChange}
+                  class="formbold-form-input"
+                />
+                {formik.errors.price && (
+                  <p className="error-message">{formik.errors.price}</p>
+                )}
+                <label for="email" class="formbold-form-label">
+                  Price Product
+                </label>
+              </div>
+              <div>
+                <input
+                  disabled
+                  name="pricesale"
+                  id="pricesale"
+                  value={formik.values.pricesale.toFixed(2)}
+                  onChange={formik.handleChange}
+                  class="formbold-form-input"
+                />
+                <label for="phone" class="formbold-form-label">
+                  Price Sale
+                </label>
+              </div>
+            </div>
+
+            <div class="formbold-textarea">
+              <textarea
+                rows="3"
+                type="text"
+                name="title"
+                id="title"
+                value={formik.values.title}
+                onChange={formik.handleChange}
+                class="formbold-form-input"
+              ></textarea>
+              <label for="message" class="formbold-form-label">
+                Title
+              </label>
+            </div>
+
+            <div className="input-box-path-image">
+              <input type="file" required onChange={handleImageChange} />
+              {imgSrc && (
+                <img
+                  className="display-img"
+                  src={imgSrc}
+                  alt="Preview"
+                  style={{
+                    width: "200px",
+                    height: "200px",
+                    objectFit: "cover",
+                    display: "block",
+                    borderradius: "50%",
+                  }}
+                />
+              )}
+            </div>
+            <div className="btn-center">
+              <button
+                className="formbold-btn"
+                type="submit"
+                onClick={writeToDatabase}
+              >
+                Add Product
+              </button>
+              <ToastContainer />
+            </div>
+          </form>
+        </div>
       </div>
     </>
   );
