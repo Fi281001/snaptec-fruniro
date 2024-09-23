@@ -34,13 +34,20 @@ export const LoginRegister = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordAgain, setPasswordAgain] = useState("");
+  const [name, setName] = useState("");
 
+  const handlname = () => {
+    const nameFromEmail = email.split("@")[0];
+    console.log("name", nameFromEmail);
+    setName(nameFromEmail);
+  };
   const auth = getAuth();
 
-  const saveUserData = (userId, email, token) => {
+  const saveUserData = (userId, email, name, token) => {
     const db = getDatabase(); // Tạo kết nối tới Firebase Realtime Database
     set(ref(db, "users/" + userId), {
       email: email,
+      name: name,
       token: token,
     })
       .then(() => {
@@ -53,6 +60,7 @@ export const LoginRegister = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    handlname();
 
     if (password.length < 6) {
       toast.error("Passwords must be at least 6 characters", {
@@ -71,14 +79,15 @@ export const LoginRegister = () => {
 
       // Lấy token từ user
       const token = await user.getIdToken();
-      console.log("Token:", token); // Kiểm tra token
 
+      console.log("Token:", token); // Kiểm tra token
+      console.log("id:", user.uid);
       if (!token) {
         throw new Error("Token is undefined");
       }
 
       // Lưu thông tin người dùng vào Firebase Realtime Database
-      saveUserData(user.uid, user.email, token);
+      saveUserData(user.uid, user.email, user.displayName || name, token);
       localStorage.setItem("user", token);
 
       toast.success("Login successfully", {
@@ -189,7 +198,10 @@ export const LoginRegister = () => {
               type="email"
               placeholder="Email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                handlname();
+              }}
             />
             <input
               type="password"

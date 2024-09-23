@@ -60,6 +60,7 @@ export const addToCartAsync = (cartItem) => async (dispatch) => {
 
       console.log("Thêm sản phẩm mới: ", cartItem);
     }
+    dispatch(getCartAsync());
   } else {
     console.error("User is not authenticated");
   }
@@ -97,4 +98,8 @@ export const removeFromCartAsync = (productId) => async (dispatch) => {
     dispatch(removeFromCart(productId));
   } else {
   }
+};
+
+export const selectTotalQuantity = (state) => {
+  return state.cart.cart.reduce((total, item) => total + item.quantity, 0);
 };

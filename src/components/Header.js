@@ -4,12 +4,18 @@ import "../main/Header.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import Cartheader from "./Cartheader";
-
+import { useDispatch, useSelector } from "react-redux";
+import { selectTotalQuantity } from "../redux/CartSlice";
 export default function Header() {
   const [isCartVisible, setIsCartVisible] = useState(false);
   const cartRef = useRef(null);
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state.cart.cart);
+  // tính tổng số lượng item
+  const totalQuantity = useSelector(selectTotalQuantity);
+  console.log("total", totalQuantity);
 
   useEffect(() => {
     const user = localStorage.getItem("user");
@@ -95,11 +101,15 @@ export default function Header() {
 
             <i className="bi bi-search" title="search"></i>
             <i className="bi bi-heart" title="heart"></i>
-            <i
-              className="bi bi-cart"
-              title="cart"
-              onClick={toggleCartVisibility}
-            ></i>
+
+            <div className="cart-icon-container">
+              <i
+                className="bi bi-cart"
+                title="cart"
+                onClick={toggleCartVisibility}
+              ></i>
+              <span className="cart-badge">{totalQuantity}</span>
+            </div>
           </div>
         </div>
         {isCartVisible && (

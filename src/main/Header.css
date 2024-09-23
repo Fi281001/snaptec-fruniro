@@ -138,6 +138,28 @@
   color: black;
   padding-top: 10px;
 }
+.cart-icon-container {
+  position: relative;
+  display: inline-block;
+}
+
+.cart-icon {
+  font-size: 24px; /* Kích thước của icon giỏ hàng */
+  position: relative;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -10px; /* Điều chỉnh vị trí của badge */
+  right: -10px;
+  background-color: #b88e2f;
+  color: white;
+  border-radius: 50%;
+  padding: 3px 7px;
+  font-size: 11px;
+  font-weight: bold;
+}
+
 @media ((max-width: 1350px)) {
   .nav-icon {
     margin-right: 0px;
