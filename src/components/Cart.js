@@ -6,9 +6,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCartAsync, removeFromCartAsync } from "../redux/CartSlice";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 const Cart = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cart); // Lấy danh sách items từ Redux store
+  const navigate = useNavigate();
+
+  const handleCheckout = () => {
+    // Chuyển hướng đến trang checkout
+    navigate("/checkout");
+  };
 
   useEffect(() => {
     dispatch(getCartAsync()); // Lấy giỏ hàng khi người dùng đăng nhập
@@ -131,7 +138,12 @@ const Cart = () => {
             <p className="container-right__p">Rs. {formattedSubTotal} </p>
           </div>
           <div className="container-right__w-100">
-            <button className="container-right__btn-checkout">Check Out</button>
+            <button
+              className="container-right__btn-checkout"
+              onClick={handleCheckout}
+            >
+              Check Out
+            </button>
           </div>
         </div>
       </div>
