@@ -10,6 +10,7 @@ import {
   getAuth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  sendPasswordResetEmail, // Import phương thức để khôi phục mật khẩu
 } from "firebase/auth";
 
 export const LoginRegister = () => {
@@ -29,7 +30,7 @@ export const LoginRegister = () => {
     });
   }, []);
 
-  ///login
+  // login
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordAgain, setPasswordAgain] = useState("");
@@ -49,11 +50,12 @@ export const LoginRegister = () => {
         console.error("Error saving user data:", error);
       });
   };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (password.length < 6) {
-      toast.error("Passwords must be at least 6 characters",{
+      toast.error("Passwords must be at least 6 characters", {
         toastId: customId1,
       });
       return;
@@ -99,8 +101,6 @@ export const LoginRegister = () => {
   const handleRegister = (event) => {
     event.preventDefault();
 
-    // Lấy giá trị từ các input
-
     // Kiểm tra xem mật khẩu có khớp không
     if (password !== passwordAgain) {
       toast.error("Passwords do not match", {
@@ -112,7 +112,6 @@ export const LoginRegister = () => {
     // Thực hiện đăng ký
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Đăng ký thành công
         const user = userCredential.user;
         toast.success("Registration successful", {
           toastId: customId1,
@@ -120,53 +119,78 @@ export const LoginRegister = () => {
 
         // Chuyển hướng người dùng sau khi đăng ký thành công
         setTimeout(() => {
-          // navigate("/"); // Chuyển về trang chủ
           setIsActive(false);
         }, 2000);
       })
       .catch((error) => {
-        // Xử lý các lỗi khi đăng ký
-        if (
-          (error.code === "auth/email-already-in-use",
-          {
-            toastId: customId1,
-          })
-        ) {
-          // Email đã tồn tại
+        if (error.code === "auth/email-already-in-use") {
           toast.error("Email is already in use. Please try another one.", {
             toastId: customId1,
           });
         } else {
-          // Xử lý các lỗi khác
           toast.error("Error during registration: " + error.message, {
             toastId: customId1,
           });
         }
       });
   };
+
+  // State quản lý form quên mật khẩu || Mặc định false
+  const [showForgotPasswordForm, setShowForgotPasswordForm] = useState(false);
+
+  // Hiển thị form quên mật khẩu
+  const handleForgotPasswordClick = (event) => {
+    setShowForgotPasswordForm(true); // Hiển thị modal
+  };
+
+  // Hàm xử lý khi quên mật khẩu
+  const handleForgotPassword = async (event) => {
+    event.preventDefault();
+    if (!email) {
+      toast.error("Please enter your email address", {
+        toastId: customId1,
+      });
+      return;
+    }
+
+    try {
+      await sendPasswordResetEmail(auth, email);
+      toast.success("Please access your email to reset your password", {
+        toastId: customId1,
+      });
+    } catch (error) {
+      console.error("Error sending password reset email:", error);
+      toast.error("Error sending password reset email: " + error.message, {
+        toastId: customId1,
+      });
+    }
+  };
+  const closeModal = () => {
+    // Không đóng modal khi submit
+    setShowForgotPasswordForm(false); // Comment hoặc xóa để không đóng modal
+  };
+
   return (
     <div>
       <img className="img-bg" src={bg} alt="bg" />
       <div
-        class={
+        className={
           isActive
             ? "container-login-register active"
             : "container-login-register"
         }
         id="container"
       >
-        {/* <img src={bg} alt="bg"/> */}
-        <div class="form-container sign-up">
+        <div className="form-container sign-up">
           <form onSubmit={handleRegister}>
             <h1 className="h1-create-account">Create Account</h1>
-            <span>or use your email for registeration</span>
+            <span>or use your email for registration</span>
             <input
               type="email"
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-
             <input
               type="password"
               placeholder="Password"
@@ -175,18 +199,18 @@ export const LoginRegister = () => {
             />
             <input
               type="password"
-              placeholder="Password again"
+              placeholder="Password comfirmed"
               value={passwordAgain}
               onChange={(e) => setPasswordAgain(e.target.value)}
             />
             <button type="submit">Sign Up</button>
           </form>
         </div>
-        <div class="form-container sign-in">
+        <div className="form-container sign-in">
           <form onSubmit={handleSubmit}>
             <h1>Sign In</h1>
 
-            <span>or use your email password</span>
+            <span>or use your email and password</span>
             <input
               type="email"
               placeholder="Email"
@@ -201,7 +225,10 @@ export const LoginRegister = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            <a href="#5">Forget Your Password?</a>
+            {/* Thêm nút quên mật khẩu */}
+            <a href="#forgot-password" onClick={handleForgotPasswordClick}>
+              Forgot Your Password?
+            </a>
             <button type="submit">Sign In</button>
             <span className="span-orSignInUsing">Or Sign In Using: </span>
             <div className="social-icons">
@@ -220,28 +247,57 @@ export const LoginRegister = () => {
             </div>
           </form>
         </div>
-        <div class="toggle-container">
-          <div class="toggle">
-            <div class="toggle-panel toggle-left">
+        <div className="toggle-container">
+          <div className="toggle">
+            <div className="toggle-panel toggle-left">
               <img className="img-logo" src={logo} alt="" />
               <h1>Welcome Back!</h1>
               <p>Enter your personal details to use all of site features</p>
-              <button class="hidden" id="login">
-                Sign In
-              </button>
+              <button id="login">Sign In</button>
             </div>
-            <div class="toggle-panel toggle-right">
+            <div className="toggle-panel toggle-right">
               <img className="img-logo" src={logo} alt="" />
               <h1>Hello, Friend!</h1>
               <p>
                 Register with your personal details to use all of site features
               </p>
-              <button class="hidden" id="register">
-                Sign Up
-              </button>
+              <button id="register">Sign Up</button>
             </div>
           </div>
         </div>
+        {/* Modal Quên mật khẩu */}
+        {showForgotPasswordForm && (
+          <div id="forgot-password" className="modal">
+            <div className="modal-content">
+              <div className="modal-close" onClick={closeModal}>
+                &times;
+              </div>
+              <h3 className="group-text-center">
+                <i class="fa fa-lock fa-5x"></i>
+              </h3>
+              <h2 className="group-text-center">Reset Your Password</h2>
+              <div className="group-text-center mb-5px">
+                <span>
+                  The password reset link will be sent to your email. Please
+                  check your email
+                </span>
+              </div>
+
+              <form className="form-input-reset-password">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+                <button type="submit" onClick={handleForgotPassword}>
+                  Send
+                </button>
+              </form>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
