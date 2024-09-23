@@ -197,6 +197,7 @@
   justify-content: space-between;
 }
 .butadd {
+  border: none;
   background-color: #fff;
   color: rgba(184, 142, 47, 1);
   font-size: 16px;

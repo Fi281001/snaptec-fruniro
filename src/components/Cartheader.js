@@ -41,6 +41,7 @@ export default function Cartheader({ onClose }) {
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
+      document.querySelector(".overlay").style.display = ""; // Hiện lại overlay sau khi SweetAlert2 tắt
       if (result.isConfirmed) {
         toast.success("Delete successfully");
         dispatch(removeFromCartAsync(item.productId));

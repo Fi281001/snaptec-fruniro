@@ -171,6 +171,13 @@
   font-size: 30px;
   color: #b88e2f;
 }
+.swal2-container {
+  z-index: 9999999 !important; /* Đảm bảo nó cao hơn lớp bao phủ */
+}
+
+.swal2-popup {
+  z-index: 1002 !important; /* Giá trị cao nhất để chắc chắn luôn nổi lên trên */
+}
 
 @media ((max-width: 1500px)) {
   .cart-buttons {
