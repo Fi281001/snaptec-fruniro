@@ -173,6 +173,9 @@ export const LoginRegister = () => {
         toastId: customId1,
       });
     }
+
+    //Chuyển hướng đến trang login mail
+    window.open("https://mail.google.com/mail/u/0/#inbox", "_blank");
   };
   const closeModal = () => {
     // Không đóng modal khi submit
@@ -279,7 +282,7 @@ export const LoginRegister = () => {
         </div>
         {/* Modal Quên mật khẩu */}
         {showForgotPasswordForm && (
-          <div id="forgot-password" className="modal">
+          <div id="forgot-password" className="modal-forget-password">
             <div className="modal-content">
               <div className="modal-close" onClick={closeModal}>
                 &times;
@@ -303,8 +306,11 @@ export const LoginRegister = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                 />
-                <button type="submit" onClick={handleForgotPassword}>
-                  Send
+                <button
+                  type="submit"
+                  href="https://accounts.google.com/v3/signin/identifier?service=mail&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&flowName=GlifWebSignIn&flowEntry=AccountChooser&ec=asw-gmail-globalnav-signin&ddm=0"
+                  target="_blank"
+                  onClick={handleForgotPassword}> Send
                 </button>
               </form>
             </div>
