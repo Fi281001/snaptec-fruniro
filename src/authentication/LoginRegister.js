@@ -4,7 +4,6 @@ import bg from "./bg-login-register.png";
 import logo from "../image/logo.png";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
-import { database } from "../firebase";
 import { getDatabase, ref, set } from "firebase/database";
 import { toast } from "react-toastify";
 import {
@@ -12,10 +11,11 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from "firebase/auth";
+
 export const LoginRegister = () => {
   const navigate = useNavigate();
   const [isActive, setIsActive] = useState(false);
-
+  const customId1 = "custom-id-yes";
   useEffect(() => {
     const registerBtn = document.getElementById("register");
     const loginBtn = document.getElementById("login");
@@ -53,7 +53,9 @@ export const LoginRegister = () => {
     event.preventDefault();
 
     if (password.length < 6) {
-      toast.error("Passwords must be at least 6 characters");
+      toast.error("Passwords must be at least 6 characters",{
+        toastId: customId1,
+      });
       return;
     }
 
@@ -76,7 +78,10 @@ export const LoginRegister = () => {
       // Lưu thông tin người dùng vào Firebase Realtime Database
       saveUserData(user.uid, user.email, token);
       localStorage.setItem("user", token);
-      toast.success("Login successfully");
+
+      toast.success("Login successfully", {
+        toastId: customId1,
+      });
 
       // Điều hướng về trang chủ
       setTimeout(() => {
@@ -84,7 +89,9 @@ export const LoginRegister = () => {
       }, 2000);
     } catch (error) {
       console.error("Login error:", error); // In lỗi ra console
-      toast.error("Wrong password or account");
+      toast.error("Wrong password or account", {
+        toastId: customId1,
+      });
     }
   };
 
@@ -96,7 +103,9 @@ export const LoginRegister = () => {
 
     // Kiểm tra xem mật khẩu có khớp không
     if (password !== passwordAgain) {
-      toast.error("Passwords do not match");
+      toast.error("Passwords do not match", {
+        toastId: customId1,
+      });
       return;
     }
 
@@ -105,7 +114,9 @@ export const LoginRegister = () => {
       .then((userCredential) => {
         // Đăng ký thành công
         const user = userCredential.user;
-        toast.success("Registration successful");
+        toast.success("Registration successful", {
+          toastId: customId1,
+        });
 
         // Chuyển hướng người dùng sau khi đăng ký thành công
         setTimeout(() => {
@@ -115,12 +126,21 @@ export const LoginRegister = () => {
       })
       .catch((error) => {
         // Xử lý các lỗi khi đăng ký
-        if (error.code === "auth/email-already-in-use") {
+        if (
+          (error.code === "auth/email-already-in-use",
+          {
+            toastId: customId1,
+          })
+        ) {
           // Email đã tồn tại
-          toast.error("Email is already in use. Please try another one.");
+          toast.error("Email is already in use. Please try another one.", {
+            toastId: customId1,
+          });
         } else {
           // Xử lý các lỗi khác
-          toast.error("Error during registration: " + error.message);
+          toast.error("Error during registration: " + error.message, {
+            toastId: customId1,
+          });
         }
       });
   };
