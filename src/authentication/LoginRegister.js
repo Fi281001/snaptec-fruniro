@@ -36,7 +36,8 @@ export const LoginRegister = () => {
   const [name, setName] = useState("");
 
   const handlname = () => {
-    const nameFromEmail = email.split("@gmail.com")[0];
+    const nameFromEmail = email.split("@")[0];
+    console.log("name", nameFromEmail);
     setName(nameFromEmail);
   };
   const auth = getAuth();
@@ -60,7 +61,7 @@ export const LoginRegister = () => {
     handlname();
 
     if (password.length < 6) {
-      toast.error("Passwords must be at least 6 characters",{
+      toast.error("Passwords must be at least 6 characters", {
         toastId: customId1,
       });
       return;
