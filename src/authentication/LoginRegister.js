@@ -37,9 +37,7 @@ export const LoginRegister = () => {
   const [name, setName] = useState("");
 
   const handlname = () => {
-    const nameFromEmail = email.split("@")[0];
-    console.log("name", nameFromEmail);
-    setName(nameFromEmail);
+    return email.split("@")[0]; // Trả về phần trước dấu "@"
   };
   const auth = getAuth();
 
@@ -60,7 +58,10 @@ export const LoginRegister = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    handlname();
+
+    const nameFromEmail = handlname(); // Gọi hàm để lấy tên từ email
+
+    setName(nameFromEmail); // Cập nhật tên
 
     if (password.length < 6) {
       toast.error("Passwords must be at least 6 characters", {
@@ -80,14 +81,17 @@ export const LoginRegister = () => {
       // Lấy token từ user
       const token = await user.getIdToken();
 
-      console.log("Token:", token); // Kiểm tra token
-      console.log("id:", user.uid);
       if (!token) {
         throw new Error("Token is undefined");
       }
 
       // Lưu thông tin người dùng vào Firebase Realtime Database
-      saveUserData(user.uid, user.email, user.displayName || name, token);
+      saveUserData(
+        user.uid,
+        user.email,
+        (user.displayName = nameFromEmail),
+        token
+      );
       localStorage.setItem("user", token);
 
       toast.success("Login successfully", {

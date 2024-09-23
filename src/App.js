@@ -22,6 +22,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Dashboard from "./components/Dashboard.js";
 import Routerposition from "./components/Routerposition.js";
+import Checkout from "./components/Checkout.js";
 
 function App() {
   return (
@@ -39,6 +40,14 @@ function App() {
             <Route path="/shop" element={<Shop />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/contact" element={<Contact />} />
+            <Route
+              path="/checkout"
+              element={
+                <PrivateRoute>
+                  <Checkout />
+                </PrivateRoute>
+              }
+            />
             <Route
               path="/single-product/:productId"
               element={<SingleProduct />}
@@ -77,6 +86,14 @@ const Layout = () => {
         <Route path="/shop" element={<Shop />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/contact" element={<Contact />} />
+        <Route
+          path="/checkout"
+          element={
+            <PrivateRoute>
+              <Checkout />
+            </PrivateRoute>
+          }
+        />
         <Route path="/single-product/:productId" element={<SingleProduct />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route

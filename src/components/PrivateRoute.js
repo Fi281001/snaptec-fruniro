@@ -12,8 +12,7 @@ const PrivateRoute = ({ children }) => {
       text: "Bạn cần đăng nhập để truy cập trang này.",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonText: "Đăng nhập",
-      cancelButtonText: "Đóng",
+      confirmButtonText: "Login",
     }).then((result) => {
       if (result.isConfirmed) {
         // Chuyển hướng đến trang đăng nhập nếu người dùng chọn 'Đăng nhập'
