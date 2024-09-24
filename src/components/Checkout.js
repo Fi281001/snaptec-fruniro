@@ -1,21 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { getAuth } from "firebase/auth";
 import Rectangle from "./Rectangle.js";
 import "../main/Checkout.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getCartAsync, removeFromCartAsync } from "../redux/CartSlice";
+import { getCartAsync } from "../redux/CartSlice";
 export default function Checkout() {
   const auth = getAuth();
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cart); // Lấy danh sách items từ Redux store
+
+  const [address, setAddress] = useState("");
+  const [phone, setPhone] = useState("");
 
   const SubTotal = cartItems.reduce((total, item) => {
     const priceString = item.pricesale.replace(/\./g, ""); // Xóa dấu chấm
     const priceNumber = parseFloat(priceString.replace(/,/g, ".")); // Chuyển đổi sang số
     return total + priceNumber * item.quantity;
   }, 0);
-  const formattedSubTotal = SubTotal.toLocaleString("vi-VN"); // Định dạng số tiền
+  const formattedSubTotal = SubTotal.toLocaleString("id-ID"); // Định dạng số tiền
   const totalQuantity = cartItems.reduce((total, item) => {
     return total + item.quantity;
   }, 0);
@@ -27,6 +30,32 @@ export default function Checkout() {
   }, [dispatch]);
   const reversedCartItems = cartItems ? [...cartItems].reverse() : [];
   const mail = user ? user.email : "";
+
+  const [checkoutData, setCheckoutData] = useState({
+    email: mail || "", // Lưu email
+    name: mail.split("@")[0] || "", // Lưu tên
+    products: reversedCartItems, // Lưu danh sách sản phẩm
+    subTotal: formattedSubTotal, // Lưu tổng giá trị sản phẩm
+    totalQuantity: totalQuantity, // Lưu tổng số lượng sản phẩm
+    address: "", // Lưu địa chỉ
+    phone: "", // Lưu số điện thoại
+  });
+
+  // Sử dụng useEffect để cập nhật checkoutData mỗi khi có sự thay đổi
+  useEffect(() => {
+    setCheckoutData((prev) => ({
+      ...prev,
+      address: address,
+      phone: phone,
+      email: mail || "", // Lưu email
+      name: mail.split("@")[0] || "", // Lưu tên
+      products: reversedCartItems, // Lưu danh sách sản phẩm
+      subTotal: formattedSubTotal, // Lưu tổng giá trị sản phẩm
+      totalQuantity: totalQuantity, // Lưu tổng số lượng sản phẩm
+    }));
+  }, [address, phone]);
+  console.log("checkout", checkoutData);
+
   return (
     <div>
       <Rectangle title="Check out" />
@@ -42,6 +71,8 @@ export default function Checkout() {
             <input
               type="text"
               required
+              value={address} // Giá trị của ô input Address
+              onChange={(e) => setAddress(e.target.value)}
               placeholder="Your Address"
               className="content-input"
             ></input>
@@ -49,6 +80,8 @@ export default function Checkout() {
             <input
               type="text"
               required
+              value={phone} // Giá trị của ô input Address
+              onChange={(e) => setPhone(e.target.value)}
               placeholder="Your number phone"
               className="content-input"
             ></input>

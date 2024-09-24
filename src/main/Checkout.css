@@ -125,7 +125,6 @@
   display: flex;
   width: 100%;
   justify-content: space-between;
-  margin-top: 40px;
   padding: 0px 80px 0px 80px;
 }
 
@@ -171,4 +170,9 @@
   line-height: 30px;
   color: #000000;
   background-color: rgba(249, 241, 231, 1);
+}
+
+.container-right2 p,
+.container-right2 h3 {
+  margin-left: 76px;
 }

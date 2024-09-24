@@ -155,7 +155,6 @@
 }
 
 @keyframes move {
-
   0%,
   49.99% {
     opacity: 0;
@@ -304,7 +303,7 @@
   font-size: 35px;
   background: none;
   border: none;
-  padding: 0px 12px
+  padding: 0px 12px;
 }
 
 .group-text-center {
@@ -315,10 +314,10 @@
   width: 100%;
 }
 
-.mb-5px{
+.mb-5px {
   margin-bottom: 5px;
 }
 
-.group-icon-input{
+.group-icon-input {
   display: flex;
 }

@@ -94,14 +94,13 @@ export const LoginRegister = () => {
       );
       localStorage.setItem("user", token);
 
-      toast.success("Login successfully", {
-        toastId: customId1,
-      });
+      // toast.success("Login successfully", {
+      //   toastId: customId1,
+      // });
 
       // Điều hướng về trang chủ
-      setTimeout(() => {
-        navigate("/");
-      }, 2000);
+
+      navigate("/");
     } catch (error) {
       console.error("Login error:", error); // In lỗi ra console
       toast.error("Wrong password or account", {
@@ -177,6 +176,7 @@ export const LoginRegister = () => {
         toastId: customId1,
       });
     }
+    window.open("https://mail.google.com/mail/u/0/#inbox", "_blank");
   };
   const closeModal = () => {
     // Không đóng modal khi submit
