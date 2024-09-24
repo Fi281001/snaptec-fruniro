@@ -71,7 +71,7 @@ export default function Header() {
       // Đăng xuất khỏi Firebase Authentication
       await signOut(auth);
 
-      // Xóa thông tin người dùng khỏi localStorage bằng UID (userId)
+      // Xóa thông tin người dùng khỏi localStorage
       localStorage.removeItem("users");
       localStorage.clear();
       // Xóa tất cả cookies

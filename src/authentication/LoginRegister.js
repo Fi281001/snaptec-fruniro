@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./LoginRegister.css";
-import bg from "./bg-login-register.png";
+import bg from "../image/login-register/bg-login-register.png";
 import logo from "../image/logo.png";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
@@ -10,10 +10,13 @@ import {
   getAuth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
-  sendPasswordResetEmail, // Import phương thức để khôi phục mật khẩu
-  GoogleAuthProvider, // Import GoogleAuthProvider để hỗ trợ đăng nhập bằng Google
-  signInWithPopup, // Import phương thức để đăng nhập bằng popup
+  sendPasswordResetEmail,
 } from "firebase/auth";
+
+// Import the AuthGoogle function
+import { AuthGoogle } from "./Utils/AuthGoogle.js"; 
+// Import the AuthFacebook function
+import { AuthFacebook } from "./Utils/AuthFacebook.js";
 
 export const LoginRegister = () => {
   const navigate = useNavigate();
@@ -101,8 +104,7 @@ export const LoginRegister = () => {
       });
 
       // Điều hướng về trang chủ
-        navigate("/");
-
+      navigate("/");
     } catch (error) {
       console.error("Login error:", error); // In lỗi ra console
       toast.error("Wrong password or account", {
@@ -179,7 +181,7 @@ export const LoginRegister = () => {
         toastId: customId1,
       });
     }
-    
+
     // //Chuyển hướng đến trang login mail
     // window.open("https://mail.google.com/mail/u/0/#inbox", "_blank");
   };
@@ -189,30 +191,15 @@ export const LoginRegister = () => {
     setShowForgotPasswordForm(false);
   };
 
-  //Login with google
+  // Login with google || Call function AuthGoogle from file AuthGoogle.js
   const handleGoogleSignIn = async () => {
-    const provider = new GoogleAuthProvider(); // Khởi tạo provider Google
-    try {
-      // Đăng nhập bằng Google Popup
-      const result = await signInWithPopup(auth, provider); 
-      const user = result.user;
-      const token = await user.getIdToken();
-
-      console.log("User info:", user);
-      console.log("Token của bạn là:", token);
-
-      // Lưu thông tin người dùng vào Firebase Realtime Database
-      saveUserData(user.uid, user.email, user.displayName, token);
-      localStorage.setItem("user", token);
-
-      // Điều hướng về trang chủ
-        navigate("/");
-
-    } catch (error) {
-      console.error("Google Sign-In error:", error);
-    }
+    await AuthGoogle(auth, saveUserData, navigate);
   };
 
+  const handleFacebookSignIn = async () => {
+    await AuthFacebook(auth, navigate);
+
+  };
   return (
     <div>
       <img className="img-bg" src={bg} alt="bg" />
@@ -281,7 +268,7 @@ export const LoginRegister = () => {
               <a href="#1" className="icon" onClick={handleGoogleSignIn}>
                 <i className="fa-brands fa-google-plus-g"></i>
               </a>
-              <a href="#2" className="icon">
+              <a href="#2" className="icon" onClick={handleFacebookSignIn}>
                 <i className="fa-brands fa-facebook-f"></i>
               </a>
               <a href="#3" className="icon">
@@ -337,10 +324,7 @@ export const LoginRegister = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                 />
-                <button
-                  type="submit"
-                  onClick={handleForgotPassword}
-                >
+                <button type="submit" onClick={handleForgotPassword}>
                   Send
                 </button>
               </form>
