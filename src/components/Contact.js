@@ -16,19 +16,19 @@ export default function Contact() {
           <div className="container-contact__group-left">
             <div className="group-address">
               <h1>
-                <i class="bi bi-geo-alt-fill"></i>Address
+                <i className="bi bi-geo-alt-fill"></i>Address
               </h1>
               <span>236 5th SE Avenue, New York NY10000, United States</span>
             </div>
             <div className="group-address">
               <h1>
-                <i class="bi bi-telephone-fill"></i>Phone
+                <i className="bi bi-telephone-fill"></i>Phone
               </h1>
               <span>Mobile: +(84) 546-6789 Hotline: +(84) 456-6789</span>
             </div>
             <div className="group-address">
               <h1>
-                <i class="bi bi-alarm-fill"></i>Working Time
+                <i className="bi bi-alarm-fill"></i>Working Time
               </h1>
               <span>
                 Monday-Friday: 9:00 - 22:00 <br /> Saturday-Sunday: 9:00 - 21:00

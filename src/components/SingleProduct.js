@@ -75,13 +75,13 @@ export const SingleProduct = () => {
           <Link to="/" className="breadcrumb__td-none">
             Home
           </Link>
-          <i class="bi bi-chevron-right ml-30px"></i>
+          <i className="bi bi-chevron-right ml-30px"></i>
         </span>
         <span>
           <Link to="/shop" className="breadcrumb__td-none">
             Shop
           </Link>
-          <i class="bi bi-chevron-right ml-30px"></i>
+          <i className="bi bi-chevron-right ml-30px"></i>
         </span>
         <span>Asgaard sofa</span>
       </div>
@@ -106,12 +106,12 @@ export const SingleProduct = () => {
             <h2 className="product-detail__h2_sale">{product?.pricesale}</h2>
             <h2 className="product-detail__h2">{product?.price}</h2>
             <div className="product-detail__i">
-              <i class="bi bi-star"></i>
-              <i class="bi bi-star"></i>
-              <i class="bi bi-star"></i>
-              <i class="bi bi-star"></i>
-              <i class="bi bi-star"></i>
-              <i class="bi bi-dash-lg"></i>
+              <i className="bi bi-star"></i>
+              <i className="bi bi-star"></i>
+              <i className="bi bi-star"></i>
+              <i className="bi bi-star"></i>
+              <i className="bi bi-star"></i>
+              <i className="bi bi-dash-lg"></i>
               <span className="product-detail__customer-review">
                 5 Customer Review
               </span>
@@ -131,13 +131,13 @@ export const SingleProduct = () => {
             </div>
             <p className="product-detail__p-size-color">Color</p>
             <div className="display-flex">
-              <div class="product-detail__color-blue"></div>
-              <div class="product-detail__color-black"></div>
-              <div class="product-detail__color-yellow"></div>
+              <div className="product-detail__color-blue"></div>
+              <div className="product-detail__color-black"></div>
+              <div className="product-detail__color-yellow"></div>
             </div>
             <div className="display-flex">
               <div className="quatity">
-                <i class="bi bi-dash"></i>1<i class="bi bi-plus"></i>
+                <i className="bi bi-dash"></i>1<i className="bi bi-plus"></i>
               </div>
               <div className="cart" onClick={handleAddToCart}>
                 Add To Card
@@ -163,9 +163,9 @@ export const SingleProduct = () => {
                 <span> Sofas</span>
                 <span> Sofa, Chair, Home, Shop</span>
                 <span className="icon">
-                  <i class="bi bi-facebook"></i>
-                  <i class="bi bi-linkedin"></i>
-                  <i class="bi bi-twitter"></i>
+                  <i className="bi bi-facebook"></i>
+                  <i className="bi bi-linkedin"></i>
+                  <i className="bi bi-twitter"></i>
                 </span>
               </div>
             </div>

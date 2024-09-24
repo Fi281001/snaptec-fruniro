@@ -37,7 +37,7 @@ export default function Products({ item, onLengthChange }) {
       <div className="Products">
         {limitedProducts.map((product) => (
           <div key={product?.id} className="product-item">
-            <div class="overlay-product"></div>
+            <div className="overlay-product"></div>
 
             <img
               src={product?.imgSrc}
@@ -52,13 +52,13 @@ export default function Products({ item, onLengthChange }) {
 
               <div className="title">
                 <span>
-                  <i class="bi bi-share"></i>Share
+                  <i className="bi bi-share"></i>Share
                 </span>
                 <span>
-                  <i class="bi bi-arrow-left-right"></i>Compare
+                  <i className="bi bi-arrow-left-right"></i>Compare
                 </span>
                 <span>
-                  <i class="bi bi-heart"></i>Like
+                  <i className="bi bi-heart"></i>Like
                 </span>
               </div>
             </div>

@@ -198,11 +198,11 @@ function Dashboard() {
 
   return (
     <>
-      <div class="formbold-main-wrapper">
-        <div class="formbold-form-wrapper">
+      <div className="formbold-main-wrapper">
+        <div className="formbold-form-wrapper">
           <div className="formbold-title-product">Add New Product</div>
           <form onSubmit={formik.handleSubmit}>
-            <div class="formbold-input-flex">
+            <div className="formbold-input-flex">
               <div>
                 <input
                   type="text"
@@ -210,12 +210,12 @@ function Dashboard() {
                   id="name"
                   value={formik.values.name}
                   onChange={formik.handleChange}
-                  class="formbold-form-input"
+                  className="formbold-form-input"
                 />
                 {formik.errors.name && (
                   <p className="error-message">{formik.errors.name}</p>
                 )}
-                <label for="firstname" class="formbold-form-label">
+                <label for="firstname" className="formbold-form-label">
                   Name Product
                 </label>
               </div>
@@ -225,30 +225,30 @@ function Dashboard() {
                   id="sale"
                   value={formik.values.sale}
                   onChange={formik.handleChange}
-                  class="formbold-form-input"
+                  className="formbold-form-input"
                 />
                 {formik.errors.sale && (
                   <p className="error-message">{formik.errors.sale}</p>
                 )}
-                <label for="lastname" class="formbold-form-label">
+                <label for="lastname" className="formbold-form-label">
                   Sale
                 </label>
               </div>
             </div>
 
-            <div class="formbold-input-flex">
+            <div className="formbold-input-flex">
               <div>
                 <input
                   name="price"
                   id="price"
                   value={formik.values.price}
                   onChange={formik.handleChange}
-                  class="formbold-form-input"
+                  className="formbold-form-input"
                 />
                 {formik.errors.price && (
                   <p className="error-message">{formik.errors.price}</p>
                 )}
-                <label for="email" class="formbold-form-label">
+                <label for="email" className="formbold-form-label">
                   Price Product
                 </label>
               </div>
@@ -259,15 +259,15 @@ function Dashboard() {
                   id="pricesale"
                   value={formik.values.pricesale.toFixed(2)}
                   onChange={formik.handleChange}
-                  class="formbold-form-input"
+                  className="formbold-form-input"
                 />
-                <label for="phone" class="formbold-form-label">
+                <label for="phone" className="formbold-form-label">
                   Price Sale
                 </label>
               </div>
             </div>
 
-            <div class="formbold-textarea">
+            <div className="formbold-textarea">
               <textarea
                 rows="3"
                 type="text"
@@ -275,9 +275,9 @@ function Dashboard() {
                 id="title"
                 value={formik.values.title}
                 onChange={formik.handleChange}
-                class="formbold-form-input"
+                className="formbold-form-input"
               ></textarea>
-              <label for="message" class="formbold-form-label">
+              <label for="message" className="formbold-form-label">
                 Title
               </label>
             </div>

@@ -11,6 +11,8 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   sendPasswordResetEmail, // Import phương thức để khôi phục mật khẩu
+  GoogleAuthProvider, // Import GoogleAuthProvider để hỗ trợ đăng nhập bằng Google
+  signInWithPopup, // Import phương thức để đăng nhập bằng popup
 } from "firebase/auth";
 
 export const LoginRegister = () => {
@@ -99,9 +101,8 @@ export const LoginRegister = () => {
       });
 
       // Điều hướng về trang chủ
-      setTimeout(() => {
         navigate("/");
-      }, 2000);
+
     } catch (error) {
       console.error("Login error:", error); // In lỗi ra console
       toast.error("Wrong password or account", {
@@ -168,6 +169,7 @@ export const LoginRegister = () => {
 
     try {
       await sendPasswordResetEmail(auth, email);
+
       toast.success("Please access your email to reset your password", {
         toastId: customId1,
       });
@@ -177,13 +179,38 @@ export const LoginRegister = () => {
         toastId: customId1,
       });
     }
-
-    //Chuyển hướng đến trang login mail
-    window.open("https://mail.google.com/mail/u/0/#inbox", "_blank");
+    
+    // //Chuyển hướng đến trang login mail
+    // window.open("https://mail.google.com/mail/u/0/#inbox", "_blank");
   };
+
+  // Hàm không đóng modal khi submit
   const closeModal = () => {
-    // Không đóng modal khi submit
-    setShowForgotPasswordForm(false); // Comment hoặc xóa để không đóng modal
+    setShowForgotPasswordForm(false);
+  };
+
+  //Login with google
+  const handleGoogleSignIn = async () => {
+    const provider = new GoogleAuthProvider(); // Khởi tạo provider Google
+    try {
+      // Đăng nhập bằng Google Popup
+      const result = await signInWithPopup(auth, provider); 
+      const user = result.user;
+      const token = await user.getIdToken();
+
+      console.log("User info:", user);
+      console.log("Token của bạn là:", token);
+
+      // Lưu thông tin người dùng vào Firebase Realtime Database
+      saveUserData(user.uid, user.email, user.displayName, token);
+      localStorage.setItem("user", token);
+
+      // Điều hướng về trang chủ
+        navigate("/");
+
+    } catch (error) {
+      console.error("Google Sign-In error:", error);
+    }
   };
 
   return (
@@ -251,7 +278,7 @@ export const LoginRegister = () => {
             <button type="submit">Sign In</button>
             <span className="span-orSignInUsing">Or Sign In Using: </span>
             <div className="social-icons">
-              <a href="#1" className="icon">
+              <a href="#1" className="icon" onClick={handleGoogleSignIn}>
                 <i className="fa-brands fa-google-plus-g"></i>
               </a>
               <a href="#2" className="icon">
@@ -292,7 +319,7 @@ export const LoginRegister = () => {
                 &times;
               </div>
               <h3 className="group-text-center">
-                <i class="fa fa-lock fa-5x"></i>
+                <i className="fa fa-lock fa-5x"></i>
               </h3>
               <h2 className="group-text-center">Reset Your Password</h2>
               <div className="group-text-center mb-5px">
@@ -312,9 +339,9 @@ export const LoginRegister = () => {
                 />
                 <button
                   type="submit"
-                  href="https://accounts.google.com/v3/signin/identifier?service=mail&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&flowName=GlifWebSignIn&flowEntry=AccountChooser&ec=asw-gmail-globalnav-signin&ddm=0"
-                  target="_blank"
-                  onClick={handleForgotPassword}> Send
+                  onClick={handleForgotPassword}
+                >
+                  Send
                 </button>
               </form>
             </div>

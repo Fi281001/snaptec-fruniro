@@ -5,13 +5,13 @@ export default function Filter() {
     <div className="filter">
       <div className="icon-filter">
         <span className="filter-name">
-          <i class="bi bi-sliders"></i> Filter
+          <i className="bi bi-sliders"></i> Filter
         </span>
         <span>
-          <i class="bi bi-grid-fill"></i>
+          <i className="bi bi-grid-fill"></i>
         </span>
         <span>
-          <i class="bi bi-list"></i>
+          <i className="bi bi-list"></i>
         </span>
         <span className="line">|</span>
         <span className="show-page">Showing 1–16 of 32 results</span>

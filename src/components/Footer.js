@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <>
       <div className="footer">
-        <div class="footer-container">
+        <div className="footer-container">
           <div className="footer-main">
             <div className="col-1">
               <h2>Funiro.</h2>
@@ -47,11 +47,11 @@ export default function Footer() {
                 </p>
                 <input
                   type="text"
-                  class="input-underline"
+                  className="input-underline"
                   placeholder="Enter Your Email Address"
                 />
 
-                <button class="button-underline">SUBSCRIBE</button>
+                <button className="button-underline">SUBSCRIBE</button>
               </div>
             </div>
           </div>
