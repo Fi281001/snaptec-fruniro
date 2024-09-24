@@ -22,13 +22,13 @@ export default function Blog() {
           <img src={imgblog1} alt="thumbnail-1" />
           <div className="group">
             <span>
-              <i class="bi bi-person-fill"></i>Admin
+              <i className="bi bi-person-fill"></i>Admin
             </span>
             <span>
-              <i class="bi bi-calendar-fill"></i>14 Oct 2022
+              <i className="bi bi-calendar-fill"></i>14 Oct 2022
             </span>
             <span>
-              <i class="bi bi-tag-fill"></i>Wood
+              <i className="bi bi-tag-fill"></i>Wood
             </span>
           </div>
           <div className="group-name-content">
@@ -54,13 +54,13 @@ export default function Blog() {
           <img src={imgblog2} alt="thumbnail-1" />
           <div className="group">
             <span>
-              <i class="bi bi-person-fill"></i>Admin
+              <i className="bi bi-person-fill"></i>Admin
             </span>
             <span>
-              <i class="bi bi-calendar-fill"></i>14 Oct 2022
+              <i className="bi bi-calendar-fill"></i>14 Oct 2022
             </span>
             <span>
-              <i class="bi bi-tag-fill"></i>Wood
+              <i className="bi bi-tag-fill"></i>Wood
             </span>
           </div>
           <div className="group-name-content">
@@ -86,13 +86,13 @@ export default function Blog() {
           <img src={imgblog3} alt="thumbnail-1" />
           <div className="group">
             <span>
-              <i class="bi bi-person-fill"></i>Admin
+              <i className="bi bi-person-fill"></i>Admin
             </span>
             <span>
-              <i class="bi bi-calendar-fill"></i>14 Oct 2022
+              <i className="bi bi-calendar-fill"></i>14 Oct 2022
             </span>
             <span>
-              <i class="bi bi-tag-fill"></i>Wood
+              <i className="bi bi-tag-fill"></i>Wood
             </span>
           </div>
           <div className="group-name-content">
@@ -117,7 +117,7 @@ export default function Blog() {
         <div className="container__blog-right">
           <div className="display-flex-blog">
             <input className="container__input" type="text" required />
-            <i class="bi bi-search"></i>
+            <i className="bi bi-search"></i>
           </div>
           <div className="group-categories">
             <span className="categories">Categories</span>

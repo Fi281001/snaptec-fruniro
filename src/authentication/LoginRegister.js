@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./LoginRegister.css";
-import bg from "./bg-login-register.png";
+import bg from "../image/login-register/bg-login-register.png";
 import logo from "../image/logo.png";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
@@ -10,8 +10,15 @@ import {
   getAuth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
-  sendPasswordResetEmail, // Import phương thức để khôi phục mật khẩu
+  sendPasswordResetEmail,
 } from "firebase/auth";
+
+// Import the AuthGoogle function
+import { AuthGoogle } from "./Utils/AuthGoogle.js";
+// Import the AuthFacebook function
+import { AuthFacebook } from "./Utils/AuthFacebook.js";
+// Import the AuthFacebook function
+import { AuthGithub } from "./Utils/AuthGithub.js";
 
 export const LoginRegister = () => {
   const navigate = useNavigate();
@@ -99,7 +106,6 @@ export const LoginRegister = () => {
       // });
 
       // Điều hướng về trang chủ
-
       navigate("/");
     } catch (error) {
       console.error("Login error:", error); // In lỗi ra console
@@ -167,6 +173,7 @@ export const LoginRegister = () => {
 
     try {
       await sendPasswordResetEmail(auth, email);
+
       toast.success("Please access your email to reset your password", {
         toastId: customId1,
       });
@@ -178,9 +185,23 @@ export const LoginRegister = () => {
     }
     window.open("https://mail.google.com/mail/u/0/#inbox", "_blank");
   };
+
+  // Hàm không đóng modal khi submit
   const closeModal = () => {
-    // Không đóng modal khi submit
-    setShowForgotPasswordForm(false); // Comment hoặc xóa để không đóng modal
+    setShowForgotPasswordForm(false);
+  };
+
+  // Login with google || Call function AuthGoogle from file AuthGoogle.js
+  const handleGoogleSignIn = async () => {
+    await AuthGoogle(auth, saveUserData, navigate);
+  };
+
+  const handleFacebookSignIn = async () => {
+    await AuthFacebook(auth, navigate);
+  };
+
+  const handleGithubSignIn = async () => {
+    await AuthGithub(auth, navigate);
   };
 
   return (
@@ -248,17 +269,14 @@ export const LoginRegister = () => {
             <button type="submit">Sign In</button>
             <span className="span-orSignInUsing">Or Sign In Using: </span>
             <div className="social-icons">
-              <a href="#1" className="icon">
+              <a href="#1" className="icon" onClick={handleGoogleSignIn}>
                 <i className="fa-brands fa-google-plus-g"></i>
               </a>
-              <a href="#2" className="icon">
+              <a href="#2" className="icon" onClick={handleFacebookSignIn}>
                 <i className="fa-brands fa-facebook-f"></i>
               </a>
-              <a href="#3" className="icon">
+              <a href="#3" className="icon" onClick={handleGithubSignIn}>
                 <i className="fa-brands fa-github"></i>
-              </a>
-              <a href="#4" className="icon">
-                <i className="fa-brands fa-linkedin-in"></i>
               </a>
             </div>
           </form>
@@ -283,13 +301,13 @@ export const LoginRegister = () => {
         </div>
         {/* Modal Quên mật khẩu */}
         {showForgotPasswordForm && (
-          <div id="forgot-password" className="modal">
+          <div id="forgot-password" className="modal-forget-password">
             <div className="modal-content">
               <div className="modal-close" onClick={closeModal}>
                 &times;
               </div>
               <h3 className="group-text-center">
-                <i class="fa fa-lock fa-5x"></i>
+                <i className="fa fa-lock fa-5x"></i>
               </h3>
               <h2 className="group-text-center">Reset Your Password</h2>
               <div className="group-text-center mb-5px">

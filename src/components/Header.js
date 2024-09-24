@@ -6,16 +6,22 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import Cartheader from "./Cartheader";
 import { useDispatch, useSelector } from "react-redux";
 import { selectTotalQuantity } from "../redux/CartSlice";
+import { getAuth, signOut } from "firebase/auth"; // Import signOut để đăng xuất
+import { toast } from "react-toastify";
+
 export default function Header() {
   const [isCartVisible, setIsCartVisible] = useState(false);
   const cartRef = useRef(null);
-  const navigate = useNavigate();
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cart);
   // tính tổng số lượng item
   const totalQuantity = useSelector(selectTotalQuantity);
-  console.log("total", totalQuantity);
+  // console.log("total", totalQuantity);
+
+  const navigate = useNavigate();
+  const auth = getAuth();
 
   useEffect(() => {
     const user = localStorage.getItem("user");
@@ -47,11 +53,38 @@ export default function Header() {
     };
   }, [isCartVisible]);
 
-  const handleLogout = () => {
-    // Xóa thông tin người dùng và điều hướng về trang login
-    localStorage.clear();
-    setIsLoggedIn(false);
-    navigate("/login");
+  // Hàm để xóa tất cả cookies
+  const clearCookies = () => {
+    const cookies = document.cookie.split(";"); // Tách từng cookie
+    const path = window.location.pathname; // Lấy đường dẫn hiện tại
+
+    for (let cookie of cookies) {
+      const cookieName = cookie.split("=")[0].trim(); // Lấy tên cookie
+      // Xóa cookie bằng cách thiết lập thời gian hết hạn là quá khứ và chỉ định path hiện tại
+      document.cookie = `${cookieName}=;expires=Thu, 01 Jan 1970 00:00:00 GMT; path=${path};`;
+    }
+  };
+
+  //Hàm xóa data google khỏi firebase
+  const handleLogout = async () => {
+    try {
+      // Đăng xuất khỏi Firebase Authentication
+      await signOut(auth);
+
+      // Xóa thông tin người dùng khỏi localStorage
+      localStorage.removeItem("users");
+      localStorage.clear();
+      // Xóa tất cả cookies
+      clearCookies();
+      // Xóa trạng thái đăng nhập
+      setIsLoggedIn(false);
+
+      // Điều hướng người dùng về trang đăng nhập
+      navigate("/login");
+    } catch (error) {
+      console.error("Logout error:", error);
+      toast.error("Failed to logout: " + error.message);
+    }
   };
 
   return (
@@ -80,19 +113,13 @@ export default function Header() {
               <li>
                 <Link to="/contact">Contact</Link>
               </li>
-              {/* <li>
-                
-              </li>
-              <li>
-                <Link to="/cart">Cart</Link>
-              </li> */}
             </ul>
           </div>
 
           <div className="nav-icon">
             <NavLink to="/login" onClick={isLoggedIn ? handleLogout : null}>
               {isLoggedIn ? (
-                <i class="bi bi-box-arrow-right"></i>
+                <i className="bi bi-box-arrow-right"></i>
               ) : (
                 // Hiển thị icon nếu đã đăng nhập
                 <i className="bi bi-person"></i> // Hiển thị chữ Login nếu chưa đăng nhập
