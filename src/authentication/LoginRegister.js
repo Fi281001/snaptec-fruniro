@@ -14,9 +14,11 @@ import {
 } from "firebase/auth";
 
 // Import the AuthGoogle function
-import { AuthGoogle } from "./Utils/AuthGoogle.js"; 
+import { AuthGoogle } from "./Utils/AuthGoogle.js";
 // Import the AuthFacebook function
 import { AuthFacebook } from "./Utils/AuthFacebook.js";
+// Import the AuthFacebook function
+import { AuthGithub } from "./Utils/AuthGithub.js";
 
 export const LoginRegister = () => {
   const navigate = useNavigate();
@@ -198,8 +200,12 @@ export const LoginRegister = () => {
 
   const handleFacebookSignIn = async () => {
     await AuthFacebook(auth, navigate);
-
   };
+
+  const handleGithubSignIn = async () => {
+    await AuthGithub(auth, navigate);
+  };
+
   return (
     <div>
       <img className="img-bg" src={bg} alt="bg" />
@@ -271,11 +277,8 @@ export const LoginRegister = () => {
               <a href="#2" className="icon" onClick={handleFacebookSignIn}>
                 <i className="fa-brands fa-facebook-f"></i>
               </a>
-              <a href="#3" className="icon">
+              <a href="#3" className="icon" onClick={handleGithubSignIn}>
                 <i className="fa-brands fa-github"></i>
-              </a>
-              <a href="#4" className="icon">
-                <i className="fa-brands fa-linkedin-in"></i>
               </a>
             </div>
           </form>
