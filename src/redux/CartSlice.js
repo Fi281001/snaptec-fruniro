@@ -70,7 +70,7 @@ export const addToCartAsync = (cartItem) => async (dispatch) => {
   }
 };
 
-// hiển thị giỏ
+// display cart
 export const getCartAsync = () => async (dispatch) => {
   const auth = getAuth();
 
