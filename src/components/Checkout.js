@@ -4,8 +4,14 @@ import { getAuth } from "firebase/auth";
 import Rectangle from "./Rectangle.js";
 import "../main/Checkout.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getCartAsync } from "../redux/CartSlice";
+import { getCartAsync, clearCartAsync } from "../redux/CartSlice";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 export default function Checkout() {
+  const handleClearCart = () => {
+    dispatch(clearCartAsync());
+  };
+  const navigate = useNavigate();
   const auth = getAuth();
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cart); // Lấy danh sách items từ Redux store
@@ -100,6 +106,22 @@ export default function Checkout() {
       .then(
         () => {
           console.log("SUCCESS!");
+          Swal.fire({
+            title:
+              "Your order has been placed successfully, please check your email",
+            icon: "success",
+            showCancelButton: true,
+            confirmButtonText: "OK",
+            showCancelButton: false,
+          }).then((result) => {
+            if (result.isConfirmed) {
+              // Gọi action để xóa giỏ hàng
+              dispatch(clearCartAsync());
+
+              // Chuyển hướng về trang home
+              navigate("/"); // Đường dẫn trang home, điều chỉnh nếu cần
+            }
+          });
         },
         (error) => {
           console.log("FAILED...", error);

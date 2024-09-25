@@ -10,6 +10,9 @@ const cartSlice = createSlice({
     cart: [],
   },
   reducers: {
+    clearCart: (state) => {
+      state.cart = []; // Đặt giỏ hàng về trạng thái rỗng
+    },
     setCart: (state, action) => {
       state.cart = action.payload;
     },
@@ -25,7 +28,8 @@ const cartSlice = createSlice({
   },
 });
 
-export const { setCart, addToCart, removeFromCart } = cartSlice.actions;
+export const { setCart, addToCart, removeFromCart, clearCart } =
+  cartSlice.actions;
 
 export default cartSlice.reducer;
 
@@ -100,6 +104,19 @@ export const removeFromCartAsync = (productId) => async (dispatch) => {
   }
 };
 
+// delete all cart
+export const clearCartAsync = () => async (dispatch) => {
+  const auth = getAuth();
+  const user = auth.currentUser;
+
+  if (user) {
+    const cartRef = ref(database, `carts/${user.uid}`);
+    await remove(cartRef); // Xóa giỏ hàng từ Firebase
+    dispatch(clearCart()); // Xóa giỏ hàng trong Redux store
+  } else {
+    console.error("User is not authenticated");
+  }
+};
 export const selectTotalQuantity = (state) => {
   return state.cart.cart.reduce((total, item) => total + item.quantity, 0);
 };
