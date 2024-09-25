@@ -160,6 +160,7 @@ export const LoginRegister = () => {
   // Hàm xử lý khi quên mật khẩu
   const handleForgotPassword = async (event) => {
     event.preventDefault();
+
     if (!email) {
       toast.error("Please enter your email address", {
         toastId: customId1,
@@ -167,19 +168,30 @@ export const LoginRegister = () => {
       return;
     }
 
+    // Kiểm tra xem email có đuôi @gmail.com không
+    if (!email.endsWith("@gmail.com")) {
+      toast.error("Please enter a valid Email address", {
+        toastId: customId1,
+      });
+      return;
+    }
+
     try {
+      // Gửi yêu cầu reset mật khẩu
       await sendPasswordResetEmail(auth, email);
 
       toast.success("Please access your email to reset your password", {
         toastId: customId1,
       });
+
+      // Sau khi gửi yêu cầu thành công, chuyển hướng đến Gmail
+      window.open("https://mail.google.com/mail/u/0/#inbox", "_blank");
     } catch (error) {
       console.error("Error sending password reset email:", error);
       toast.error("Error sending password reset email: " + error.message, {
         toastId: customId1,
       });
     }
-    window.open("https://mail.google.com/mail/u/0/#inbox", "_blank");
   };
 
   // Hàm không đóng modal khi submit
