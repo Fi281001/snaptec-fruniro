@@ -12,12 +12,8 @@ import {
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
 } from "firebase/auth";
-
-// Import the AuthGoogle function
 import { AuthGoogle } from "./Utils/AuthGoogle.js";
-// Import the AuthFacebook function
 import { AuthFacebook } from "./Utils/AuthFacebook.js";
-// Import the AuthFacebook function
 import { AuthGithub } from "./Utils/AuthGithub.js";
 
 export const LoginRegister = () => {
