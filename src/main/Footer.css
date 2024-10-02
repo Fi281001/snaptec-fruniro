@@ -8,73 +8,144 @@
   color: black;
   border-top: 1px solid rgba(0, 0, 0, 0.17);
 }
+
 .footer-title {
   margin-top: 30px;
 }
+
 .footer-container {
   padding-top: 48px;
   padding-bottom: 48px;
   padding-left: 100px;
   padding-right: 100px;
 }
+
 .footer-main {
   display: flex;
   gap: 160px;
 }
+
 .col-1 span {
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
   color: rgba(159, 159, 159, 1);
-  width: 90%; /* Chiều rộng bằng 50% chiều rộng của phần tử chứa */
+  width: 90%;
+  /* Chiều rộng bằng 50% chiều rộng của phần tử chứa */
   display: inline-block;
 }
+
 .col-1 h2 {
   margin-bottom: 50px;
 }
+
 .col-2 {
   display: flex;
   gap: 110px;
 }
+
 .title-p {
   color: rgba(159, 159, 159, 1);
 }
+
 .col-2 p {
   font-weight: 500;
   font-size: 16;
   line-height: 24px;
   margin-bottom: 50px;
 }
+
 .input-underline {
   width: 200px;
   padding: 6px 0;
-  border: none; /* Loại bỏ tất cả các viền */
-  border-bottom: 2px solid #333; /* Thêm viền chỉ ở dưới */
-  outline: none; /* Loại bỏ viền mặc định khi focus */
+  border: none;
+  /* Loại bỏ tất cả các viền */
+  border-bottom: 2px solid #333;
+  /* Thêm viền chỉ ở dưới */
+  outline: none;
+  /* Loại bỏ viền mặc định khi focus */
   font-size: 16px;
   transition: border-color 0.3s;
   margin-right: 12px;
 }
 
 .input-underline:focus {
-  border-bottom-color: #fff3e3; /* Thay đổi màu viền khi input được focus */
+  border-bottom-color: #fff3e3;
+  /* Thay đổi màu viền khi input được focus */
 }
+
 .button-underline {
-  background-color: transparent; /* Nền trong suốt */
-  color: #333; /* Màu chữ */
+  background-color: transparent;
+  /* Nền trong suốt */
+  color: #333;
+  /* Màu chữ */
   padding: 6px 2px;
-  border: none; /* Loại bỏ tất cả các viền */
-  border-bottom: 2px solid #333; /* Thêm viền chỉ ở dưới */
+  border: none;
+  /* Loại bỏ tất cả các viền */
+  border-bottom: 2px solid #333;
+  /* Thêm viền chỉ ở dưới */
   font-size: 16px;
   cursor: pointer;
   transition: border-color 0.3s, color 0.3s;
 }
 
 .button-underline:hover {
-  border-bottom-color: #fff3e3; /* Thay đổi màu viền khi hover */
-  color: #fff3e3; /* Thay đổi màu chữ khi hover */
+  border-bottom-color: #fff3e3;
+  /* Thay đổi màu viền khi hover */
+  color: #fff3e3;
+  /* Thay đổi màu chữ khi hover */
 }
 
 .button-underline:focus {
-  outline: none; /* Loại bỏ viền mặc định khi focus */
+  outline: none;
+  /* Loại bỏ viền mặc định khi focus */
+}
+
+.title-home,
+.title-shop,
+.title-blog,
+.title-contact,
+.title-payment,
+.title-returns,
+.title-privacy {
+  text-decoration: none;
+  color: black;
+  font-family: 'Poppins' sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+}
+
+.title-home:hover,
+.title-shop:hover,
+.title-blog:hover,
+.title-contact:hover,
+.title-payment:hover,
+.title-returns:hover,
+.title-privacy:hover {
+  text-decoration: none;
+  color: #b88e2f;
+  font-family: 'Poppins' sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+}
+
+.title-home:focus,
+.title-shop:focus,
+.title-blog:focus,
+.title-contact:focus,
+.title-payment:focus,
+.title-returns:focus,
+.title-privacy:focus {
+  text-decoration: none;
+  color: #b88e2f
+}
+
+.flex-direction-row {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
 }

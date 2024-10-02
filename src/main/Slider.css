@@ -18,7 +18,7 @@
 .slider-content {
   width: 60%;
   display: flex;
-  justify-content: center; /* Centers the block horizontally */
+  justify-content: right; /* Centers the block horizontally */
   align-items: center; /* Centers the block vertically */
 }
 
