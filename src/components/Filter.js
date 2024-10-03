@@ -42,9 +42,11 @@ export default function Filter({ length, onShowItemsChange, onSortChange }) {
         </select>
 
         <span className="show-page">Sort by</span>
-        <select className="short">
-          <option value="default">Default</option>
+        <select className="short" onChange={handleSortChange}>
+          <option value="A-Z">Default</option>
           <option value="Z-A">Z - A</option>
+          <option value="ASC">ASC</option>
+          <option value="DESC">DESC</option>
         </select>
       </div>
     </div>
