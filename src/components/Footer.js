@@ -1,6 +1,21 @@
 import React from "react";
 import "../main/Footer.css";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+
 export default function Footer() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleLinkClick = (e) => {
+    e.preventDefault(); // Prevents the default behavior of the link
+    if (location.pathname === "/") {
+      // If already on the home page, reload the page
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      // Otherwise, navigate to the home page
+      navigate("/");
+    }
+  };
   return (
     <>
       <div className="footer">
@@ -16,27 +31,35 @@ export default function Footer() {
             </div>
             <div className="col-2">
               <div className="col-2-1">
-                <p
-                  className="
-                title-p"
-                >
-                  Links
-                </p>
-                <p>Home</p>
-                <p>Shop</p>
-                <p>About</p>
-                <p>Contact</p>
+                <p className="title-p">Links</p>
+                <div className="flex-direction-row">
+                  <Link to="/" className="title-home" onClick={handleLinkClick}>
+                    Home
+                  </Link>
+                  <Link to="/shop" className="title-shop">
+                    Shop
+                  </Link>
+                  <Link to="/blog" className="title-blog">
+                    Blog
+                  </Link>
+                  <Link to="/contact" className="title-contact">
+                    Contact
+                  </Link>
+                </div>
               </div>
               <div className="col-2-2">
-                <p
-                  className="
-                title-p"
-                >
-                  Help
-                </p>
-                <p>Payment Options </p>
-                <p>Returns</p>
-                <p>Privacy Policies</p>
+                <p className="title-p">Help</p>
+                <div className="flex-direction-row">
+                  <Link to="/" className="title-payment">
+                    Payment Options
+                  </Link>
+                  <Link to="/" className="title-returns">
+                    Returns
+                  </Link>
+                  <Link to="/" className="title-privacy">
+                    Privacy Policies
+                  </Link>
+                </div>
               </div>
               <div className="col-2-3">
                 <p
@@ -50,7 +73,6 @@ export default function Footer() {
                   className="input-underline"
                   placeholder="Enter Your Email Address"
                 />
-
                 <button className="button-underline">SUBSCRIBE</button>
               </div>
             </div>
