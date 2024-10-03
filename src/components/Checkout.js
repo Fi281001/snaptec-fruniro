@@ -175,7 +175,6 @@ export default function Checkout() {
                 <h3 style={{ marginBottom: "10px" }}>Products</h3>
                 {reversedCartItems.map((item, index) => (
                   <p style={{ fontSize: "20px", color: "coral" }} key={item.id}>
-<<<<<<< HEAD
                     {item.name} x {item.quantity} x Rs.
                     {(function () {
                       const priceString = item.pricesale.replace(/\./g, "");
@@ -185,19 +184,6 @@ export default function Checkout() {
                       return priceNumber.toLocaleString("vi-VN");
                     })()}{" "}
                     {item.selectedColor} and {item.selectedSize}
-=======
-                    {item.name} x {item.quantity}{" "}
-                    <p>
-                      x Rs.
-                      {(function () {
-                        const priceString = item.pricesale.replace(/\./g, "");
-                        const priceNumber = parseFloat(
-                          priceString.replace(/,/g, ".")
-                        );
-                        return priceNumber.toLocaleString("vi-VN");
-                      })()}
-                    </p>
->>>>>>> ce155c918c0994bfee74f9ca99eda059b3c5ce47
                   </p>
                 ))}
                 <div className="container-right__display-flex2">
