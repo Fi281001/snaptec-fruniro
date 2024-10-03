@@ -23,6 +23,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Dashboard from "./components/Dashboard.js";
 import Routerposition from "./components/Routerposition.js";
 import Checkout from "./components/Checkout.js";
+import Compare from "./components/Compare.js";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
             <Route path="/shop" element={<Shop />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/compare" element={<Compare />} />
             <Route
               path="/checkout"
               element={
@@ -86,6 +88,8 @@ const Layout = () => {
         <Route path="/shop" element={<Shop />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/compare" element={<Compare />} />
+
         <Route
           path="/checkout"
           element={
