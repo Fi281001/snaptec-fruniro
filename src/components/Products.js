@@ -36,12 +36,16 @@ export default function Products({ item, onLengthChange, sortOrder }) {
     sortedProducts.sort((a, b) => b?.name?.localeCompare(a?.name)); // Sắp xếp theo Z-A
   }
   if (sortOrder === "ASC") {
-    sortedProducts.sort(
-      (a, b) => parseFloat(a?.pricesale) - parseFloat(b?.pricesale)
+    sortedProducts.sort((a, b) =>
+      parseFloat(
+        a?.pricesale.replace(/\./g, "") - b?.pricesale.replace(/\./g, "")
+      )
     ); // Sắp xếp theo giá tăng dần
   } else if (sortOrder === "DESC") {
-    sortedProducts.sort(
-      (a, b) => parseFloat(b?.pricesale) - parseFloat(a?.pricesale)
+    sortedProducts.sort((a, b) =>
+      parseFloat(
+        b?.pricesale.replace(/\./g, "") - a?.pricesale.replace(/\./g, "")
+      )
     ); // Sắp xếp theo giá giảm dần
   }
   console.log(">>>>>", sortedProducts);
