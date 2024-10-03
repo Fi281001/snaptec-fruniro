@@ -19,7 +19,6 @@ export default function Products({ item, onLengthChange, sortOrder }) {
         if (response.data) {
           setProducts(response.data); // Cập nhật state với dữ liệu nhận được
           onLengthChange(response.data.length);
-          const slicedProducts = products.slice(0, 10);
         } else {
           console.log("No data available");
         }
@@ -30,13 +29,24 @@ export default function Products({ item, onLengthChange, sortOrder }) {
 
     fetchData();
   }, [onLengthChange]);
-  // let sortedProducts = [...products];
-  // if (sortOrder === "price-asc") {
-  //   sortedProducts.sort((a, b) => a.pricesale - b.pricesale);
-  // } else if (sortOrder === "price-desc") {
-  //   sortedProducts.sort((a, b) => b.pricesale - a.pricesale);
-  // }
-  const limitedProducts = products.slice(1, item + 1);
+  let sortedProducts = [...products];
+  if (sortOrder === "A-Z") {
+    sortedProducts.sort((a, b) => a?.name?.localeCompare(b?.name)); // Sắp xếp theo A-Z
+  } else if (sortOrder === "Z-A") {
+    sortedProducts.sort((a, b) => b?.name?.localeCompare(a?.name)); // Sắp xếp theo Z-A
+  }
+  if (sortOrder === "ASC") {
+    sortedProducts.sort(
+      (a, b) => parseFloat(a?.pricesale) - parseFloat(b?.pricesale)
+    ); // Sắp xếp theo giá tăng dần
+  } else if (sortOrder === "DESC") {
+    sortedProducts.sort(
+      (a, b) => parseFloat(b?.pricesale) - parseFloat(a?.pricesale)
+    ); // Sắp xếp theo giá giảm dần
+  }
+  console.log(">>>>>", sortedProducts);
+
+  const limitedProducts = sortedProducts.slice(1, item + 1);
   return (
     <>
       <div className="Products">
