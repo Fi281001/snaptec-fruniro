@@ -32,7 +32,6 @@ export const SingleProduct = () => {
   const [items, setItems] = useState(5); // Số lượng sản phẩm ban đầu
   const [color, setColor] = useState("blue");
   const [size, setSize] = useState("L");
-  console.log("prodid", productId);
 
   const id = productId;
   const handleIncrement = () => {
@@ -55,7 +54,7 @@ export const SingleProduct = () => {
     const fetchProductDetail = async () => {
       try {
         const response = await axios.get(
-          `https://furino-2343b-default-rtdb.firebaseio.com/product/${productId}.json`
+          `https://snaptec-fruniro.vercel.app/single-product/${productId}`
         );
         if (response.data) {
           setProduct(response.data);
