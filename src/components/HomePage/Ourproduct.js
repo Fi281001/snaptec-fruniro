@@ -19,7 +19,7 @@ export default function Ourproduct() {
       <div className="Ourproducts">
         <div className="Ourproducts-title">
           <h2>Our Products</h2>
-          <Products item={items} onLengthChange={handleLengthChange} />
+          <Products item={items - 1} onLengthChange={handleLengthChange} />
         </div>
         <div className="but">
           <button

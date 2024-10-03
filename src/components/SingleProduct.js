@@ -2,7 +2,7 @@ import React from "react";
 import "../main/SingleProduct.css";
 import Products from "./Products.js";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import thumbnail1 from "../image/single-product/Thumbnail1.png";
 import thumbnail2 from "../image/single-product/Thumbnail2.png";
 import thumbnail3 from "../image/single-product/Thumbnail3.png";
@@ -14,15 +14,33 @@ import { useParams } from "react-router-dom"; // Nếu bạn sử dụng React R
 import { useDispatch } from "react-redux";
 import { addToCartAsync } from "../redux/CartSlice";
 import { toast } from "react-toastify";
+import { getAuth } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import {
+  FacebookShareButton,
+  LinkedinShareButton,
+  TwitterShareButton,
+  FacebookIcon,
+  LinkedinIcon,
+  TwitterIcon,
+} from "react-share";
+
 export const SingleProduct = () => {
+  const { productId } = useParams();
   const [productLength, setProductLength] = useState(0);
   const [items, setItems] = useState(5); // Số lượng sản phẩm ban đầu
+  const [color, setColor] = useState("blue");
+  const [size, setSize] = useState("L");
 
+  const id = productId;
+
+  const url = `https://furino-2343b-default-rtdb.firebaseio.com/product/${id}.json`;
   const showMore = () => {
     setItems((prevItems) => prevItems + 4); // Tăng thêm 4 sản phẩm
   };
-
-  const { productId } = useParams(); // Lấy productId từ URL khi dùng router
+  const navigate = useNavigate();
+  // Lấy productId từ URL khi dùng router
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
@@ -34,6 +52,7 @@ export const SingleProduct = () => {
         );
         if (response.data) {
           setProduct(response.data);
+          //  setUrl = `https://furino-2343b-default-rtdb.firebaseio.com/product/${productId}.json`;
         } else {
           console.log("No product data available");
         }
@@ -52,7 +71,9 @@ export const SingleProduct = () => {
   // add to cart
   const dispatch = useDispatch();
 
+  const user = localStorage.getItem("user");
   const handleAddToCart = () => {
+    // if (user) {
     if (product) {
       // Kiểm tra product trước khi thêm vào giỏ hàng
       const cartItem = {
@@ -61,13 +82,25 @@ export const SingleProduct = () => {
         pricesale: product.pricesale, // Đảm bảo price có giá trị
         imgSrc: product.imgSrc, // Đảm bảo img không undefined
         quantity: 1,
+        selectedSize: size, // Thêm kích thước đã chọn
+        selectedColor: color, // Thêm màu sắc đã chọn
       };
       toast.success("Add to cart successfully");
       dispatch(addToCartAsync(cartItem));
     } else {
       console.log("Product data is not available");
     }
+    // } else {
+    // Swal.fire({
+    //   title: "You Need Login!",
+    //   icon: "warning",
+    //   showCancelButton: false,
+    // }).then((result) => {
+    //   navigate("/login");
+    // });
+    //}
   };
+
   return (
     <div>
       <div className="breadcrumb">
@@ -125,15 +158,52 @@ export const SingleProduct = () => {
 
             <p className="product-detail__p-size-color">Size</p>
             <div className="display-flex">
-              <div className="product-detail__size-L">L</div>
-              <div className="product-detail__size-XL">XL</div>
-              <div className="product-detail__size-XS">XS</div>
+              <div
+                className={`product-detail__size ${
+                  size === "L" ? "selected" : ""
+                }`}
+                onClick={() => setSize("L")}
+              >
+                L
+              </div>
+              <div
+                className={`product-detail__size ${
+                  size === "XL" ? "selected" : ""
+                }`}
+                onClick={() => setSize("XL")}
+              >
+                XL
+              </div>
+              <div
+                className={`product-detail__size ${
+                  size === "XS" ? "selected" : ""
+                }`}
+                onClick={() => setSize("XS")}
+              >
+                XS
+              </div>
             </div>
+
             <p className="product-detail__p-size-color">Color</p>
             <div className="display-flex">
-              <div className="product-detail__color-blue"></div>
-              <div className="product-detail__color-black"></div>
-              <div className="product-detail__color-yellow"></div>
+              <div
+                className={`product-detail__color-blue ${
+                  color === "blue" ? "selected" : ""
+                }`}
+                onClick={() => setColor("blue")}
+              ></div>
+              <div
+                className={`product-detail__color-black ${
+                  color === "black" ? "selected" : ""
+                }`}
+                onClick={() => setColor("black")}
+              ></div>
+              <div
+                className={`product-detail__color-yellow ${
+                  color === "yellow" ? "selected" : ""
+                }`}
+                onClick={() => setColor("yellow")}
+              ></div>
             </div>
             <div className="display-flex">
               <div className="quatity">
@@ -163,9 +233,17 @@ export const SingleProduct = () => {
                 <span> Sofas</span>
                 <span> Sofa, Chair, Home, Shop</span>
                 <span className="icon">
-                  <i className="bi bi-facebook"></i>
-                  <i className="bi bi-linkedin"></i>
-                  <i className="bi bi-twitter"></i>
+                  <FacebookShareButton className="color-icon" url={url}>
+                    <i className="bi bi-facebook"></i>
+                  </FacebookShareButton>
+
+                  <LinkedinShareButton className="color-icon" url={url}>
+                    <i className="bi bi-linkedin"></i>
+                  </LinkedinShareButton>
+
+                  <TwitterShareButton className="color-icon" url={url}>
+                    <i className="bi bi-twitter"></i>
+                  </TwitterShareButton>
                 </span>
               </div>
             </div>
@@ -205,7 +283,7 @@ export const SingleProduct = () => {
       <div className="related-products">
         <h1>Related Products</h1>
         <div className="related-item">
-          <Products item={items} onLengthChange={handleLengthChange} />
+          <Products item={items - 1} onLengthChange={handleLengthChange} />
         </div>
         <div className="but-show-more">
           <button

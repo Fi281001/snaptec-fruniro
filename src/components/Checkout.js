@@ -13,6 +13,7 @@ export default function Checkout() {
   };
   const navigate = useNavigate();
   const auth = getAuth();
+
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cart); // Lấy danh sách items từ Redux store
 
@@ -130,6 +131,8 @@ export default function Checkout() {
       );
   };
 
+  console.log("cart", cartItems);
+
   return (
     <div>
       <Rectangle title="Check out" />
@@ -178,7 +181,8 @@ export default function Checkout() {
                         priceString.replace(/,/g, ".")
                       );
                       return priceNumber.toLocaleString("vi-VN");
-                    })()}
+                    })()}{" "}
+                    {item.selectedColor} and {item.selectedSize}
                   </p>
                 ))}
                 <div className="container-right__display-flex2">

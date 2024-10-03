@@ -256,6 +256,7 @@ hr {
 .bi-facebook,
 .bi-linkedin,
 .bi-twitter {
+  font-size: 22px;
   color: #000000;
 }
 
@@ -391,4 +392,21 @@ hr {
 }
 .product-detail__h2 {
   text-decoration: line-through;
+}
+
+.product-detail__size {
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  background-color: rgba(249, 241, 231, 1);
+  border-radius: 5px;
+  padding: 4px;
+}
+.product-detail__size.selected {
+  background-color: rgba(184, 142, 47, 1);
+}
+.product-detail__color-blue.selected,
+.product-detail__color-black.selected,
+.product-detail__color-yellow.selected {
+  border: 3px solid #007bff; /* Hoặc màu bạn muốn */
 }

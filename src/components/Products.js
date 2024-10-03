@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { database } from "../firebase";
 import { getDatabase, ref, onValue, get, child } from "firebase/database";
 
-export default function Products({ item, onLengthChange }) {
+export default function Products({ item, onLengthChange, sortOrder }) {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -30,8 +30,13 @@ export default function Products({ item, onLengthChange }) {
 
     fetchData();
   }, [onLengthChange]);
-
-  const limitedProducts = products.slice(1, item);
+  // let sortedProducts = [...products];
+  // if (sortOrder === "price-asc") {
+  //   sortedProducts.sort((a, b) => a.pricesale - b.pricesale);
+  // } else if (sortOrder === "price-desc") {
+  //   sortedProducts.sort((a, b) => b.pricesale - a.pricesale);
+  // }
+  const limitedProducts = products.slice(1, item + 1);
   return (
     <>
       <div className="Products">

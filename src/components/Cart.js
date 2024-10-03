@@ -70,6 +70,7 @@ const Cart = () => {
     });
     dispatch(removeFromCartAsync(cartItems.productId));
   };
+  console.log("cart", reversedCartItems);
 
   return (
     <>

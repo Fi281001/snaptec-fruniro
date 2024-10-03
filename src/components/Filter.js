@@ -1,6 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import "../main/Filter.css";
-export default function Filter() {
+
+export default function Filter({ length, onShowItemsChange, onSortChange }) {
+  const totalitems = length - 1; // Sử dụng length trực tiếp để tính totalitems
+  const [itemsToShow, setItemsToShow] = useState(12); // Giá trị mặc định là 12
+
+  const handleShowChange = (event) => {
+    const selectedValue = parseInt(event.target.value); // Lấy giá trị từ dropdown
+    setItemsToShow(selectedValue); // Cập nhật số lượng item được hiển thị
+    onShowItemsChange(selectedValue); // Gọi hàm truyền từ component cha
+  };
+  const handleSortChange = (event) => {
+    const selectedSortOrder = event.target.value; // Lấy giá trị từ dropdown
+    onSortChange(selectedSortOrder); // Gọi hàm truyền từ component cha để cập nhật cách sắp xếp
+  };
+  const totalDisplayItems = Math.min(itemsToShow, totalitems); // Số item hiển thị
+
   return (
     <div className="filter">
       <div className="icon-filter">
@@ -14,22 +29,22 @@ export default function Filter() {
           <i className="bi bi-list"></i>
         </span>
         <span className="line">|</span>
-        <span className="show-page">Showing 1–16 of 32 results</span>
+        <span className="show-page">
+          Showing 1–{totalDisplayItems} of {totalitems} results
+        </span>
       </div>
       <div className="options">
         <span className="show-page">Show</span>
-        <select className="show-option">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
+        <select className="show-option" onChange={handleShowChange}>
+          <option value="12">12</option>
+          <option value="8">8</option>
+          <option value="6">6</option>
         </select>
 
-        <span className="show-page">Short by</span>
+        <span className="show-page">Sort by</span>
         <select className="short">
           <option value="default">Default</option>
-          <option value="A-Z">A - Z</option>
-          <option value="Price">Z - A</option>
+          <option value="Z-A">Z - A</option>
         </select>
       </div>
     </div>
