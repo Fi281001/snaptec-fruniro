@@ -120,14 +120,14 @@
     line-height: 30.36px;
 }
 
-table {
+.compare-table>table {
     border-top: 1px solid #E8E8E8;
     border-collapse: collapse;
     width: 100%;
     margin-bottom: 50px;
 }
 
-td {
+.compare-table>td {
     width: 25%;
     border-top: none;
     border-bottom: none;
@@ -139,7 +139,7 @@ td {
     text-align: left;
 }
 
-th {
+.compare-table>th {
     width: 25%;
     border-top: none;
     border-bottom: none;
@@ -151,8 +151,8 @@ th {
     text-align: left;
 }
 
-th,
-td {
+.compare-table>th,
+.compare-table>td {
     padding: 15px 50px;
 }
 
