@@ -5,7 +5,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { database } from "../firebase";
 import { getDatabase, ref, onValue, get, child } from "firebase/database";
-
+import { FacebookShareButton } from "react-share";
 export default function Products({ item, onLengthChange, sortOrder }) {
   const [products, setProducts] = useState([]);
 
@@ -76,7 +76,12 @@ export default function Products({ item, onLengthChange, sortOrder }) {
 
               <div className="title">
                 <span>
-                  <i className="bi bi-share"></i>Share
+                  <FacebookShareButton
+                    className="color-icon"
+                    url={`https://snaptec-fruniro.vercel.app/single-product/${product?.id}`}
+                  >
+                    <i className="bi bi-share"></i>Share
+                  </FacebookShareButton>
                 </span>
                 <span>
                   <i className="bi bi-arrow-left-right"></i>Compare

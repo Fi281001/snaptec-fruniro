@@ -182,8 +182,8 @@ export default function Checkout() {
                         priceString.replace(/,/g, ".")
                       );
                       return priceNumber.toLocaleString("vi-VN");
-                    })()}{" "}
-                    {item.selectedColor} and {item.selectedSize}
+                    })()}
+                    /1Product {item.selectedColor} and {item.selectedSize}
                   </p>
                 ))}
                 <div className="container-right__display-flex2">

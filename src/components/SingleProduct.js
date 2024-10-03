@@ -32,7 +32,6 @@ export const SingleProduct = () => {
   const [items, setItems] = useState(5); // Số lượng sản phẩm ban đầu
   const [color, setColor] = useState("blue");
   const [size, setSize] = useState("L");
-  console.log("prodid", productId);
 
   const id = productId;
   const handleIncrement = () => {
@@ -42,7 +41,7 @@ export const SingleProduct = () => {
   const handleDecrement = () => {
     alert("Decrement clicked");
   };
-  const url = `https://furino-2343b-default-rtdb.firebaseio.com/product/${id}.json`;
+  const url = `https://snaptec-fruniro.vercel.app/single-product/${id}`;
   const showMore = () => {
     setItems((prevItems) => prevItems + 4); // Tăng thêm 4 sản phẩm
   };
@@ -59,7 +58,6 @@ export const SingleProduct = () => {
         );
         if (response.data) {
           setProduct(response.data);
-          //  setUrl = `https://furino-2343b-default-rtdb.firebaseio.com/product/${productId}.json`;
         } else {
           console.log("No product data available");
         }
