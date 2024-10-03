@@ -32,9 +32,16 @@ export const SingleProduct = () => {
   const [items, setItems] = useState(5); // Số lượng sản phẩm ban đầu
   const [color, setColor] = useState("blue");
   const [size, setSize] = useState("L");
+  console.log("prodid", productId);
 
   const id = productId;
+  const handleIncrement = () => {
+    alert("Increment clicked");
+  };
 
+  const handleDecrement = () => {
+    alert("Decrement clicked");
+  };
   const url = `https://furino-2343b-default-rtdb.firebaseio.com/product/${id}.json`;
   const showMore = () => {
     setItems((prevItems) => prevItems + 4); // Tăng thêm 4 sản phẩm
@@ -207,7 +214,8 @@ export const SingleProduct = () => {
             </div>
             <div className="display-flex">
               <div className="quatity">
-                <i className="bi bi-dash"></i>1<i className="bi bi-plus"></i>
+                <i className="bi bi-dash" onClick={handleDecrement}></i>1
+                <i className="bi bi-plus" onClick={handleIncrement}></i>
               </div>
               <div className="cart" onClick={handleAddToCart}>
                 Add To Card

@@ -17,7 +17,11 @@ export default function Products({ item, onLengthChange, sortOrder }) {
           "https://furino-2343b-default-rtdb.firebaseio.com/product.json"
         );
         if (response.data) {
-          setProducts(response.data); // Cập nhật state với dữ liệu nhận được
+          const x = response.data;
+          const validProducts = x.filter(
+            (item) => item !== null && item !== undefined
+          );
+          setProducts(validProducts); // Cập nhật state với dữ liệu nhận được
           onLengthChange(response.data.length);
         } else {
           console.log("No data available");
@@ -29,6 +33,7 @@ export default function Products({ item, onLengthChange, sortOrder }) {
 
     fetchData();
   }, [onLengthChange]);
+
   let sortedProducts = [...products];
   if (sortOrder === "A-Z") {
     sortedProducts.sort((a, b) => a?.name?.localeCompare(b?.name)); // Sắp xếp theo A-Z
@@ -48,9 +53,9 @@ export default function Products({ item, onLengthChange, sortOrder }) {
       )
     ); // Sắp xếp theo giá giảm dần
   }
-  console.log(">>>>>", sortedProducts);
 
-  const limitedProducts = sortedProducts.slice(1, item + 1);
+  const limitedProducts = sortedProducts.slice(0, item);
+
   return (
     <>
       <div className="Products">

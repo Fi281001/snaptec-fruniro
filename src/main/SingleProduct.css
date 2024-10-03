@@ -390,6 +390,11 @@ hr {
   line-height: 24px;
   text-align: left;
 }
+.bi-dash:hover,
+.bi-plus:hover {
+  color: #b88e2f !important;
+  /* color: red; */
+}
 .product-detail__h2 {
   text-decoration: line-through;
 }

@@ -3,7 +3,11 @@ import "../main/Cart.css";
 import Rectangle from "./Rectangle";
 import Frame from "./Frame";
 import { useDispatch, useSelector } from "react-redux";
-import { getCartAsync, removeFromCartAsync } from "../redux/CartSlice";
+import {
+  getCartAsync,
+  removeFromCartAsync,
+  updateCartAsync,
+} from "../redux/CartSlice";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -70,7 +74,17 @@ const Cart = () => {
     });
     dispatch(removeFromCartAsync(cartItems.productId));
   };
-  console.log("cart", reversedCartItems);
+  // update
+  const handleQuantityChange = (newQuantity, item) => {
+    if (newQuantity < 0) {
+      newQuantity = 0; // Đảm bảo số lượng không âm
+    }
+    if (newQuantity === 0) {
+      dispatch(removeFromCartAsync(item.productId));
+    } else {
+      dispatch(updateCartAsync(item.productId, newQuantity));
+    }
+  };
 
   return (
     <>
@@ -98,13 +112,34 @@ const Cart = () => {
                     <td>{item.name}</td>
                     <td>{item.pricesale}</td>
                     <td className="color-black">
+                      <button
+                        className="quantity-button-1"
+                        onClick={() =>
+                          handleQuantityChange(item.quantity - 1, item)
+                        }
+                        disabled={item.quantity <= 0} // Vô hiệu hóa nút nếu số lượng <= 0
+                      >
+                        -
+                      </button>
                       <input
                         required
                         className="reatangle_input"
                         value={item.quantity}
-                        type="text"
+                        type="number"
                         readOnly
+                        min="0"
+                        max="10"
+                        onChange={(e) => handleQuantityChange(e, item)} // Thêm sự kiện onChange
                       />
+                      <button
+                        className="quantity-button-2"
+                        onClick={() =>
+                          handleQuantityChange(item.quantity + 1, item)
+                        }
+                        disabled={item.quantity >= 10} // Vô hiệu hóa nút nếu số lượng >= 10
+                      >
+                        +
+                      </button>
                     </td>
                     <ProductRow
                       priceString={item.pricesale}
