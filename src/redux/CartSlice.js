@@ -120,3 +120,34 @@ export const clearCartAsync = () => async (dispatch) => {
 export const selectTotalQuantity = (state) => {
   return state.cart.cart.reduce((total, item) => total + item.quantity, 0);
 };
+
+// update
+// update cart
+export const updateCartAsync = (productId, newQuantity) => async (dispatch) => {
+  const auth = getAuth();
+  const user = auth.currentUser;
+  if (user) {
+    const cartRef = ref(database, `carts/${user.uid}/${productId}`);
+    // Lấy thông tin sản phẩm hiện tại từ Firebase
+    const cartSnapshot = await get(cartRef);
+    if (cartSnapshot.exists()) {
+      const existingProduct = cartSnapshot.val();
+      // Nếu newQuantity > 0, cập nhật số lượng sản phẩm
+      if (newQuantity > 0) {
+        await set(cartRef, {
+          ...existingProduct,
+          quantity: newQuantity, // Cập nhật số lượng sản phẩm
+        });
+      } else {
+        // Nếu newQuantity <= 0, xóa sản phẩm khỏi giỏ hàng
+        await remove(cartRef);
+        dispatch(removeFromCart(productId));
+      }
+      dispatch(getCartAsync()); // Lấy lại giỏ hàng sau khi cập nhật
+    } else {
+      console.error("Product does not exist in cart");
+    }
+  } else {
+    console.error("User is not authenticated");
+  }
+};

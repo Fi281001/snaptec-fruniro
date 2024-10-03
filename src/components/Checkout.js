@@ -174,7 +174,7 @@ export default function Checkout() {
                 <div className="container-right__cart-totals2">Cart Totals</div>
                 <h3 style={{ marginBottom: "10px" }}>Products</h3>
                 {reversedCartItems.map((item, index) => (
-                  <p style={{ fontSize: "20px", color: "coral" }} key={item.id}>
+                  <p style={{ fontSize: "16px", color: "coral" }} key={item.id}>
                     {item.name} x {item.quantity} x Rs.
                     {(function () {
                       const priceString = item.pricesale.replace(/\./g, "");

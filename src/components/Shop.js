@@ -8,6 +8,7 @@ import Frame from "./Frame.js";
 import Products from "./Products.js";
 export default function Shop() {
   const [productLength, setProductLength] = useState(0);
+  const string = productLength;
   const [itemsToShow, setItemsToShow] = useState(12);
   const [sortOrder, setSortOrder] = useState("A-Z");
 
