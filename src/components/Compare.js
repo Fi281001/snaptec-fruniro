@@ -65,8 +65,8 @@ const Compare = () => {
         <table className="compare-table__table">
           <tr>
             <th className="compare-table__th">General</th>
-            <th></th>
-            <th></th>
+            <th className="compare-table__th-td"></th>
+            <th className="compare-table__th-td"></th>
           </tr>
           <tr>
             <td>Sales Package</td>
@@ -107,8 +107,8 @@ const Compare = () => {
           {/* Products */}
           <tr>
             <th className="compare-table__th">Product </th>
-            <th></th>
-            <th></th>
+            <th className="compare-table__th-td"></th>
+            <th className="compare-table__th-td"></th>
           </tr>
           <tr>
             <td>Filling Material</td>
@@ -144,8 +144,8 @@ const Compare = () => {
           {/* Dimensions */}
           <tr>
             <th className="compare-table__th">Dimensions </th>
-            <th></th>
-            <th></th>
+            <th className="compare-table__th-td"></th>
+            <th className="compare-table__th-td"></th>
           </tr>
           <tr>
             <td>Width</td>
@@ -187,8 +187,8 @@ const Compare = () => {
           {/* Dimensions */}
           <tr>
             <th className="compare-table__th">Warranty </th>
-            <th></th>
-            <th></th>
+            <th className="compare-table__th-td"></th>
+            <th className="compare-table__th-td"></th>
           </tr>
           <tr>
             <td>Warranty Summary</td>

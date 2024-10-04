@@ -127,7 +127,8 @@
     margin-bottom: 50px;
 }
 
-td {
+.compare-table__th-td, 
+.compare-table__table>tr>td {
     width: 25%;
     border-top: none;
     border-bottom: none;
