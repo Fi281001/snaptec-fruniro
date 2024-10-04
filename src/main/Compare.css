@@ -120,14 +120,14 @@
     line-height: 30.36px;
 }
 
-.compare-table>table {
+.compare-table__table {
     border-top: 1px solid #E8E8E8;
     border-collapse: collapse;
     width: 100%;
     margin-bottom: 50px;
 }
 
-.compare-table>td {
+td {
     width: 25%;
     border-top: none;
     border-bottom: none;
@@ -139,7 +139,7 @@
     text-align: left;
 }
 
-.compare-table>th {
+.compare-table__th {
     width: 25%;
     border-top: none;
     border-bottom: none;
@@ -149,15 +149,16 @@
     font-weight: 500;
     line-height: 35.42px;
     text-align: left;
+    padding-top: 50px;
 }
 
-.compare-table>th,
-.compare-table>td {
+th,
+td {
     padding: 15px 50px;
 }
 
 .margin-top-th {
-    padding-top: 50px;
+    
 }
 
 .button-add-to-cart {
