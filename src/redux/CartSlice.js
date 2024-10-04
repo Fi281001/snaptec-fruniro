@@ -2,7 +2,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { database } from "../firebase";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { ref, set, get, remove } from "firebase/database";
+import { ref, set, get, remove, update } from "firebase/database";
 
 const cartSlice = createSlice({
   name: "cart",
@@ -47,19 +47,15 @@ export const addToCartAsync = (cartItem) => async (dispatch) => {
     const cartSnapshot = await get(cartRef);
 
     if (cartSnapshot.exists()) {
-      // Nếu sản phẩm đã tồn tại, tăng quantity lên 1
       const existingProduct = cartSnapshot.val();
-      const updatedQuantity = existingProduct.quantity + 1;
-
       await set(cartRef, {
         ...existingProduct,
-        quantity: updatedQuantity, // Cập nhật số lượng sản phẩm
+        quantity: existingProduct.quantity + cartItem.quantity, // Cập nhật số lượng sản phẩm
       });
     } else {
       // Nếu sản phẩm chưa tồn tại, thêm mới sản phẩm vào giỏ hàng
       await set(cartRef, {
         ...cartItem,
-        quantity: 1, // Đặt quantity ban đầu là 1
       });
 
       console.log("Thêm sản phẩm mới: ", cartItem);
@@ -151,3 +147,36 @@ export const updateCartAsync = (productId, newQuantity) => async (dispatch) => {
     console.error("User is not authenticated");
   }
 };
+// actions/CartActions.js
+export const syncCartAfterLogin =
+  (guestCartItems) => async (dispatch, getState) => {
+    const userId = getState().auth.user.uid; // Lấy userId từ trạng thái đăng nhập
+
+    try {
+      for (const cartItem of guestCartItems) {
+        // Thêm từng sản phẩm trong localStorage vào Firebase giỏ hàng của người dùng
+        const cartRef = ref(database, `carts/${userId}/${cartItem.productId}`);
+        const snapshot = await get(cartRef);
+
+        if (snapshot.exists()) {
+          // Nếu sản phẩm đã tồn tại trong giỏ hàng, tăng số lượng
+          const existingItem = snapshot.val();
+          await update(cartRef, {
+            ...existingItem,
+            quantity: existingItem.quantity + cartItem.quantity,
+          });
+        } else {
+          // Nếu chưa có sản phẩm trong giỏ hàng, thêm mới
+          await set(cartRef, cartItem);
+        }
+
+        // Dispatch action để cập nhật giỏ hàng trong Redux state
+        dispatch({
+          type: "ADD_TO_CART",
+          payload: cartItem,
+        });
+      }
+    } catch (error) {
+      console.error("Error syncing cart after login: ", error);
+    }
+  };
