@@ -41,7 +41,7 @@ function App() {
             <Route path="/shop" element={<Shop />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/compare" element={<Compare />} />
+            <Route path="/compare/:productId" element={<Compare />} />
             <Route
               path="/checkout"
               element={
@@ -88,7 +88,7 @@ const Layout = () => {
         <Route path="/shop" element={<Shop />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/compare" element={<Compare />} />
+        <Route path="/compare/:productId" element={<Compare />} />
 
         <Route
           path="/checkout"

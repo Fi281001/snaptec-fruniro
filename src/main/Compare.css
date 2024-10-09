@@ -1,180 +1,240 @@
 .container-compare {
-    width: 100%;
-    padding: 30px 50px;
-    display: flex;
-    gap: 20px;
+  width: 100%;
+  padding: 30px 50px;
+  display: flex;
+  gap: 20px;
 }
 
 .group-1 {
-    width: 25%;
-    text-align: left;
+  width: 25%;
+  text-align: left;
 }
 
-.group-1>span {
-    font-family: 'Poppins';
-    font-size: 28px;
-    font-weight: 500;
-    line-height: 35.42px;
-
+.group-1 > span {
+  font-family: "Poppins";
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 35.42px;
 }
 
 .view-more {
-    font-family: 'Poppins';
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 30px;
-    color: #727272;
-    margin-top: 10px;
-    color: #c0b6b6;
-    border-bottom: 2px solid #c0b6b6;
-    width: max-content;
-    cursor: pointer;
+  font-family: "Poppins";
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 30px;
+  color: #727272;
+  margin-top: 10px;
+  color: #c0b6b6;
+  border-bottom: 2px solid #c0b6b6;
+  width: max-content;
+  cursor: pointer;
 }
 
 .view-more:hover {
-    color: gray;
-    border-bottom: 2px solid gray;
+  color: gray;
+  border-bottom: 2px solid gray;
 }
 
-.group-1>a:hover {
-    text-decoration: none;
+.group-1 > a:hover {
+  text-decoration: none;
 }
-
-
 
 .group-2,
 .group-3 {
-    width: 25%;
+  width: 25%;
 }
 
 .group-4 {
-    width: 25%;
+  width: 25%;
 }
 
 .select-product {
-    width: 100%;
-    border-radius: 6px;
-    padding: 10px 15px;
-    background-color: #B88E2F;
-    border: none;
-    font-family: 'Poppins';
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 17.71px;
-    text-align: left;
-    color: white;
+  width: 100%;
+  border-radius: 6px;
+  padding: 10px 15px;
+  background-color: #b88e2f;
+  border: none;
+  font-family: "Poppins";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 17.71px;
+  text-align: left;
+  color: white;
 }
 
-.group-2>img,
-.group-3>img {
-    width: 90%;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    cursor: pointer;
+.group-2 > img,
+.group-3 > img {
+  width: 90%;
+  height: 42%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
 }
 
-.group-2>span,
-.group-3>span {
-    font-size: 24px;
-    font-weight: 500;
-    line-height: 30.36px;
-    text-align: left;
+.group-2 > span,
+.group-3 > span {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 30.36px;
+  text-align: left;
 }
 
-.group-2>p,
-.group-3>p {
-    margin-top: 10px;
+.group-2 > p,
+.group-3 > p {
+  margin-top: 10px;
 }
 
 .group-start {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
-.group-start>p {
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 27px;
-    text-align: left;
-    margin-right: 10px;
+.group-start > p {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 27px;
+  text-align: left;
+  margin-right: 10px;
 }
 
 .bi-star-fill {
-    color: #FFC700;
-    cursor: pointer;
+  color: #ffc700;
+  cursor: pointer;
 }
 
 .number-review {
-    font-family: 'Poppins';
-    font-size: 13px;
-    font-weight: 400;
-    line-height: 19.5px;
-    text-align: left;
-    color: #9F9F9F;
+  font-family: "Poppins";
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 19.5px;
+  text-align: left;
+  color: #9f9f9f;
 }
 
-.group-4>span {
-    font-family: 'Poppins';
-    font-size: 24px;
-    font-weight: 600;
-    line-height: 30.36px;
+.group-4 > span {
+  font-family: "Poppins";
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 30.36px;
 }
 
 .compare-table__table {
-    border-top: 1px solid #E8E8E8;
-    border-collapse: collapse;
-    width: 100%;
-    margin-bottom: 50px;
+  border-top: 1px solid #e8e8e8;
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 50px;
 }
 
-.compare-table__th-td, 
-.compare-table__table>tr>td {
-    width: 25%;
-    border-top: none;
-    border-bottom: none;
-    border-right: 1px solid #E8E8E8;
-    font-family: 'Poppins';
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 25.3px;
-    text-align: left;
+.compare-table__th-td,
+.compare-table__table > tr > td {
+  width: 25%;
+  border-top: none;
+  border-bottom: none;
+  border-right: 1px solid #e8e8e8;
+  font-family: "Poppins";
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 25.3px;
+  text-align: left;
 }
 
 .compare-table__th {
-    width: 25%;
-    border-top: none;
-    border-bottom: none;
-    border-right: 1px solid #E8E8E8;
-    font-family: 'Poppins';
-    font-size: 28px;
-    font-weight: 500;
-    line-height: 35.42px;
-    text-align: left;
-    padding-top: 50px;
+  width: 25%;
+  border-top: none;
+  border-bottom: none;
+  border-right: 1px solid #e8e8e8;
+  font-family: "Poppins";
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 35.42px;
+  text-align: left;
+  padding-top: 50px;
 }
 
 th,
 td {
-    padding: 15px 50px;
-}
-
-.margin-top-th {
-    
+  padding: 15px 50px;
 }
 
 .button-add-to-cart {
-    background-color: #B88E2F;
-    padding: 15px 46px;
-    border-radius: 1px;
-    font-family: 'Poppins';
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 30px;
-    color: #fff;
-    min-width: 211px;
-    cursor: pointer;
+  background-color: #b88e2f;
+  padding: 15px 46px;
+  border-radius: 1px;
+  font-family: "Poppins";
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
+  color: #fff;
+  min-width: 211px;
+  cursor: pointer;
 }
 
 .button-add-to-cart:hover {
-    background-color: #654a06;
+  background-color: #654a06;
+}
+.custom-select-container {
+  position: relative;
+  width: 200px;
+}
+
+.modals-containar {
+  width: 100%;
+  display: flexbox;
+  gap: 5px;
+}
+
+.modals-containar > div {
+  padding: 6px;
+  display: flex;
+  gap: 10px;
+  border-radius: 10px;
+  border: 1px solid black;
+  width: 100%;
+  margin-bottom: 20px;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+/*  */
+.modals-containar img {
+  width: 20%; /* Chiều rộng của hình ảnh chiếm toàn bộ cột */
+  height: auto; /* Tự động điều chỉnh chiều cao để giữ tỉ lệ */
+  border-radius: 10px;
+}
+.modals-containar span {
+  font-size: 20px;
+  padding-left: 25px;
+}
+.bt-modals {
+  width: 100%;
+  border-radius: 10px;
+  background-color: #b88e2f;
+  line-height: 20px;
+}
+.bt-b {
+  width: 100%;
+  border-radius: 6px;
+  padding: 10px 15px;
+  background-color: #b88e2f;
+  border: none;
+  font-family: "Poppins";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 17.71px;
+  text-align: center;
+  color: white;
+}
+.title-modal {
+  text-align: center;
+}
+.item-span {
+  display: grid;
+}
+.conpare-but {
+  border-radius: 12px;
+  width: 20%;
+  height: 28px;
+  background-color: #b88e2f;
+  top: 50%;
+  left: 50%;
 }

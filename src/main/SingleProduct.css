@@ -227,6 +227,9 @@
   line-height: 30px;
   text-align: left;
 }
+.compare:hover {
+  background-color: #b88e2f;
+}
 
 .display-flex {
   display: flex;

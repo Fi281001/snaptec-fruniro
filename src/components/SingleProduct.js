@@ -12,7 +12,11 @@ import img2 from "../image/single-product/Image2.png";
 import axios from "axios";
 import { useParams } from "react-router-dom"; // Nếu bạn sử dụng React Router
 import { useDispatch } from "react-redux";
-import { addToCartAsync, syncCartAfterLogin } from "../redux/CartSlice";
+import {
+  addToCartAsync,
+  syncCartAfterLogin,
+  mergeTempCartWithUserCart,
+} from "../redux/CartSlice";
 import { toast } from "react-toastify";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
@@ -75,7 +79,7 @@ export const SingleProduct = () => {
   const dispatch = useDispatch();
 
   const user = localStorage.getItem("user");
-  const handleAddToCart = () => {
+  const handleAddToCart = async () => {
     // if (user) {
     if (product) {
       // Kiểm tra product trước khi thêm vào giỏ hàng
@@ -90,44 +94,23 @@ export const SingleProduct = () => {
       };
       toast.success("Add to cart successfully");
       dispatch(addToCartAsync(cartItem));
-      // if (user) {
-      //   // Nếu đã đăng nhập, thêm sản phẩm vào giỏ hàng Firebase
-      //   toast.success("Add to cart successfully");
-      //   dispatch(addToCartAsync(cartItem));
-      // } else {
-      //   // Nếu chưa đăng nhập, lưu sản phẩm vào localStorage
-      //   let cartItems = JSON.parse(localStorage.getItem("guestCart")) || [];
-      //   cartItems.push(cartItem);
-      //   console.log("cart", cartItems);
-      //   console.log("cart2", cartItem);
-      //   localStorage.setItem("guestCart", JSON.stringify(cartItems));
-      //   toast.success("Item added to cart (guest)");
-      // }
-      setQuantity(1);
+      if (user) {
+        // Nếu đã đăng nhập, thêm sản phẩm vào giỏ hàng Firebase
+        dispatch(addToCartAsync(cartItem));
+        setQuantity(1)
+
+      } else {
+        console.log("login");
+      }
     } else {
       console.log("Product data is not available");
     }
-    // } else {
-    // Swal.fire({
-    //   title: "You Need Login!",
-    //   icon: "warning",
-    //   showCancelButton: false,
-    // }).then((result) => {
-    //   navigate("/login");
-    // });
-    //}
   };
-  // useEffect(() => {
-  //   if (user) {
-  //     const guestCart = JSON.parse(localStorage.getItem("guestCart"));
-  //     if (guestCart && guestCart.length > 0) {
-  //       // Dispatch hành động đồng bộ giỏ hàng
-  //       dispatch(syncCartAfterLogin(guestCart));
-  //       // Xóa giỏ hàng tạm trong localStorage sau khi đồng bộ
-  //       localStorage.removeItem("guestCart");
-  //     }
-  //   }
-  // }, [user, dispatch]);
+
+  const id2 = Number(productId);
+  const handleCompare = (id2) => {
+    navigate(`/compare/${id2}`);
+  };
   return (
     <div>
       <div className="breadcrumb">
@@ -241,7 +224,9 @@ export const SingleProduct = () => {
               <div className="cart" onClick={handleAddToCart}>
                 Add To Card
               </div>
-              <div className="compare">+ Compare</div>
+              <div className="compare" onClick={() => handleCompare(id2)}>
+                + Compare
+              </div>
             </div>
             <hr />
             <div className="display-flex">

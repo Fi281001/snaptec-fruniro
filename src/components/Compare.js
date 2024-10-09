@@ -1,12 +1,119 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../main/Compare.css";
 import Rectangle from "./Rectangle";
 import Frame from "./Frame";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import { borderRadius } from "@mui/system";
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 600,
+  bgcolor: "background.paper",
+  border: "1px solid #000",
+  boxShadow: 24,
+  p: 4,
+  maxHeight: 600, // Sửa max-height thành maxHeight
+  overflowY: "auto",
+  borderRadius: 4,
+};
 const Compare = () => {
+  const [products, setProducts] = useState([]);
+  const { productId } = useParams();
+  const id = Number(productId);
+  useEffect(() => {
+    // Hàm để lấy dữ liệu từ Firebase qua axios
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "https://furino-2343b-default-rtdb.firebaseio.com/product.json"
+        );
+        if (response.data) {
+          const x = response.data;
+          const validProducts = x.filter(
+            (item) => item !== null && item !== undefined
+          );
+          setProducts(validProducts);
+        } else {
+          console.log("No data available");
+        }
+      } catch (error) {
+        console.error("Error fetching data: ", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const [product1, setProduct1] = useState("");
+  function handleProduct() {
+    const foundProduct = products.find((product) => product.id === id);
+    if (foundProduct) {
+      setProduct1(foundProduct); // Gán sản phẩm tìm thấy vào state product1
+    } else {
+      console.log("Product not found");
+    }
+  }
+  useEffect(() => {
+    handleProduct();
+  }, [products]);
+
+  const [product2, setProduct2] = useState("");
+  const handleProduct2 = (id) => {
+    console.log("sss", id);
+    const tem = Number(id);
+    const foundProduct = products.find((product) => product.id === tem);
+    setProduct2(foundProduct);
+    handleClose();
+  };
+  // modals
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   return (
     <>
       <Rectangle title="Product Comparison" />
+      {/* {chooseProduct()} */}
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <div className="modals-containar">
+            <h3 className="title-modal">Choose a Product</h3>
+            {products.map((product) => (
+              <div key={product.id}>
+                <img src={product.imgSrc} alt={product.name} />
+                <div className="item-span">
+                  <span>{product.name}</span>
+                  <span>{product.title}</span>
+                  <span>{product.pricesale}</span>
+                </div>
+                <button
+                  className="conpare-but"
+                  onClick={() => {
+                    handleProduct2(product.id);
+                  }}
+                >
+                  Compare
+                </button>
+              </div>
+            ))}
+          </div>
+
+          <button className="bt-modals" onClick={handleClose}>
+            Đóng
+          </button>
+        </Box>
+      </Modal>
       <div className="container-compare">
         <div className="group-1">
           <span>Go to Product page for more Products</span>
@@ -15,12 +122,9 @@ const Compare = () => {
           </Link>
         </div>
         <div className="group-2">
-          <img
-            src="https://images.pexels.com/photos/1866149/pexels-photo-1866149.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            alt=""
-          />
-          <span>Asgaard Sofa</span>
-          <p>Rs. 250,000.00</p>
+          <img src={product1.imgSrc} alt="" />
+          <span>{product1.name}</span>
+          <p>Rs. {product1.pricesale}</p>
           <div className="group-start">
             <p>4</p>
             <i class="bi bi-star-fill"></i>
@@ -32,34 +136,54 @@ const Compare = () => {
           </div>
         </div>
         <div className="group-3">
-          <img
-            src="https://images.pexels.com/photos/1866149/pexels-photo-1866149.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            alt=""
-          />
-          <span>Asgaard Sofa</span>
-          <p>Rs. 250,000.00</p>
-          <div className="group-start">
-            <p>4</p>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-dash-lg"></i>
-            <p className="number-review">240 review</p>
-          </div>
+          {product2 ? ( // Kiểm tra xem product2 có giá trị hay không
+            <>
+              <img src={product2.imgSrc} alt={product2.name} />
+              <span>{product2.name}</span>
+              <p>Rs. {product2.pricesale}</p>
+              <div className="group-start">
+                <p>4</p>
+                <i className="bi bi-star-fill"></i>
+                <i className="bi bi-star-fill"></i>
+                <i className="bi bi-star-fill"></i>
+                <i className="bi bi-star-fill"></i>
+                <i className="bi bi-dash-lg"></i>
+                <p className="number-review">240 review</p>
+              </div>
+            </>
+          ) : (
+            <p
+              style={{
+                color: "red",
+                paddingTop: "20px",
+                textAlign: "center",
+                fontSize: "30px",
+              }}
+            >
+              Please select product
+            </p> // Thông báo nếu chưa chọn sản phẩm
+          )}
         </div>
         <div className="group-4">
           {/* <span>Add A Porduct</span> */}
-          <select className="select-product">
-            <option value="0">Choose a Product</option>
-            <option value="1">Audi</option>
-            <option value="2">BMW</option>
-            <option value="3">Citroen</option>
-            <option value="4">Ford</option>
-          </select>
+          <button className="bt-b" onClick={handleOpen}>
+            Choose a Product
+          </button>
+          {/* <select
+            className="select-product"
+            onChange={(e) => handleProduct2(e.target.value)}
+          >
+            <option className="option" value="0">
+              Choose a Product
+            </option>
+            {products.map((product, index) => (
+              <option key={index} value={product.id}>
+                {product.name}
+              </option>
+            ))}
+          </select> */}
         </div>
       </div>
-
       {/* General */}
       <div className="compare-table">
         <table className="compare-table__table">

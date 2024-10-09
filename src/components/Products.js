@@ -4,11 +4,12 @@ import "../main/Products.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { database } from "../firebase";
+import { useNavigate } from "react-router-dom";
 import { getDatabase, ref, onValue, get, child } from "firebase/database";
 import { FacebookShareButton } from "react-share";
 export default function Products({ item, onLengthChange, sortOrder }) {
   const [products, setProducts] = useState([]);
-
+  const navigate = useNavigate();
   useEffect(() => {
     // Hàm để lấy dữ liệu từ Firebase qua axios
     const fetchData = async () => {
@@ -55,6 +56,9 @@ export default function Products({ item, onLengthChange, sortOrder }) {
   }
 
   const limitedProducts = sortedProducts.slice(0, item);
+  const handleCompare = (id) => {
+    navigate(`/compare/${id}`);
+  };
 
   return (
     <>
@@ -83,8 +87,9 @@ export default function Products({ item, onLengthChange, sortOrder }) {
                     <i className="bi bi-share"></i>Share
                   </FacebookShareButton>
                 </span>
-                <span>
-                  <i className="bi bi-arrow-left-right"></i>Compare
+                <span onClick={() => handleCompare(product.id)}>
+                  <i className="bi bi-arrow-left-right"></i>
+                  Compare
                 </span>
                 <span>
                   <i className="bi bi-heart"></i>Like

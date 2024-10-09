@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import "../main/Filter.css";
 
-export default function Filter({ length, onShowItemsChange, onSortChange }) {
+export default function Filter({
+  length,
+  onShowItemsChange,
+  onSortChange,
+  itemsToShow2,
+  sortOrder,
+}) {
   const totalitems = length - 1; // Sử dụng length trực tiếp để tính totalitems
   const [itemsToShow, setItemsToShow] = useState(12); // Giá trị mặc định là 12
 
@@ -35,14 +41,18 @@ export default function Filter({ length, onShowItemsChange, onSortChange }) {
       </div>
       <div className="options">
         <span className="show-page">Show</span>
-        <select className="show-option" onChange={handleShowChange}>
+        <select
+          value={itemsToShow2}
+          className="show-option"
+          onChange={handleShowChange}
+        >
           <option value="12">12</option>
           <option value="8">8</option>
           <option value="6">6</option>
         </select>
 
         <span className="show-page">Sort by</span>
-        <select className="short" onChange={handleSortChange}>
+        <select value={sortOrder} className="short" onChange={handleSortChange}>
           <option value="A-Z">Default</option>
           <option value="Z-A">Z - A</option>
           <option value="ASC">ASC</option>
