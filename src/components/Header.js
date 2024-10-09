@@ -86,7 +86,32 @@ export default function Header() {
       toast.error("Failed to logout: " + error.message);
     }
   };
+  //when not logged in
 
+  const user = localStorage.getItem("user");
+  const [quantityCart, setQuantityCart] = useState(0);
+  const updateCartQuantity = () => {
+    const cartData = JSON.parse(localStorage.getItem("cartlogin")) || [];
+    const totalQuantity = cartData.reduce(
+      (acc, item) => acc + item.quantity,
+      0
+    );
+    setQuantityCart(totalQuantity); // Cập nhật state
+  };
+
+  // useEffect để cập nhật carttotalQuantity khi component được render
+  useEffect(() => {
+    // Gọi ngay lập tức để cập nhật lần đầu
+    updateCartQuantity();
+
+    // Lắng nghe sự kiện thay đổi trong localStorage
+    window.addEventListener("storage", updateCartQuantity);
+
+    // Cleanup sự kiện khi component bị unmount
+    return () => {
+      window.removeEventListener("storage", updateCartQuantity);
+    };
+  }, []);
   return (
     <>
       {/* Lớp phủ làm mờ toàn bộ trang */}
@@ -135,7 +160,10 @@ export default function Header() {
                 title="cart"
                 onClick={toggleCartVisibility}
               ></i>
-              <span className="cart-badge">{totalQuantity}</span>
+              <span className="cart-badge">
+                {" "}
+                {user ? totalQuantity : quantityCart}
+              </span>
             </div>
           </div>
         </div>

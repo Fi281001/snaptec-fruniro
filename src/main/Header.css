@@ -49,6 +49,7 @@
 }
 
 .nav ul {
+  margin-top: 15px;
   list-style: none;
   display: flex;
   justify-content: space-between;

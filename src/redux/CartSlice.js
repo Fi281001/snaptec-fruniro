@@ -62,7 +62,8 @@ export const addToCartAsync = (cartItem) => async (dispatch) => {
     }
     dispatch(getCartAsync());
   } else {
-    console.error("User is not authenticated");
+    localStorage.getItem("cartlogin");
+    // console.log("Giỏ hàng tạm thời222:", localStorage.getItem("cartlogin"));
   }
 };
 

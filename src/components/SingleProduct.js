@@ -92,15 +92,32 @@ export const SingleProduct = () => {
         selectedSize: size, // Thêm kích thước đã chọn
         selectedColor: color, // Thêm màu sắc đã chọn
       };
-      toast.success("Add to cart successfully");
-      dispatch(addToCartAsync(cartItem));
       if (user) {
         // Nếu đã đăng nhập, thêm sản phẩm vào giỏ hàng Firebase
         dispatch(addToCartAsync(cartItem));
-        setQuantity(1)
-
+        toast.success("Add to cart successfully");
+        setQuantity(1);
       } else {
-        console.log("login");
+        const tempCart = JSON.parse(localStorage.getItem("cartlogin")) || []; // Lấy giỏ hàng tạm thời
+
+        // Tìm sản phẩm đã có trong giỏ hàng tạm thời
+        const existingItemIndex = tempCart.findIndex(
+          (item) => item.productId === cartItem.productId
+        );
+
+        if (existingItemIndex !== -1) {
+          // Cập nhật số lượng nếu sản phẩm đã tồn tại
+          tempCart[existingItemIndex].quantity += cartItem.quantity;
+        } else {
+          // Nếu sản phẩm chưa tồn tại, thêm mới sản phẩm vào giỏ hàng tạm thời
+          tempCart.push(cartItem);
+        }
+
+        // Lưu giỏ hàng tạm thời vào localStorage
+        const tem = localStorage.setItem("cartlogin", JSON.stringify(tempCart));
+        setQuantity(1);
+        dispatch(addToCartAsync(tem));
+        toast.success("Add to cart successfully");
       }
     } else {
       console.log("Product data is not available");
