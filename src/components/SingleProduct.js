@@ -11,12 +11,8 @@ import img1 from "../image/single-product/Image1.png";
 import img2 from "../image/single-product/Image2.png";
 import axios from "axios";
 import { useParams } from "react-router-dom"; // Nếu bạn sử dụng React Router
-import { useDispatch } from "react-redux";
-import {
-  addToCartAsync,
-  syncCartAfterLogin,
-  mergeTempCartWithUserCart,
-} from "../redux/CartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCartAsync, addToLocalCart } from "../redux/CartSlice";
 import { toast } from "react-toastify";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
@@ -33,7 +29,7 @@ export const SingleProduct = () => {
   const [items, setItems] = useState(5); // Số lượng sản phẩm ban đầu
   const [color, setColor] = useState("blue");
   const [size, setSize] = useState("L");
-
+  const cartItems = useSelector((state) => state.cart.cart);
   const id = productId;
   const handleIncrement = () => {
     setQuantity((prevQuantity) => prevQuantity + 1);
@@ -116,7 +112,8 @@ export const SingleProduct = () => {
         // Lưu giỏ hàng tạm thời vào localStorage
         const tem = localStorage.setItem("cartlogin", JSON.stringify(tempCart));
         setQuantity(1);
-        dispatch(addToCartAsync(tem));
+
+        dispatch(addToLocalCart(cartItem));
         toast.success("Add to cart successfully");
       }
     } else {

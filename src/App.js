@@ -5,6 +5,7 @@ import {
   Route,
   useLocation,
 } from "react-router-dom";
+import { useEffect } from "react";
 import Header from "./components/Header.js";
 import Footer from "./components/Footer.js";
 import Homepage from "./components/Homepage.js";
@@ -24,8 +25,15 @@ import Dashboard from "./components/Dashboard.js";
 import Routerposition from "./components/Routerposition.js";
 import Checkout from "./components/Checkout.js";
 import Compare from "./components/Compare.js";
-
+import { useDispatch } from "react-redux";
+import { syncCartFromLocal } from "./redux/CartSlice.js";
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    // Khi khởi động ứng dụng, khôi phục giỏ hàng từ localStorage
+    const storedCart = JSON.parse(localStorage.getItem("cartlogin")) || [];
+    dispatch(syncCartFromLocal(storedCart)); // Đồng bộ giỏ hàng với Redux
+  }, [dispatch]);
   return (
     <div className="App">
       <ToastContainer position="top-center" autoClose={1000} />

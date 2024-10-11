@@ -5,7 +5,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import Cartheader from "./Cartheader";
 import { useDispatch, useSelector } from "react-redux";
-import { selectTotalQuantity } from "../redux/CartSlice";
+import { syncCartAfterLogin, selectTotalQuantity } from "../redux/CartSlice";
 import { getAuth, signOut } from "firebase/auth"; // Import signOut để đăng xuất
 import { toast } from "react-toastify";
 
@@ -16,9 +16,13 @@ export default function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cart);
+  // const cartItems = useSelector((state) => state.cart.cart);
   // tính tổng số lượng item
   const totalQuantity = useSelector(selectTotalQuantity);
-  // console.log("total", totalQuantity);
+  // // console.log("total", totalQuantity);
+  // const [totalQuantity, setTotalQuantity] = useState(
+  //   useSelector(selectTotalQuantity)
+  // );
 
   const navigate = useNavigate();
   const auth = getAuth();
@@ -89,23 +93,14 @@ export default function Header() {
   //when not logged in
 
   const user = localStorage.getItem("user");
-  const [quantityCart, setQuantityCart] = useState(0);
-  const updateCartQuantity = () => {
-    const cartData = JSON.parse(localStorage.getItem("cartlogin")) || [];
-    const totalQuantity = cartData.reduce(
-      (acc, item) => acc + item.quantity,
-      0
-    );
-    setQuantityCart(totalQuantity); // Cập nhật state
-  };
-
-  useEffect(() => {
-    console.log("Cart items changed:", quantityCart);
-    updateCartQuantity();
-  }, [quantityCart]);
-  useEffect(() => {
-    console.log("total: ", totalQuantity);
-  }, [totalQuantity]);
+  console.log("user", user);
+  const totalQuantity2 = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
+  console.log("quantity user: 1", totalQuantity);
+  const total = dispatch(totalQuantity);
+  console.log(total);
 
   return (
     <>
@@ -157,8 +152,9 @@ export default function Header() {
               ></i>
               <span className="cart-badge">
                 {" "}
-                {user ? totalQuantity : quantityCart}
+                {user ? totalQuantity2 : totalQuantity}
               </span>
+              {/* <span className="cart-badge"> {totalQuantity2}</span> */}
             </div>
           </div>
         </div>
