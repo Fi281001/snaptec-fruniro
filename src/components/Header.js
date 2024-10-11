@@ -99,8 +99,6 @@ export default function Header() {
     0
   );
   console.log("quantity user: 1", totalQuantity);
-  const total = dispatch(totalQuantity);
-  console.log(total);
 
   return (
     <>

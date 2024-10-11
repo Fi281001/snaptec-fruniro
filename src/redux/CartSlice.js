@@ -40,10 +40,6 @@ const cartSlice = createSlice({
     syncCartFromLocal: (state, action) => {
       state.cart = action.payload;
     },
-    // Thêm action để đồng bộ giỏ hàng khi người dùng đăng nhập
-    syncCartAfterLogin(state, action) {
-      state.cart = action.payload; // Đồng bộ giỏ hàng với cart từ localStorage hoặc từ API
-    },
   },
 });
 
