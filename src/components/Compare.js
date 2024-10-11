@@ -7,7 +7,6 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import { borderRadius } from "@mui/system";
 
 const style = {
   position: "absolute",
@@ -22,6 +21,7 @@ const style = {
   maxHeight: 600, // Sửa max-height thành maxHeight
   overflowY: "auto",
   borderRadius: 4,
+  paddingRight: "40px",
 };
 const Compare = () => {
   const [products, setProducts] = useState([]);
@@ -169,19 +169,6 @@ const Compare = () => {
           <button className="bt-b" onClick={handleOpen}>
             Choose a Product
           </button>
-          {/* <select
-            className="select-product"
-            onChange={(e) => handleProduct2(e.target.value)}
-          >
-            <option className="option" value="0">
-              Choose a Product
-            </option>
-            {products.map((product, index) => (
-              <option key={index} value={product.id}>
-                {product.name}
-              </option>
-            ))}
-          </select> */}
         </div>
       </div>
       {/* General */}

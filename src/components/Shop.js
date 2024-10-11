@@ -4,8 +4,8 @@ import Filter from "./Filter.js";
 import Page from "./Pagination.js";
 import "../main/Shop.css";
 import Frame from "./Frame.js";
-
 import Products from "./Products.js";
+
 export default function Shop() {
   const [productLength, setProductLength] = useState(0);
   const string = productLength;

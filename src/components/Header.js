@@ -99,19 +99,14 @@ export default function Header() {
     setQuantityCart(totalQuantity); // Cập nhật state
   };
 
-  // useEffect để cập nhật carttotalQuantity khi component được render
   useEffect(() => {
-    // Gọi ngay lập tức để cập nhật lần đầu
+    console.log("Cart items changed:", quantityCart);
     updateCartQuantity();
+  }, [quantityCart]);
+  useEffect(() => {
+    console.log("total: ", totalQuantity);
+  }, [totalQuantity]);
 
-    // Lắng nghe sự kiện thay đổi trong localStorage
-    window.addEventListener("storage", updateCartQuantity);
-
-    // Cleanup sự kiện khi component bị unmount
-    return () => {
-      window.removeEventListener("storage", updateCartQuantity);
-    };
-  }, []);
   return (
     <>
       {/* Lớp phủ làm mờ toàn bộ trang */}

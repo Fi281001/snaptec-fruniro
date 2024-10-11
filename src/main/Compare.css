@@ -238,3 +238,20 @@ td {
   top: 50%;
   left: 50%;
 }
+.scrollable {
+  overflow-y: auto;
+}
+
+.scrollable::-webkit-scrollbar {
+  width: 8px; /* Độ rộng thanh cuộn */
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+  background-color: darkgrey; /* Màu sắc thanh cuộn */
+  border-radius: 10px; /* Bo tròn thanh cuộn */
+  padding-right: 10px;
+}
+
+.scrollable::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Màu nền của vùng thanh cuộn */
+}
