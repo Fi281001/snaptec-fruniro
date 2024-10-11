@@ -78,8 +78,6 @@ export const addToCartAsync = (cartItem) => async (dispatch) => {
       await set(cartRef, {
         ...cartItem,
       });
-
-      console.log("Thêm sản phẩm mới: ", cartItem);
     }
     dispatch(getCartAsync());
   } else {
@@ -123,7 +121,7 @@ export const removeFromCartAsync = (productId) => async (dispatch) => {
 };
 
 // delete all cart
-export const clearCartAsync = () => async (dispatch) => {
+export const clearCartAsync = (productId) => async (dispatch) => {
   const auth = getAuth();
   const user = auth.currentUser;
 
@@ -132,7 +130,17 @@ export const clearCartAsync = () => async (dispatch) => {
     await remove(cartRef); // Xóa giỏ hàng từ Firebase
     dispatch(clearCart()); // Xóa giỏ hàng trong Redux store
   } else {
-    console.error("User is not authenticated");
+    // Xử lý xóa sản phẩm khỏi localStorage khi chưa đăng nhập
+    const tempCart = JSON.parse(localStorage.getItem("cartlogin")) || [];
+
+    // Lọc ra các sản phẩm không khớp với productId
+    const updatedCart = tempCart.filter((item) => item.id !== productId);
+
+    // Cập nhật lại localStorage với giỏ hàng đã xóa sản phẩm
+    localStorage.setItem("cartlogin", JSON.stringify(updatedCart));
+
+    // Dispatch hành động để cập nhật state nếu bạn đang dùng Redux
+    dispatch(removeFromCart(productId));
   }
 };
 export const selectTotalQuantity = (state) => {

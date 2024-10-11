@@ -5,7 +5,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import Cartheader from "./Cartheader";
 import { useDispatch, useSelector } from "react-redux";
-import { syncCartAfterLogin, selectTotalQuantity } from "../redux/CartSlice";
+import { selectTotalQuantity, getCartAsync } from "../redux/CartSlice";
 import { getAuth, signOut } from "firebase/auth"; // Import signOut để đăng xuất
 import { toast } from "react-toastify";
 
@@ -16,13 +16,11 @@ export default function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cart);
-  // const cartItems = useSelector((state) => state.cart.cart);
-  // tính tổng số lượng item
+
   const totalQuantity = useSelector(selectTotalQuantity);
-  // // console.log("total", totalQuantity);
-  // const [totalQuantity, setTotalQuantity] = useState(
-  //   useSelector(selectTotalQuantity)
-  // );
+  useEffect(() => {
+    dispatch(getCartAsync());
+  }, [dispatch]);
 
   const navigate = useNavigate();
   const auth = getAuth();
@@ -93,12 +91,11 @@ export default function Header() {
   //when not logged in
 
   const user = localStorage.getItem("user");
-  console.log("user", user);
+
   const totalQuantity2 = cartItems.reduce(
     (total, item) => total + item.quantity,
     0
   );
-  console.log("quantity user: 1", totalQuantity);
 
   return (
     <>

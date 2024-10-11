@@ -51,9 +51,7 @@ export const LoginRegister = () => {
       name: name,
       token: token,
     })
-      .then(() => {
-        console.log("User data saved successfully!");
-      })
+      .then(() => {})
       .catch((error) => {
         console.error("Error saving user data:", error);
       });

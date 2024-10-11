@@ -12,7 +12,11 @@ import img2 from "../image/single-product/Image2.png";
 import axios from "axios";
 import { useParams } from "react-router-dom"; // Nếu bạn sử dụng React Router
 import { useDispatch, useSelector } from "react-redux";
-import { addToCartAsync, addToLocalCart } from "../redux/CartSlice";
+import {
+  addToCartAsync,
+  addToLocalCart,
+  getCartAsync,
+} from "../redux/CartSlice";
 import { toast } from "react-toastify";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
@@ -22,7 +26,7 @@ import {
   LinkedinShareButton,
   TwitterShareButton,
 } from "react-share";
-
+import { selectTotalQuantity } from "../redux/CartSlice";
 export const SingleProduct = () => {
   const { productId } = useParams();
   const [productLength, setProductLength] = useState(0);
@@ -46,7 +50,6 @@ export const SingleProduct = () => {
   // Lấy productId từ URL khi dùng router
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
-
   useEffect(() => {
     // Hàm để lấy dữ liệu chi tiết sản phẩm từ Firebase
     const fetchProductDetail = async () => {
@@ -75,6 +78,7 @@ export const SingleProduct = () => {
   const dispatch = useDispatch();
 
   const user = localStorage.getItem("user");
+
   const handleAddToCart = async () => {
     // if (user) {
     if (product) {
@@ -89,8 +93,31 @@ export const SingleProduct = () => {
         selectedColor: color, // Thêm màu sắc đã chọn
       };
       if (user) {
+        const tempCart = JSON.parse(localStorage.getItem("cartlogin")) || [];
+
+        if (tempCart.length > 0) {
+          try {
+            // Đồng bộ giỏ hàng tạm thời từ localStorage lên Firebase
+            for (const item of tempCart) {
+              await dispatch(addToCartAsync(item)); // Chờ từng sản phẩm được thêm vào Firebase
+              await dispatch(getCartAsync());
+            }
+            console.log("đata", getCartAsync());
+
+            // Sau khi đồng bộ, xóa giỏ hàng tạm thời khỏi localStorage
+            localStorage.removeItem("cartlogin");
+            console.log(
+              "xóa giỏ hàng thành công và đã xóa cartlogin khỏi localStorage"
+            );
+          } catch (error) {
+            console.error("Lỗi khi đồng bộ giỏ hàng tạm thời:", error);
+            toast.error("Failed to sync cart items to Firebase");
+            return;
+          }
+        }
         // Nếu đã đăng nhập, thêm sản phẩm vào giỏ hàng Firebase
-        dispatch(addToCartAsync(cartItem));
+        await dispatch(addToCartAsync(cartItem));
+        await dispatch(getCartAsync());
         toast.success("Add to cart successfully");
         setQuantity(1);
       } else {
