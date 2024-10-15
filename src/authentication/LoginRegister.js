@@ -15,7 +15,12 @@ import {
 import { AuthGoogle } from "./Utils/AuthGoogle.js";
 import { AuthFacebook } from "./Utils/AuthFacebook.js";
 import { AuthGithub } from "./Utils/AuthGithub.js";
-
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectTotalQuantity,
+  getCartAsync,
+  addToCartAsync,
+} from "../redux/CartSlice";
 export const LoginRegister = () => {
   const navigate = useNavigate();
   const [isActive, setIsActive] = useState(false);
@@ -32,7 +37,8 @@ export const LoginRegister = () => {
       setIsActive(false);
     });
   }, []);
-
+  const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state.cart.cart);
   // login
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -95,9 +101,21 @@ export const LoginRegister = () => {
       );
       localStorage.setItem("user", token);
 
-      // toast.success("Login successfully", {
-      //   toastId: customId1,
-      // });
+      // mere cart when login
+      const tempCart = JSON.parse(localStorage.getItem("cartlogin")) || [];
+      if (tempCart.length > 0) {
+        // Đồng bộ giỏ hàng tạm thời lên Firebase
+        for (const item of tempCart) {
+          // Kiểm tra xem sản phẩm đã có trong giỏ hàng hay chưa
+          await dispatch(addToCartAsync(item));
+          console.log("item", item);
+        }
+        await dispatch(getCartAsync());
+        // Lấy giỏ hàng từ Firebase sau khi gộp
+
+        // Xóa giỏ hàng tạm thời khỏi localStorage
+        localStorage.removeItem("cartlogin");
+      }
 
       // Điều hướng về trang chủ
       navigate("/");

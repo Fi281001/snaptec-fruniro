@@ -98,21 +98,6 @@ export const SingleProduct = () => {
         selectedColor: color, // Thêm màu sắc đã chọn
       };
       if (user) {
-        const tempCart = JSON.parse(localStorage.getItem("cartlogin")) || [];
-
-        if (tempCart.length > 0) {
-          // Đồng bộ giỏ hàng tạm thời từ localStorage lên Firebase
-          for (const item of tempCart) {
-            await dispatch(addToCartAsync(item));
-            console.log("item", item);
-            // Chờ từng sản phẩm được thêm vào Firebase
-          }
-          await dispatch(getCartAsync());
-          // Sau khi đồng bộ, xóa giỏ hàng tạm thời khỏi localStorage
-          localStorage.removeItem("cartlogin");
-        }
-
-        // Sau khi đồng bộ thành công hoặc giỏ hàng localStorage rỗng, thêm sản phẩm mới vào giỏ hàng Firebase
         await dispatch(addToCartAsync(cartItem));
         // Cập nhật lại giỏ hàng sau khi thêm sản phẩm mới
         await dispatch(getCartAsync());

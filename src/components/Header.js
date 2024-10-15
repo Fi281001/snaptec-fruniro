@@ -18,6 +18,7 @@ export default function Header() {
   const cartItems = useSelector((state) => state.cart.cart);
 
   const totalQuantity = useSelector(selectTotalQuantity);
+
   useEffect(() => {
     dispatch(getCartAsync());
   }, [dispatch]);
