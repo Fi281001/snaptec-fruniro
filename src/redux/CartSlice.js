@@ -37,6 +37,7 @@ const cartSlice = createSlice({
         state.cart.push(action.payload);
       }
     },
+    // đông bộ hóa data giữa local and API
     syncCartFromLocal: (state, action) => {
       state.cart = action.payload;
     },
@@ -79,10 +80,9 @@ export const addToCartAsync = (cartItem) => async (dispatch) => {
         ...cartItem,
       });
     }
+
     dispatch(getCartAsync());
   } else {
-    localStorage.getItem("cartlogin");
-    // console.log("Giỏ hàng tạm thời222:", localStorage.getItem("cartlogin"));
   }
 };
 
@@ -121,7 +121,7 @@ export const removeFromCartAsync = (productId) => async (dispatch) => {
 };
 
 // delete all cart
-export const clearCartAsync = (productId) => async (dispatch) => {
+export const clearCartAsync = () => async (dispatch) => {
   const auth = getAuth();
   const user = auth.currentUser;
 
@@ -129,18 +129,6 @@ export const clearCartAsync = (productId) => async (dispatch) => {
     const cartRef = ref(database, `carts/${user.uid}`);
     await remove(cartRef); // Xóa giỏ hàng từ Firebase
     dispatch(clearCart()); // Xóa giỏ hàng trong Redux store
-  } else {
-    // Xử lý xóa sản phẩm khỏi localStorage khi chưa đăng nhập
-    const tempCart = JSON.parse(localStorage.getItem("cartlogin")) || [];
-
-    // Lọc ra các sản phẩm không khớp với productId
-    const updatedCart = tempCart.filter((item) => item.id !== productId);
-
-    // Cập nhật lại localStorage với giỏ hàng đã xóa sản phẩm
-    localStorage.setItem("cartlogin", JSON.stringify(updatedCart));
-
-    // Dispatch hành động để cập nhật state nếu bạn đang dùng Redux
-    dispatch(removeFromCart(productId));
   }
 };
 export const selectTotalQuantity = (state) => {
@@ -177,36 +165,3 @@ export const updateCartAsync = (productId, newQuantity) => async (dispatch) => {
     console.error("User is not authenticated");
   }
 };
-// actions/CartActions.js
-export const syncCartAfterLogin =
-  (guestCartItems) => async (dispatch, getState) => {
-    const userId = getState().auth.user.uid; // Lấy userId từ trạng thái đăng nhập
-
-    try {
-      for (const cartItem of guestCartItems) {
-        // Thêm từng sản phẩm trong localStorage vào Firebase giỏ hàng của người dùng
-        const cartRef = ref(database, `carts/${userId}/${cartItem.productId}`);
-        const snapshot = await get(cartRef);
-
-        if (snapshot.exists()) {
-          // Nếu sản phẩm đã tồn tại trong giỏ hàng, tăng số lượng
-          const existingItem = snapshot.val();
-          await update(cartRef, {
-            ...existingItem,
-            quantity: existingItem.quantity + cartItem.quantity,
-          });
-        } else {
-          // Nếu chưa có sản phẩm trong giỏ hàng, thêm mới
-          await set(cartRef, cartItem);
-        }
-
-        // Dispatch action để cập nhật giỏ hàng trong Redux state
-        dispatch({
-          type: "ADD_TO_CART",
-          payload: cartItem,
-        });
-      }
-    } catch (error) {
-      console.error("Error syncing cart after login: ", error);
-    }
-  };

@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import "../main/Cartheader.css";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getCartAsync, removeFromCartAsync } from "../redux/CartSlice";
+import {
+  getCartAsync,
+  removeFromCartAsync,
+  syncCartFromLocal,
+} from "../redux/CartSlice";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 
@@ -10,6 +14,13 @@ export default function Cartheader({ onClose }) {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cart); // Lấy danh sách items từ Redux store
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [cartlogin, setCartlogin] = useState(() => {
+  //   const storedItems = localStorage.getItem("cartlogin");
+  //   return storedItems ? JSON.parse(storedItems) : [];
+  // });
+  // useEffect(() => {
+  //   localStorage.setItem("cartlogin", JSON.stringify(cartlogin));
+  // }, [cartlogin]);
 
   useEffect(() => {
     const user = localStorage.getItem("user");
@@ -32,6 +43,41 @@ export default function Cartheader({ onClose }) {
   const formattedSubTotal = SubTotal.toLocaleString("vi-VN"); // Định dạng số tiền
 
   const handleRemove = (item) => {
+    const isLoggedIn = localStorage.getItem("user"); // Giả sử userToken lưu trạng thái đăng nhập
+
+    if (!isLoggedIn) {
+      Swal.fire({
+        title: "Are you sure?",
+        text: `Do you want to delete the product ${item.name}?`,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+        document.querySelector(".overlay").style.display = ""; // Hiện lại overlay sau khi SweetAlert2 tắt
+        if (result.isConfirmed) {
+          let cartItems = JSON.parse(localStorage.getItem("cartlogin")) || [];
+          // Lọc ra những sản phẩm không khớp với productId của sản phẩm cần xóa
+          const updatedCartItems = cartItems.filter(
+            (cartItem) => cartItem.productId !== item.productId
+          );
+          // setCartlogin(updatedCartItems);
+          // Cập nhật lại localStorage với danh sách sản phẩm đã xóa
+          const storedCart = localStorage.setItem(
+            "cartlogin",
+            JSON.stringify(updatedCartItems)
+          );
+          toast.info(
+            "Product removed. You are not logged in, please log in to continue."
+          );
+          dispatch(syncCartFromLocal(updatedCartItems));
+        }
+      });
+      // Nếu chưa đăng nhập, xóa dữ liệu trong localStorage
+
+      return;
+    }
     Swal.fire({
       title: "Are you sure?",
       text: `Do you want to delete the product ${item.name}?`,
