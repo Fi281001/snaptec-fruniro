@@ -25,6 +25,7 @@ import Dashboard from "./components/Dashboard.js";
 import Routerposition from "./components/Routerposition.js";
 import Checkout from "./components/Checkout.js";
 import Compare from "./components/Compare.js";
+import Comparison from "./components/Comparison.js";
 import { useDispatch } from "react-redux";
 import { syncCartFromLocal } from "./redux/CartSlice.js";
 function App() {
@@ -49,6 +50,7 @@ function App() {
             <Route path="/shop" element={<Shop />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/comparison" element={<Comparison />} />
             <Route path="/compare/:productId" element={<Compare />} />
             <Route
               path="/checkout"
@@ -96,6 +98,7 @@ const Layout = () => {
         <Route path="/shop" element={<Shop />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/comparison" element={<Comparison />} />
         <Route path="/compare/:productId" element={<Compare />} />
 
         <Route

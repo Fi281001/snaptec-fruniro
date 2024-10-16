@@ -75,3 +75,83 @@ i {
     1
   ); /* Đổi màu viền thành màu xanh khi chọn */
 }
+
+.EZDrawer__container {
+  background-color: #f8f9fa !important;
+}
+.drawer-content {
+  margin-top: 200px;
+}
+.drawer-content > h1 {
+  color: black;
+  text-align: center;
+}
+.price-filter {
+  padding: 20px;
+}
+.price-filter-title {
+  display: flex;
+  justify-content: space-between;
+}
+.range-input {
+  margin-top: 10px;
+  margin-bottom: 30px;
+  position: relative;
+  width: 200px;
+}
+
+input[type="range"] {
+  position: absolute;
+  width: 100%;
+  pointer-events: none; /* Disable direct interaction */
+  -webkit-appearance: none;
+  appearance: none;
+  height: 5px;
+  background: #b88e2f;
+  z-index: 1;
+}
+
+input[type="range"].min-range {
+  pointer-events: all;
+  z-index: 2;
+}
+
+input[type="range"].max-range {
+  pointer-events: all;
+  z-index: 2;
+}
+
+.range-values {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.Color-filter {
+  display: flex;
+  flex-direction: column; /* Sắp xếp theo cột */
+  align-items: flex-start; /* Canh trái các checkbox */
+  gap: 10px; /* Khoảng cách giữa các dòng */
+  padding: 20px;
+}
+.Color-filter label {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  justify-content: flex-start; /* Tạo khoảng cách giữa chữ và ô */
+  width: 150px; /* Điều chỉnh chiều rộng nhãn để tách chữ và checkbox */
+}
+.checkbox-main {
+  margin-left: 30px;
+}
+.Color-filter input[type="checkbox"] {
+  margin-right: 20px;
+  margin-top: 0px;
+}
+.btaction {
+  padding: 20px;
+}
+.btaction > button {
+  width: 100%;
+  border-radius: 5px;
+  background-color: #b88e2f;
+}

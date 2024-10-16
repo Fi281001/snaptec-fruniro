@@ -65,12 +65,12 @@ export default function Shop() {
             sortOrder={sortOrder}
           />
         </div>
-        <Page
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={handlePageChange}
-        />
       </div>
+      <Page
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
       <Frame />
     </div>
   );

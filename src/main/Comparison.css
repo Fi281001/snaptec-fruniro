@@ -1,0 +1,26 @@
+/* src/CompareCart.css */
+.compare-cart {
+  padding: 100px;
+}
+
+.compare-table {
+  width: 100%; /* Chiều rộng bảng */
+  border-collapse: collapse; /* Gộp đường viền */
+}
+
+.compare-table th,
+.compare-table td {
+  border: 1px solid #ddd; /* Đường viền cho các ô */
+  padding: 10px; /* Padding cho ô */
+  text-align: center; /* Căn giữa nội dung */
+}
+
+.compare-table th {
+  background-color: #f2f2f2; /* Màu nền cho hàng tiêu đề */
+}
+
+.item-image {
+  width: 100px; /* Chiều rộng hình ảnh */
+  height: auto; /* Chiều cao tự động */
+  border-radius: 4px; /* Bo góc cho hình ảnh */
+}

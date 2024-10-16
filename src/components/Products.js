@@ -7,6 +7,7 @@ import { database } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import { getDatabase, ref, onValue, get, child } from "firebase/database";
 import { FacebookShareButton } from "react-share";
+import { useLocation } from "react-router-dom";
 export default function Products({
   item,
   onLengthChange,
@@ -14,6 +15,8 @@ export default function Products({
   currentPage,
 }) {
   const [products, setProducts] = useState([]);
+  const location = useLocation();
+
   const navigate = useNavigate();
   useEffect(() => {
     // Hàm để lấy dữ liệu từ Firebase qua axios
@@ -59,18 +62,18 @@ export default function Products({
       )
     ); // Sắp xếp theo giá giảm dần
   }
-
-  // const limitedProducts = sortedProducts.slice(0, item);
+  const isShopPage = location.pathname === "/shop";
+  const limitedProducts = sortedProducts.slice(0, item);
   const handleCompare = (id) => {
     navigate(`/compare/${id}`);
   };
   const startIndex = (currentPage - 1) * item;
   const currentProducts = sortedProducts.slice(startIndex, startIndex + item);
-  console.log("Current products:", currentProducts);
+  const displayedProducts = isShopPage ? currentProducts : limitedProducts;
   return (
     <>
       <div className="Products">
-        {currentProducts.map((product) => (
+        {displayedProducts.map((product) => (
           <div key={product?.id} className="product-item">
             <div className="overlay-product"></div>
 
