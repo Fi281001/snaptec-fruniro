@@ -108,7 +108,6 @@ export const LoginRegister = () => {
         for (const item of tempCart) {
           // Kiểm tra xem sản phẩm đã có trong giỏ hàng hay chưa
           await dispatch(addToCartAsync(item));
-          console.log("item", item);
         }
         await dispatch(getCartAsync());
         // Lấy giỏ hàng từ Firebase sau khi gộp

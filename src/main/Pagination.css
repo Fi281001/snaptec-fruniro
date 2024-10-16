@@ -21,8 +21,17 @@
   color: white;
 }
 
-.page-item.active {
+.page-item-active {
   background-color: rgba(184, 142, 47, 1);
   color: white;
-  border-color: rgba(184, 142, 47, 1);
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  text-decoration: none;
+
+  border-radius: 10px;
+  transition: background-color 0.3s;
+}
+.page-item:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }

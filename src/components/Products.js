@@ -7,7 +7,12 @@ import { database } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import { getDatabase, ref, onValue, get, child } from "firebase/database";
 import { FacebookShareButton } from "react-share";
-export default function Products({ item, onLengthChange, sortOrder }) {
+export default function Products({
+  item,
+  onLengthChange,
+  sortOrder,
+  currentPage,
+}) {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
@@ -55,15 +60,17 @@ export default function Products({ item, onLengthChange, sortOrder }) {
     ); // Sắp xếp theo giá giảm dần
   }
 
-  const limitedProducts = sortedProducts.slice(0, item);
+  // const limitedProducts = sortedProducts.slice(0, item);
   const handleCompare = (id) => {
     navigate(`/compare/${id}`);
   };
-
+  const startIndex = (currentPage - 1) * item;
+  const currentProducts = sortedProducts.slice(startIndex, startIndex + item);
+  console.log("Current products:", currentProducts);
   return (
     <>
       <div className="Products">
-        {limitedProducts.map((product) => (
+        {currentProducts.map((product) => (
           <div key={product?.id} className="product-item">
             <div className="overlay-product"></div>
 

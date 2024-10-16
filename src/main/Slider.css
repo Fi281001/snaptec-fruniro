@@ -96,6 +96,10 @@
 .slick-prev:before {
   display: None !important;
 }
+.slick-next {
+  width: 0 !important;
+  height: 0 !important;
+}
 .slick-next:before {
   font-family: "slick";
   font-size: 48px !important;

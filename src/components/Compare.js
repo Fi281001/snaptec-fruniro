@@ -7,7 +7,8 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 const style = {
   position: "absolute",
   top: "50%",
@@ -27,6 +28,7 @@ const Compare = () => {
   const [products, setProducts] = useState([]);
   const { productId } = useParams();
   const id = Number(productId);
+  const navigate = useNavigate();
   useEffect(() => {
     // Hàm để lấy dữ liệu từ Firebase qua axios
     const fetchData = async () => {
@@ -66,7 +68,6 @@ const Compare = () => {
 
   const [product2, setProduct2] = useState("");
   const handleProduct2 = (id) => {
-    console.log("sss", id);
     const tem = Number(id);
     const foundProduct = products.find((product) => product.id === tem);
     setProduct2(foundProduct);
@@ -76,6 +77,18 @@ const Compare = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const handleAddProduct1 = () => {
+    console.log("id1", product1.id);
+    navigate(`/single-product/${product1.id}`);
+  };
+  const handleAddProduct2 = () => {
+    if (product2 && product2.id !== undefined) {
+      navigate(`/single-product/${product2.id}`);
+    } else {
+      toast.error("No data available");
+      console.error("Product ID is undefined. Cannot navigate.");
+    }
+  };
   return (
     <>
       <Rectangle title="Product Comparison" />
@@ -350,10 +363,22 @@ const Compare = () => {
           <tr>
             <td></td>
             <td>
-              <buttuon className="button-add-to-cart">Add To Cart</buttuon>
+              <buttuon
+                className="button-add-to-cart"
+                onClick={() => {
+                  handleAddProduct1();
+                }}
+              >
+                Add To Cart
+              </buttuon>
             </td>
             <td>
-              <buttuon className="button-add-to-cart">Add To Cart</buttuon>
+              <buttuon
+                className="button-add-to-cart"
+                onClick={handleAddProduct2}
+              >
+                Add To Cart
+              </buttuon>
             </td>
             <td></td>
           </tr>

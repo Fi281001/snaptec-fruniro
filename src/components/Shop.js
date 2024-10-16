@@ -9,11 +9,9 @@ import Products from "./Products.js";
 export default function Shop() {
   const [productLength, setProductLength] = useState(0);
   const string = productLength;
-  // const [itemsToShow, setItemsToShow] = useState(12);
-  // const [sortOrder, setSortOrder] = useState("A-Z");
-
+  const [currentPage, setCurrentPage] = useState(1);
   const handleLengthChange = (length) => {
-    setProductLength(length); // Cập nhật length từ Products
+    setProductLength(length - 1); // Cập nhật length từ Products
   };
 
   const handleShowItemsChange = (item) => {
@@ -42,6 +40,12 @@ export default function Shop() {
     localStorage.setItem("sortOrder", sortOrder);
   }, [sortOrder]);
 
+  const totalPages = Math.ceil(productLength / itemsToShow);
+
+  // Get products for the current page
+  const handlePageChange = (page) => {
+    setCurrentPage(page); // Set current page
+  };
   return (
     <div>
       <Rectangle title="Shop" />
@@ -56,11 +60,16 @@ export default function Shop() {
         <div className="item">
           <Products
             item={itemsToShow}
+            currentPage={currentPage}
             onLengthChange={handleLengthChange}
             sortOrder={sortOrder}
           />
         </div>
-        <Page />
+        <Page
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
       </div>
       <Frame />
     </div>

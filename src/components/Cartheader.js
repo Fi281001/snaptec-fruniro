@@ -157,7 +157,9 @@ export default function Cartheader({ onClose }) {
             <NavLink to="/checkout" onClick={onClose} className="btn">
               Check out
             </NavLink>
-            <button className="btn ">Comparison</button>
+            <NavLink to="/compare" onClick={onClose} className="btn">
+              Comparison
+            </NavLink>
           </div>
         </div>
       </div>

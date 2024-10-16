@@ -8,7 +8,7 @@ export default function Filter({
   itemsToShow2,
   sortOrder,
 }) {
-  const totalitems = length - 1; // Sử dụng length trực tiếp để tính totalitems
+  const totalitems = length; // Sử dụng length trực tiếp để tính totalitems
   const [itemsToShow, setItemsToShow] = useState(12); // Giá trị mặc định là 12
 
   const handleShowChange = (event) => {
@@ -36,7 +36,7 @@ export default function Filter({
         </span>
         <span className="line">|</span>
         <span className="show-page">
-          Showing 1–{totalDisplayItems} of {totalitems} results
+          Showing 1–{itemsToShow2} of {totalitems} results
         </span>
       </div>
       <div className="options">
@@ -55,8 +55,8 @@ export default function Filter({
         <select value={sortOrder} className="short" onChange={handleSortChange}>
           <option value="A-Z">Default</option>
           <option value="Z-A">Z - A</option>
-          <option value="ASC">ASC</option>
-          <option value="DESC">DESC</option>
+          <option value="ASC">Giá tăng dần</option>
+          <option value="DESC">Giá giảm dần</option>
         </select>
       </div>
     </div>
