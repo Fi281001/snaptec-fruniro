@@ -46,6 +46,13 @@ export default function Shop() {
   const handlePageChange = (page) => {
     setCurrentPage(page); // Set current page
   };
+
+  const [minPrice, setMinPrice] = useState(2500);
+  const [maxPrice, setMaxPrice] = useState(8500);
+  const handlePriceChange = (min, max) => {
+    setMinPrice(min);
+    setMaxPrice(max);
+  };
   return (
     <div>
       <Rectangle title="Shop" />
@@ -55,6 +62,9 @@ export default function Shop() {
         onSortChange={handleSortChange}
         itemsToShow2={itemsToShow}
         sortOrder={sortOrder}
+        minValue={minPrice}
+        maxValue={maxPrice}
+        onPriceChange={handlePriceChange}
       />
       <div className="block-products">
         <div className="item">
@@ -63,6 +73,8 @@ export default function Shop() {
             currentPage={currentPage}
             onLengthChange={handleLengthChange}
             sortOrder={sortOrder}
+            minPrice={minPrice}
+            maxPrice={maxPrice}
           />
         </div>
       </div>

@@ -93,32 +93,77 @@ i {
   display: flex;
   justify-content: space-between;
 }
-.range-input {
-  margin-top: 10px;
-  margin-bottom: 30px;
-  position: relative;
-  width: 200px;
-}
-
+/* 
 input[type="range"] {
   position: absolute;
-  width: 100%;
-  pointer-events: none; /* Disable direct interaction */
+  margin-top: 25px;
+  width: 80%;
   -webkit-appearance: none;
   appearance: none;
   height: 5px;
   background: #b88e2f;
   z-index: 1;
+  pointer-events: all; 
 }
 
 input[type="range"].min-range {
-  pointer-events: all;
-  z-index: 2;
+  z-index: 2; 
 }
 
 input[type="range"].max-range {
-  pointer-events: all;
-  z-index: 2;
+  z-index: 1; 
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; 
+  appearance: none;
+  border-radius: 100%;
+  width: 20px;
+  height: 20px; 
+  background: #e2dfd9;
+  cursor: pointer; 
+  z-index: 3; 
+}
+
+input[type="range"]::-moz-range-thumb {
+  border-radius: 100%;
+  width: 10px; 
+  height: 10px;
+  background: #b88e2f;
+  cursor: pointer;
+} */
+.range-input {
+  position: relative;
+  width: 200px; /* Chiều rộng của vùng chứa */
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+input[type="range"] {
+  -webkit-appearance: none; /* Tắt kiểu mặc định */
+  appearance: none;
+  height: 2px; /* Chiều cao thanh kéo */
+  background: #b88e2f; /* Màu nền thanh kéo */
+  width: 100%;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Tắt kiểu mặc định cho tay cầm */
+  appearance: none;
+  width: 15px; /* Kích thước tay cầm */
+  height: 15px; /* Kích thước tay cầm */
+  background: #dfcc9f; /* Màu tay cầm */
+  cursor: pointer; /* Đổi con trỏ khi rê chuột vào tay cầm */
+  position: relative; /* Đặt vị trí tay cầm */
+  z-index: 3; /* Đặt z-index cho tay cầm */
+  border-radius: 100%;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 15px; /* Kích thước tay cầm cho Firefox */
+  height: 15px; /* Kích thước tay cầm cho Firefox */
+  background: #dfcc9f; /* Màu tay cầm */
+  cursor: pointer; /* Đổi con trỏ khi rê chuột vào tay cầm */
 }
 
 .range-values {
@@ -126,6 +171,7 @@ input[type="range"].max-range {
   justify-content: space-between;
   margin-top: 20px;
 }
+
 .Color-filter {
   display: flex;
   flex-direction: column; /* Sắp xếp theo cột */

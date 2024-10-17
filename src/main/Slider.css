@@ -175,3 +175,8 @@
     height: 585px !important;
   }
 }
+@media only screen and (min-width: 601) and (max-width: 1024px) {
+  .slider-title {
+    margin-left: -6px !important;
+  }
+}

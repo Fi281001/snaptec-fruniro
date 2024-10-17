@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../main/Filter.css";
 import "react-modern-drawer/dist/index.css";
 import Drawer from "react-modern-drawer";
@@ -8,6 +8,9 @@ export default function Filter({
   onSortChange,
   itemsToShow2,
   sortOrder,
+  minValue, // Thêm prop minValue
+  maxValue, // Thêm prop maxValue
+  onPriceChange,
 }) {
   const totalitems = length; // Sử dụng length trực tiếp để tính totalitems
   const [itemsToShow, setItemsToShow] = useState(12); // Giá trị mặc định là 12
@@ -27,18 +30,28 @@ export default function Filter({
   const toggleDrawer = () => {
     setIsOpen((prevState) => !prevState);
   };
-  const [minValue, setMinValue] = useState(2500);
-  const [maxValue, setMaxValue] = useState(8500);
-
+  // const [minValue, setMinValue] = useState("500");
+  // const [maxValue, setMaxValue] = useState("2000000");
+  const [min, setMin] = useState(minValue);
+  const [max, setMax] = useState(maxValue);
   const handleMinChange = (event) => {
-    const value = Math.min(Number(event.target.value), maxValue - 1); // Đảm bảo min không lớn hơn max - 1
-    setMinValue(value);
+    const value = Math.min(Number(event.target.value), max - 1); // Đảm bảo min không lớn hơn max - 1
+    setMin(value); // Cập nhật giá trị min
+    console.log("min", value);
+    onPriceChange(value, max); // Gọi hàm truyền từ component cha
   };
 
   const handleMaxChange = (event) => {
-    const value = Math.max(Number(event.target.value), minValue + 1); // Đảm bảo max không nhỏ hơn min + 1
-    setMaxValue(value);
+    const value = Math.max(Number(event.target.value), min + 1); // Đảm bảo max không nhỏ hơn min + 1
+    setMax(value); // Cập nhật giá trị max
+    console.log("max", value);
+    onPriceChange(min, value); // Gọi hàm truyền từ component cha
   };
+
+  useEffect(() => {
+    setMin(minValue); // Cập nhật lại minValue từ props
+    setMax(maxValue); // Cập nhật lại maxValue từ props
+  }, [minValue, maxValue]);
 
   return (
     <div className="filter">
@@ -51,23 +64,24 @@ export default function Filter({
         <div className="drawer-content">
           <h1>Filter</h1>
           <div className="price-filter">
-            <span>Sort price</span>
+            <span>Price</span>
             <div class="range-input">
               <input
                 type="range"
-                class="min-range"
-                min="0"
-                max="10000"
-                step="1"
-                onChange={handleMinChange}
+                className="min-range"
+                min="500"
+                max="2000000"
+                step="100"
                 value={minValue}
+                onChange={handleMinChange}
               />
+
               <input
                 type="range"
-                class="max-range"
-                min="0"
-                max="10000"
-                step="1"
+                className="max-range"
+                min="500"
+                max="2000000"
+                step="100"
                 value={maxValue}
                 onChange={handleMaxChange}
               />
@@ -78,7 +92,7 @@ export default function Filter({
             </div>
           </div>
           <div className="Color-filter">
-            <span>Sort Color</span>
+            <span>Color</span>
             <div className="checkbox-main">
               <div className="">
                 <label>

@@ -13,6 +13,8 @@ export default function Products({
   onLengthChange,
   sortOrder,
   currentPage,
+  minPrice,
+  maxPrice,
 }) {
   const [products, setProducts] = useState([]);
   const location = useLocation();
@@ -67,6 +69,10 @@ export default function Products({
   const handleCompare = (id) => {
     navigate(`/compare/${id}`);
   };
+  const filteredProducts = sortedProducts.filter((product) => {
+    const price = parseFloat(product.pricesale.replace(/\./g, ""));
+    return price >= minPrice && price <= maxPrice; // Lọc sản phẩm theo giá
+  });
   const startIndex = (currentPage - 1) * item;
   const currentProducts = sortedProducts.slice(startIndex, startIndex + item);
   const displayedProducts = isShopPage ? currentProducts : limitedProducts;
