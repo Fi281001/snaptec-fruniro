@@ -201,3 +201,43 @@ input[type="range"]::-moz-range-thumb {
   border-radius: 5px;
   background-color: #b88e2f;
 }
+.center-container {
+  display: flex;
+  justify-content: center; /* Căn giữa theo chiều ngang */
+  align-items: center; /* Căn giữa theo chiều dọc */
+}
+.chip-filter {
+  margin-bottom: 35px;
+  display: flex;
+  justify-content: space-between; /* Chia đều khoảng cách giữa nội dung và dấu "x" */
+  align-items: center; /* Căn giữa nội dung theo chiều dọc */
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background-color: #f5f5f5;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  width: fit-content;
+}
+
+.chip-filter > div {
+  display: flex; /* Căn ngang nội dung bên trong div */
+  align-items: center;
+}
+
+.chip-filter > span {
+  font-weight: bold;
+}
+
+.chip-filter p {
+  margin: 0;
+  margin-left: 10px; /* Tạo khoảng cách giữa "price" và giá */
+  font-size: 14px;
+}
+
+.chip-filter > span {
+  margin-top: -3px;
+  margin-left: 10px; /* Khoảng cách giữa nội dung và dấu "x" */
+  cursor: pointer; /* Con trỏ chuột thành dạng trỏ tay khi hover */
+  font-size: 16px;
+  color: red; /* Màu sắc của dấu "x" */
+}

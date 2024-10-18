@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "../main/Filter.css";
 import "react-modern-drawer/dist/index.css";
 import Drawer from "react-modern-drawer";
+import debounce from "lodash.debounce";
 export default function Filter({
   length,
   onShowItemsChange,
@@ -47,12 +48,19 @@ export default function Filter({
     console.log("max", value);
     onPriceChange(min, value); // Gọi hàm truyền từ component cha
   };
-
+  const debouncedPriceChange = useCallback(
+    debounce((min, max) => {
+      onPriceChange(min, max);
+    }, 1000), // Đợi 300ms sau khi người dùng dừng nhập
+    []
+  );
   useEffect(() => {
-    setMin(minValue); // Cập nhật lại minValue từ props
-    setMax(maxValue); // Cập nhật lại maxValue từ props
-  }, [minValue, maxValue]);
-
+    debouncedPriceChange(min, max);
+    // Hủy debounce khi component bị hủy
+    return () => {
+      debouncedPriceChange.cancel();
+    };
+  }, [min, max, debouncedPriceChange]);
   return (
     <div className="filter">
       <Drawer
@@ -69,8 +77,8 @@ export default function Filter({
               <input
                 type="range"
                 className="min-range"
-                min="500"
-                max="2000000"
+                min="500000"
+                max="8000000"
                 step="100"
                 value={minValue}
                 onChange={handleMinChange}
@@ -79,16 +87,16 @@ export default function Filter({
               <input
                 type="range"
                 className="max-range"
-                min="500"
-                max="2000000"
+                min="500000"
+                max="8000000"
                 step="100"
                 value={maxValue}
                 onChange={handleMaxChange}
               />
             </div>
             <div className="price-filter-title">
-              <p>Min</p>
-              <p>Max</p>
+              <p>{minValue}</p>
+              <p>{maxValue}</p>
             </div>
           </div>
           <div className="Color-filter">

@@ -32,7 +32,14 @@ export default function Products({
           const validProducts = x.filter(
             (item) => item !== null && item !== undefined
           );
-          setProducts(validProducts); // Cập nhật state với dữ liệu nhận được
+          const filteredProducts = validProducts.filter((product) => {
+            const priceSale = parseFloat(product?.pricesale.replace(/\./g, ""));
+
+            return priceSale >= minPrice && priceSale <= maxPrice;
+          });
+
+          setProducts(filteredProducts);
+          // setProducts(validProducts); // Cập nhật state với dữ liệu nhận được
           onLengthChange(response.data.length);
         } else {
           console.log("No data available");
@@ -43,7 +50,8 @@ export default function Products({
     };
 
     fetchData();
-  }, [onLengthChange]);
+  }, [onLengthChange, minPrice, maxPrice]);
+  console.log("arr222", products);
 
   let sortedProducts = [...products];
   if (sortOrder === "A-Z") {
@@ -64,18 +72,20 @@ export default function Products({
       )
     ); // Sắp xếp theo giá giảm dần
   }
+
   const isShopPage = location.pathname === "/shop";
   const limitedProducts = sortedProducts.slice(0, item);
   const handleCompare = (id) => {
     navigate(`/compare/${id}`);
   };
-  const filteredProducts = sortedProducts.filter((product) => {
-    const price = parseFloat(product.pricesale.replace(/\./g, ""));
-    return price >= minPrice && price <= maxPrice; // Lọc sản phẩm theo giá
-  });
+
   const startIndex = (currentPage - 1) * item;
   const currentProducts = sortedProducts.slice(startIndex, startIndex + item);
   const displayedProducts = isShopPage ? currentProducts : limitedProducts;
+  console.log("arr", displayedProducts);
+  console.log("assss", limitedProducts);
+  console.log("host", isShopPage);
+
   return (
     <>
       <div className="Products">

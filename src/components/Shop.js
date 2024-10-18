@@ -47,11 +47,15 @@ export default function Shop() {
     setCurrentPage(page); // Set current page
   };
 
-  const [minPrice, setMinPrice] = useState(2500);
-  const [maxPrice, setMaxPrice] = useState(8500);
+  const [minPrice, setMinPrice] = useState(150000);
+  const [maxPrice, setMaxPrice] = useState(8000000);
   const handlePriceChange = (min, max) => {
     setMinPrice(min);
     setMaxPrice(max);
+  };
+  const handleDelete = () => {
+    setMinPrice(150000);
+    setMaxPrice(8000000);
   };
   return (
     <div>
@@ -66,6 +70,26 @@ export default function Shop() {
         maxValue={maxPrice}
         onPriceChange={handlePriceChange}
       />
+      <div className="center-container">
+        {!(minPrice === 150000 && maxPrice === 8000000) && (
+          <div className="chip-filter">
+            <div>
+              <span>price</span>
+              <p>
+                {minPrice} - {maxPrice}
+              </p>
+            </div>
+            <span
+              onClick={() => {
+                handleDelete();
+              }}
+            >
+              x
+            </span>{" "}
+            {/* Dấu "x" để đóng hoặc xóa */}
+          </div>
+        )}
+      </div>
       <div className="block-products">
         <div className="item">
           <Products
