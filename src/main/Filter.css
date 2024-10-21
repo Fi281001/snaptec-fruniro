@@ -3,13 +3,13 @@
   height: 100px;
   background-color: rgba(249, 241, 231, 1);
   display: flex;
-  justify-content: space-around;
+
   align-items: center;
   margin-bottom: 40px;
   gap: 90px;
-  margin-right: 10px;
 }
 .icon-filter {
+  margin-left: 105px;
   display: flex;
   align-items: center;
   gap: 25px; /* Thêm khoảng cách giữa các biểu tượng và văn bản trong phần icon */
@@ -93,45 +93,7 @@ i {
   display: flex;
   justify-content: space-between;
 }
-/* 
-input[type="range"] {
-  position: absolute;
-  margin-top: 25px;
-  width: 80%;
-  -webkit-appearance: none;
-  appearance: none;
-  height: 5px;
-  background: #b88e2f;
-  z-index: 1;
-  pointer-events: all; 
-}
 
-input[type="range"].min-range {
-  z-index: 2; 
-}
-
-input[type="range"].max-range {
-  z-index: 1; 
-}
-
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none; 
-  appearance: none;
-  border-radius: 100%;
-  width: 20px;
-  height: 20px; 
-  background: #e2dfd9;
-  cursor: pointer; 
-  z-index: 3; 
-}
-
-input[type="range"]::-moz-range-thumb {
-  border-radius: 100%;
-  width: 10px; 
-  height: 10px;
-  background: #b88e2f;
-  cursor: pointer;
-} */
 .range-input {
   position: relative;
   width: 200px; /* Chiều rộng của vùng chứa */
@@ -240,4 +202,54 @@ input[type="range"]::-moz-range-thumb {
   cursor: pointer; /* Con trỏ chuột thành dạng trỏ tay khi hover */
   font-size: 16px;
   color: red; /* Màu sắc của dấu "x" */
+}
+@media (max-width: 1705px) {
+  .icon-filter {
+    margin-left: 77px;
+  }
+}
+@media (max-width: 1200px) {
+  .filter {
+    gap: 29px;
+  }
+}
+/* tablet */
+@media (max-width: 1000px) {
+  .icon-filter {
+    margin-left: 12px;
+  }
+}
+@media (max-width: 900px) {
+  .icon-filter {
+    margin-left: 12px;
+    gap: 6px;
+  }
+}
+@media (max-width: 850px) {
+  .show-page {
+    font-size: 17px;
+  }
+  .filter-name {
+    font-size: 17px;
+  }
+}
+/* mobie */
+@media (max-width: 770px) {
+  .icon-none {
+    display: none;
+  }
+  .filter-name .bi-sliders {
+    margin-right: 1px;
+  }
+}
+@media (max-width: 720px) {
+  .showing-text,
+  .results-text {
+    display: none;
+  }
+}
+@media (max-width: 600px) {
+  .icon-filter {
+    margin-left: -4px;
+  }
 }

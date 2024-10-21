@@ -157,11 +157,24 @@
     gap: 25px;
   }
 }
+
+/*mobie */
+@media (max-width: 655px) {
+  .input-underline {
+    width: 174px;
+    font-size: 14px;
+  }
+}
+@media (max-width: 660px) {
+  .footer-container {
+    padding-left: 24px;
+  }
+}
 @media only screen and (max-width: 600px) {
   .footer-main {
-    gap: 75px;
+    gap: 28px;
   }
   .col-2 {
-    gap: 75px;
+    gap: 25px;
   }
 }

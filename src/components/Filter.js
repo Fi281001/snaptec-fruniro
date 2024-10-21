@@ -31,8 +31,7 @@ export default function Filter({
   const toggleDrawer = () => {
     setIsOpen((prevState) => !prevState);
   };
-  // const [minValue, setMinValue] = useState("500");
-  // const [maxValue, setMaxValue] = useState("2000000");
+
   const [min, setMin] = useState(minValue);
   const [max, setMax] = useState(maxValue);
   const handleMinChange = (event) => {
@@ -45,7 +44,6 @@ export default function Filter({
   const handleMaxChange = (event) => {
     const value = Math.max(Number(event.target.value), min + 1); // Đảm bảo max không nhỏ hơn min + 1
     setMax(value); // Cập nhật giá trị max
-    console.log("max", value);
     onPriceChange(min, value); // Gọi hàm truyền từ component cha
   };
   const debouncedPriceChange = useCallback(
@@ -77,7 +75,7 @@ export default function Filter({
               <input
                 type="range"
                 className="min-range"
-                min="500000"
+                min="150000"
                 max="8000000"
                 step="100"
                 value={minValue}
@@ -87,7 +85,7 @@ export default function Filter({
               <input
                 type="range"
                 className="max-range"
-                min="500000"
+                min="150000"
                 max="8000000"
                 step="100"
                 value={maxValue}
@@ -153,15 +151,17 @@ export default function Filter({
         <span className="filter-name">
           <i className="bi bi-sliders" onClick={toggleDrawer}></i> Filter
         </span>
-        <span>
+        <span className="icon-none">
           <i className="bi bi-grid-fill"></i>
         </span>
-        <span>
+        <span className="icon-none">
           <i className="bi bi-list"></i>
         </span>
         <span className="line">|</span>
         <span className="show-page">
-          Showing 1–{itemsToShow2} of {totalitems} results
+          <span className="showing-text">Showing </span>
+          1–{itemsToShow2} of {totalitems}
+          <span className="results-text"> results</span>
         </span>
       </div>
       <div className="options">

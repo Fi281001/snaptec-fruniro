@@ -32,15 +32,30 @@ export default function Products({
           const validProducts = x.filter(
             (item) => item !== null && item !== undefined
           );
-          const filteredProducts = validProducts.filter((product) => {
-            const priceSale = parseFloat(product?.pricesale.replace(/\./g, ""));
 
-            return priceSale >= minPrice && priceSale <= maxPrice;
-          });
+          // Kiểm tra nếu minPrice và maxPrice không phải null hoặc undefined
+          if (minPrice != null && maxPrice != null) {
+            const filteredProducts = validProducts.filter((product) => {
+              const priceSale = parseFloat(
+                product?.pricesale.replace(/\./g, "")
+              );
+              return priceSale >= minPrice && priceSale <= maxPrice;
+            });
 
-          setProducts(filteredProducts);
-          // setProducts(validProducts); // Cập nhật state với dữ liệu nhận được
-          onLengthChange(response.data.length);
+            // Nếu có sản phẩm hợp lệ sau khi lọc, setProducts thành filteredProducts
+            if (filteredProducts.length > 0) {
+              setProducts(filteredProducts);
+            } else {
+              // Nếu không có sản phẩm nào phù hợp, có thể giữ nguyên validProducts
+              setProducts(validProducts);
+            }
+          } else {
+            // Nếu không lọc theo giá, setProducts là validProducts
+            setProducts(validProducts);
+          }
+
+          // Cập nhật độ dài của mảng
+          onLengthChange(validProducts.length);
         } else {
           console.log("No data available");
         }
@@ -51,7 +66,6 @@ export default function Products({
 
     fetchData();
   }, [onLengthChange, minPrice, maxPrice]);
-  console.log("arr222", products);
 
   let sortedProducts = [...products];
   if (sortOrder === "A-Z") {
@@ -82,9 +96,6 @@ export default function Products({
   const startIndex = (currentPage - 1) * item;
   const currentProducts = sortedProducts.slice(startIndex, startIndex + item);
   const displayedProducts = isShopPage ? currentProducts : limitedProducts;
-  console.log("arr", displayedProducts);
-  console.log("assss", limitedProducts);
-  console.log("host", isShopPage);
 
   return (
     <>

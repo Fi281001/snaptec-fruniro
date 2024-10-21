@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectTotalQuantity, getCartAsync } from "../redux/CartSlice";
 import { getAuth, signOut } from "firebase/auth"; // Import signOut để đăng xuất
 import { toast } from "react-toastify";
-
+import Drawer from "react-modern-drawer";
 export default function Header() {
   const [isCartVisible, setIsCartVisible] = useState(false);
   const cartRef = useRef(null);
@@ -97,6 +97,11 @@ export default function Header() {
     (total, item) => total + item.quantity,
     0
   );
+  // drawer
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleDrawer = () => {
+    setIsOpen((prevState) => !prevState);
+  };
 
   return (
     <>
@@ -104,10 +109,63 @@ export default function Header() {
       <div className={`overlay ${isCartVisible ? "show" : ""}`} />
 
       <div className="header">
+        <Drawer
+          open={isOpen}
+          onClose={toggleDrawer}
+          direction="left"
+          className="bla bla bla"
+        >
+          <div>
+            {" "}
+            <div className="logo2">
+              <img src={logo} alt="" />
+              <h2>Funiro</h2>
+            </div>
+            <div className="nav2">
+              <ul>
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
+                <li>
+                  <Link to="/shop">Shop</Link>
+                </li>
+                <li>
+                  <Link to="/Blog">Blog</Link>
+                </li>
+                <li>
+                  <Link to="/contact">Contact</Link>
+                </li>
+                <li>
+                  <NavLink
+                    to="/login"
+                    onClick={isLoggedIn ? handleLogout : null}
+                  >
+                    {isLoggedIn ? (
+                      <i className="bi bi-box-arrow-right">Log out</i>
+                    ) : (
+                      // Hiển thị icon nếu đã đăng nhập
+                      <i className="bi bi-person">Login</i> // Hiển thị chữ Login nếu chưa đăng nhập
+                    )}
+                  </NavLink>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </Drawer>
         <div className="header-nav">
-          <div className="logo">
-            <img src={logo} alt="" />
-            <h2>Funiro</h2>
+          <div className="lg">
+            <div className="logo">
+              <span className="menu">
+                {" "}
+                <i
+                  className="bi bi-list"
+                  onClick={toggleDrawer}
+                  title="menu"
+                ></i>
+              </span>
+              <img src={logo} alt="" />
+              <h2>Funiro</h2>
+            </div>
           </div>
 
           <div className="nav">
@@ -128,15 +186,16 @@ export default function Header() {
           </div>
 
           <div className="nav-icon">
-            <NavLink to="/login" onClick={isLoggedIn ? handleLogout : null}>
-              {isLoggedIn ? (
-                <i className="bi bi-box-arrow-right"></i>
-              ) : (
-                // Hiển thị icon nếu đã đăng nhập
-                <i className="bi bi-person"></i> // Hiển thị chữ Login nếu chưa đăng nhập
-              )}
-            </NavLink>
-
+            <div class="login-icon">
+              <NavLink to="/login" onClick={isLoggedIn ? handleLogout : null}>
+                {isLoggedIn ? (
+                  <i className="bi bi-box-arrow-right"></i>
+                ) : (
+                  // Hiển thị icon nếu đã đăng nhập
+                  <i className="bi bi-person"></i> // Hiển thị chữ Login nếu chưa đăng nhập
+                )}
+              </NavLink>
+            </div>
             <i className="bi bi-search" title="search"></i>
             <i className="bi bi-heart" title="heart"></i>
 

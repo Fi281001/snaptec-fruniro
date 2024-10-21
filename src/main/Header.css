@@ -12,7 +12,9 @@
   padding: 0;
   /* position: relative; */
 }
-
+.menu {
+  display: none;
+}
 .header-nav {
   width: 100%; /* Hoặc thay đổi theo kích thước bạn mong muốn */
   height: 41px;
@@ -160,6 +162,40 @@
   font-size: 11px;
   font-weight: bold;
 }
+.logo2 {
+  margin-top: 60px;
+  text-align: center;
+}
+.nav2 {
+  background-color: none; /* Màu nền cho thanh điều hướng */
+  padding: 10px 0; /* Khoảng cách trên dưới */
+  width: 100%; /* Độ rộng của thanh điều hướng */
+}
+
+.nav2 ul {
+  list-style-type: none; /* Xóa bullet points của ul */
+  margin: 0;
+  padding: 0;
+}
+
+.nav2 ul li {
+  margin: 10px 0; /* Khoảng cách giữa các mục theo chiều dọc */
+}
+
+.nav2 ul li a {
+  display: block; /* Giúp liên kết chiếm toàn bộ chiều rộng của li */
+  color: black; /* Màu chữ */
+  text-decoration: none; /* Xóa gạch chân */
+  font-size: 28px; /* Kích thước chữ */
+  padding: 10px 15px; /* Khoảng cách bên trong liên kết */
+  /* Màu nền cho từng mục */
+  transition: background-color 0.3s ease; /* Hiệu ứng hover */
+}
+
+.nav2 ul li a:hover {
+  color: #b88e2f;
+  border-radius: 5px; /* Bo tròn góc khi hover */
+}
 
 @media ((max-width: 1350px)) {
   .nav-icon {
@@ -175,23 +211,39 @@
   .nav ul {
     display: none;
   }
-  .logo {
-    display: grid;
-  }
+
   .logo h2 {
     margin-top: 0px;
-    margin-left: -20px;
+    margin-left: 0px;
+    margin-bottom: 0px;
+  }
+  .login-icon {
+    display: none;
+  }
+  .menu {
+    display: block;
+    margin-right: 10px;
+  }
+  .logo {
+    margin-left: 27px;
   }
 }
 @media only screen and (max-width: 600px) {
   .nav ul {
     display: none;
   }
-  .logo {
-    display: grid;
+
+  .login-icon {
+    display: none;
   }
-  .logo h2 {
-    margin-top: 0px;
-    margin-left: -20px;
+}
+
+@media ((max-width: 600px)) {
+  .logo {
+    margin-left: 27px;
+  }
+  .menu {
+    display: block;
+    margin-right: 10px;
   }
 }
