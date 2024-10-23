@@ -13,7 +13,7 @@ export default function Filter({
   maxValue, // Thêm prop maxValue
   onPriceChange,
 }) {
-  const totalitems = length; // Sử dụng length trực tiếp để tính totalitems
+  const totalitems = length + 1; // Sử dụng length trực tiếp để tính totalitems
   const [itemsToShow, setItemsToShow] = useState(12); // Giá trị mặc định là 12
 
   const handleShowChange = (event) => {
@@ -37,7 +37,6 @@ export default function Filter({
   const handleMinChange = (event) => {
     const value = Math.min(Number(event.target.value), max - 1); // Đảm bảo min không lớn hơn max - 1
     setMin(value); // Cập nhật giá trị min
-    console.log("min", value);
     onPriceChange(value, max); // Gọi hàm truyền từ component cha
   };
 
@@ -59,6 +58,30 @@ export default function Filter({
       debouncedPriceChange.cancel();
     };
   }, [min, max, debouncedPriceChange]);
+
+  // color
+  const [selectedColor, setSelectedColor] = useState("");
+
+  const handleCircleClick = (color) => {
+    setSelectedColor(color);
+  };
+
+  const handleSubmit = () => {
+    if (selectedColor) {
+      alert(`Bạn đã chọn màu ${selectedColor}`);
+    } else {
+      alert("Hãy chọn một màu trước khi submit!");
+    }
+  };
+
+  const circleStyle = (color) => ({
+    width: "30px",
+    height: "30px",
+    borderRadius: "100%",
+    backgroundColor: color,
+    border: selectedColor === color ? "3px solid blue" : "none",
+    cursor: "pointer",
+  });
   return (
     <div className="filter">
       <Drawer
@@ -102,54 +125,39 @@ export default function Filter({
             <div className="checkbox-main">
               <div className="">
                 <label>
-                  <input type="checkbox" value="blue" />
                   <div
-                    style={{
-                      width: "30px",
-                      height: "30px",
-                      borderRadius: "100%",
-                      backgroundColor: "#816dfa",
-                    }}
+                    style={circleStyle("#816dfa")}
+                    onClick={() => handleCircleClick("#816dfa")}
                   ></div>
                 </label>
               </div>
               <div>
                 <label>
-                  <input type="checkbox" value="orange" />
-
                   <div
-                    style={{
-                      width: "30px",
-                      height: "30px",
-                      borderRadius: "100%",
-                      backgroundColor: "#b88e2f",
-                    }}
+                    style={circleStyle("#b88e2f")}
+                    onClick={() => handleCircleClick("#b88e2f")}
                   ></div>
                 </label>
               </div>
               <div>
                 <label>
-                  <input type="checkbox" value="black" />
                   <div
-                    style={{
-                      width: "30px",
-                      height: "30px",
-                      borderRadius: "100%",
-                      backgroundColor: "black",
-                    }}
+                    style={circleStyle("black")}
+                    onClick={() => handleCircleClick("black")}
                   ></div>
                 </label>
               </div>
             </div>
           </div>
           <div className="btaction">
-            <button>Apply</button>
+            <button onClick={handleSubmit}>Apply</button>
           </div>
         </div>
       </Drawer>
       <div className="icon-filter">
         <span className="filter-name">
-          <i className="bi bi-sliders" onClick={toggleDrawer}></i> Filter
+          <i className="bi bi-sliders" onClick={toggleDrawer}></i>
+          <span class="span-filter">filter</span>
         </span>
         <span className="icon-none">
           <i className="bi bi-grid-fill"></i>

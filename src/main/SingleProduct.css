@@ -91,7 +91,7 @@
 }
 
 .product-detail__p {
-  width: 424px;
+  width: 100%;
   height: 80px;
   font-family: "Poppins";
   font-size: 13px;
@@ -113,6 +113,8 @@
 
 .display-flex {
   display: flex;
+  align-items: center;
+
   gap: 15px;
   margin-top: 15px;
 }
@@ -132,7 +134,11 @@
   text-align: left;
   color: #ffffff;
 }
-
+.product-detail__size-L:hover,
+.product-detail__size-XL:hover,
+.product-detail__size-XS:hover {
+  cursor: pointer;
+}
 .product-detail__size-XL {
   width: 30px;
   height: 30px;
@@ -164,7 +170,11 @@
   text-align: left;
   color: #000000;
 }
-
+.product-detail__color-yellow:hover,
+.product-detail__color-black:hover,
+.product-detail__color-blue:hover {
+  cursor: pointer;
+}
 .product-detail__color-blue {
   width: 30px;
   height: 30px;
@@ -212,6 +222,7 @@
 }
 .cart:hover {
   background-color: #b88e2f;
+  cursor: pointer;
 }
 .compare {
   width: 37%;
@@ -229,6 +240,7 @@
 }
 .compare:hover {
   background-color: #b88e2f;
+  cursor: pointer;
 }
 
 .display-flex {
@@ -396,6 +408,7 @@ hr {
 .bi-dash:hover,
 .bi-plus:hover {
   color: #b88e2f !important;
+  cursor: pointer;
   /* color: red; */
 }
 .product-detail__h2 {
@@ -417,4 +430,56 @@ hr {
 .product-detail__color-black.selected,
 .product-detail__color-yellow.selected {
   border: 3px solid #007bff; /* Hoặc màu bạn muốn */
+}
+
+@media (max-width: 1200px) {
+  .product-detail__bg-product-image {
+    height: 416px;
+  }
+}
+@media (max-width: 900px) {
+  .product-detail__thumbnail {
+    display: none;
+  }
+  .product-detail__bg-product-image {
+    width: 50%;
+  }
+}
+@media (max-width: 850px) {
+  .cart {
+    font-size: 14px;
+  }
+  .compare {
+    font-size: 14px;
+  }
+}
+@media (max-width: 700px) {
+  .hr-deatail {
+    margin-top: 384px;
+  }
+
+  .product-detail__group {
+    flex-direction: column;
+  }
+  .product-detail__bg-product-image {
+    width: 100%;
+  }
+  .product-detail__bg-product-image > img {
+    height: 400px;
+    padding: 20px;
+    width: 100%;
+  }
+  .product-detail__product-content {
+    padding-left: 20px;
+    width: 100%;
+  }
+  .product-detail {
+    padding-top: 0px;
+  }
+  .display-flex {
+    gap: 10px;
+  }
+  .product-detail__h1 {
+    font-size: 60px;
+  }
 }

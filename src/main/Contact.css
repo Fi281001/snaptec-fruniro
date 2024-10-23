@@ -144,3 +144,8 @@
     width: 100%;
   }
 }
+@media (max-width: 600px) {
+  .container-contact__group-right {
+    margin-top: 71px;
+  }
+}

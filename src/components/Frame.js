@@ -29,7 +29,7 @@ export default function Frame() {
           <span>Order over 150 $</span>
         </div>
       </div>
-      <div className="frame-block">
+      <div className="frame-block support">
         <img className="icon-image" alt="" src={Support} />
         <div>
           <h3>24 / 7 Support</h3>

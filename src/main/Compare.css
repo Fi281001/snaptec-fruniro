@@ -204,12 +204,20 @@ td {
 .modals-containar span {
   font-size: 20px;
   padding-left: 25px;
+  max-width: 150px; /* Đặt chiều rộng tối đa */
+  white-space: nowrap; /* Không cho phép xuống dòng */
+  overflow: hidden; /* Ẩn phần văn bản bị tràn */
+  text-overflow: ellipsis; /* Hiển thị dấu ba chấm */
+  vertical-align: top;
 }
 .bt-modals {
   width: 100%;
   border-radius: 10px;
   background-color: #b88e2f;
   line-height: 20px;
+  color: white;
+  border: none;
+  padding: 4px;
 }
 .bt-b {
   width: 100%;
@@ -237,6 +245,9 @@ td {
   background-color: #b88e2f;
   top: 50%;
   left: 50%;
+  color: white;
+  border: none;
+  padding: 4px;
 }
 .scrollable {
   overflow-y: auto;

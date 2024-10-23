@@ -52,3 +52,8 @@
 .range-item > .bedroom {
   margin-left: -2px;
 }
+@media (max-width: 560px) {
+  .range-item {
+    gap: 10px;
+  }
+}

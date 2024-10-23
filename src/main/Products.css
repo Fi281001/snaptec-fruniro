@@ -35,12 +35,15 @@
 }
 
 .product-title {
+  width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-size: 16px;
   font-weight: 500;
   line-height: 24px;
   color: #898989;
 }
-
 .price {
   display: flex;
   /* Sử dụng Flexbox để căn chỉnh các phần tử bên trong */
@@ -186,6 +189,9 @@
   font-weight: 600;
   line-height: 24px;
 }
+.middle span:hover {
+  cursor: pointer;
+}
 .middle span i {
   margin-right: 3px;
 }
@@ -218,11 +224,11 @@
 @media (max-width: 1200px) {
   .Products {
     gap: 20px;
-    padding-left: 254px;
+    padding-left: 85px;
     padding-right: 15px;
   }
   .product-item {
-    width: 35%;
+    width: 45%;
   }
   .product-price {
     font-size: 13px;
@@ -231,25 +237,13 @@
     font-size: 14px;
   }
 }
-@media (max-width: 1000px) {
-  .Products {
-    padding-left: 180px;
-  }
-}
-@media (max-width: 1000px) {
-  .product-item {
-    width: 45%;
-  }
-  .Products {
-    padding-left: 85px;
-  }
-}
+
 @media (max-width: 800px) {
   .product-item {
     width: 47%;
   }
   .Products {
-    padding-left: 54px;
+    padding-left: 31px;
   }
 }
 @media (max-width: 700px) {
@@ -257,7 +251,12 @@
     width: 47%;
   }
   .Products {
-    padding-left: 54px;
+    padding-left: 25xp;
+  }
+}
+@media (max-width: 500px) {
+  .product-item {
+    width: 100%;
   }
 }
 @media only screen and (min-width: 600px) {

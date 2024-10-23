@@ -167,6 +167,7 @@ export const SingleProduct = () => {
               alt="product"
             />
           </div>
+
           <div className="product-detail__product-content">
             <h1 className="product-detail__h1">{product?.name}</h1>
             <h2 className="product-detail__h2_sale">{product?.pricesale}</h2>
@@ -216,9 +217,9 @@ export const SingleProduct = () => {
                 XS
               </div>
             </div>
-
-            <p className="product-detail__p-size-color">Color</p>
+            <div></div>
             <div className="display-flex">
+              <p className="product-detail__p-size-color">Color</p>
               <div
                 className={`product-detail__color-blue ${
                   color === "blue" ? "selected" : ""
@@ -287,7 +288,7 @@ export const SingleProduct = () => {
           </div>
         </div>
       </div>
-      <hr />
+      <hr className="hr-deatail" />
       <div className="description-information-review">
         <div className="df">
           <span className="description">Description</span>

@@ -57,3 +57,22 @@ h3 {
     font-size: 15px;
   }
 }
+@media (max-width: 550px) {
+  .frame {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: center;
+    height: 250px;
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+  .frame-block h3 {
+    font-size: 13px;
+  }
+  .frame-block span {
+    font-size: 12px;
+  }
+  .support {
+    margin-right: 23px;
+  }
+}

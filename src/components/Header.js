@@ -124,16 +124,24 @@ export default function Header() {
             <div className="nav2">
               <ul>
                 <li>
-                  <Link to="/">Home</Link>
+                  <Link to="/" onClick={toggleDrawer}>
+                    Home
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/shop">Shop</Link>
+                  <Link to="/shop" onClick={toggleDrawer}>
+                    Shop
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/Blog">Blog</Link>
+                  <Link to="/Blog" onClick={toggleDrawer}>
+                    Blog
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/contact">Contact</Link>
+                  <Link to="/contact" onClick={toggleDrawer}>
+                    Contact
+                  </Link>
                 </li>
                 <li>
                   <NavLink
@@ -141,10 +149,10 @@ export default function Header() {
                     onClick={isLoggedIn ? handleLogout : null}
                   >
                     {isLoggedIn ? (
-                      <i className="bi bi-box-arrow-right">Log out</i>
+                      <i className="bi bi-box-arrow-right"> Log out</i>
                     ) : (
                       // Hiển thị icon nếu đã đăng nhập
-                      <i className="bi bi-person">Login</i> // Hiển thị chữ Login nếu chưa đăng nhập
+                      <i className="bi bi-person"> Login</i> // Hiển thị chữ Login nếu chưa đăng nhập
                     )}
                   </NavLink>
                 </li>

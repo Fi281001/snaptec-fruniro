@@ -41,6 +41,7 @@
 .logo h2 {
   font-size: 34px;
   margin-left: 20px;
+  margin-top: 10px;
 }
 
 .nav {
@@ -84,7 +85,9 @@
   gap: 38px; /* Khoảng cách giữa các biểu tượng */
   justify-content: space-between;
 }
-
+.nav-icon:hover {
+  cursor: pointer;
+}
 .nav-icon {
   display: flex;
   align-items: center;
@@ -198,8 +201,12 @@
 }
 
 @media ((max-width: 1350px)) {
+  .header {
+    justify-content: flex-start;
+  }
   .nav-icon {
-    margin-right: 0px;
+    margin-right: -43px;
+    gap: 22px;
   }
 }
 @media ((max-width: 1110px)) {
@@ -223,6 +230,7 @@
   .menu {
     display: block;
     margin-right: 10px;
+    margin-left: 60px;
   }
   .logo {
     margin-left: 27px;
@@ -232,15 +240,40 @@
   .nav ul {
     display: none;
   }
-
+  .logo {
+    margin-left: 27px;
+  }
   .login-icon {
     display: none;
+  }
+  .logo h2 {
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-bottom: 0px;
   }
 }
 
 @media ((max-width: 600px)) {
   .logo {
     margin-left: 27px;
+  }
+  .menu {
+    display: block;
+    margin-right: 10px;
+    margin-left: 60px;
+  }
+}
+
+@media ((max-width: 500px)) {
+  .logo {
+    margin-left: 27px;
+  }
+  .logo img {
+    width: 39px;
+  }
+  .logo h2 {
+    font-size: 25px;
+    margin-left: 0px;
   }
   .menu {
     display: block;

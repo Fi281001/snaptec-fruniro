@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../main/Footer.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
@@ -16,13 +16,35 @@ export default function Footer() {
       navigate("/");
     }
   };
+  const [placeholderText, setPlaceholderText] = useState(
+    "Enter Your Email Address"
+  );
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 400) {
+        setPlaceholderText("Enter Your Email");
+      } else {
+        setPlaceholderText("Enter Your Email Address");
+      }
+    };
+    handleResize();
+
+    // Lắng nghe sự kiện resize
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup khi component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   return (
     <>
       <div className="footer">
         <div className="footer-container">
           <div className="footer-main">
             <div className="col-1">
-              <h2>Funiro.</h2>
+              <h2>Funiro</h2>
               <span className="span1">
                 400 University Drive Suite 200 Coral Gables,
               </span>
@@ -71,7 +93,7 @@ export default function Footer() {
                 <input
                   type="text"
                   className="input-underline"
-                  placeholder="Enter Your Email Address"
+                  placeholder={placeholderText}
                 />
                 <button className="button-underline">SUBSCRIBE</button>
               </div>

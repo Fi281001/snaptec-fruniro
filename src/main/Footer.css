@@ -170,11 +170,54 @@
     padding-left: 24px;
   }
 }
+@media (max-width: 510px) {
+  .input-underline {
+    width: 170px;
+  }
+}
+@media (max-width: 500px) {
+  .input-underline {
+    width: 170px;
+  }
+}
 @media only screen and (max-width: 600px) {
   .footer-main {
-    gap: 28px;
+    gap: 12px;
   }
   .col-2 {
-    gap: 25px;
+    gap: 10px;
+  }
+}
+@media (max-width: 500px) {
+  .col-1 h2 {
+    font-size: 25px;
+    margin-top: -2px;
+  }
+  .col-1 span {
+    font-size: 12px;
+  }
+  .flex-direction-row {
+    gap: 2px;
+  }
+  .title-payment,
+  .title-returns,
+  .title-privacy,
+  .title-blog,
+  .title-contact,
+  .title-home,
+  .title-shop {
+    font-size: 14px;
+  }
+  .input-underline {
+    width: 150px;
+    font-size: 12px;
+  }
+  .input-underline::placeholder {
+    content: "Enter your email";
+  }
+}
+@media (max-width: 400px) {
+  .input-underline {
+    width: 100px;
   }
 }

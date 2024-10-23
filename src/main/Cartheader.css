@@ -54,7 +54,12 @@
   margin-bottom: 5px;
   /* Khoảng cách giữa name và các thẻ p */
 }
-
+.span-name {
+  width: 100px; /* Chiều rộng cố định của container */
+  white-space: nowrap; /* Không cho phép xuống dòng */
+  overflow: hidden; /* Ẩn phần văn bản tràn */
+  text-overflow: ellipsis; /* Hiển thị dấu ba chấm */
+}
 .cart-body > div > div {
   display: flex;
   justify-content: space-between;

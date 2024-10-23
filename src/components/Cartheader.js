@@ -118,7 +118,8 @@ export default function Cartheader({ onClose }) {
                   <img alt={item.name} src={item.imgSrc} />{" "}
                   {/* Hiển thị hình ảnh sản phẩm */}
                   <div>
-                    <span>{item.name}</span> {/* Tên sản phẩm */}
+                    <span className="span-name">{item.name}</span>{" "}
+                    {/* Tên sản phẩm */}
                     <div>
                       <p>{item.quantity}</p> {/* Số lượng sản phẩm */}
                       <p>x</p>

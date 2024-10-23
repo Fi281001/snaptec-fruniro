@@ -32,6 +32,6 @@
   transition: background-color 0.3s;
 }
 .page-item:disabled {
-  opacity: 0.5;
+  opacity: 0;
   cursor: not-allowed;
 }

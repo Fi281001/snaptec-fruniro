@@ -35,6 +35,9 @@ i {
   width: 19px;
   height: 17px;
 }
+.filter span i:hover {
+  cursor: pointer;
+}
 .filter-name {
   font-weight: 400;
   font-size: 20px;
@@ -59,12 +62,16 @@ i {
   display: flex; /* Sử dụng Flexbox */
   justify-content: center; /* Canh giữa theo chiều ngang */
   align-items: center; /* Canh giữa theo chiều dọc */
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 30px;
   color: rgba(159, 159, 159, 1);
   padding: 10px;
   transition: border-color 0.3s ease;
+}
+.show-option,
+.short:hover {
+  cursor: pointer;
 }
 .short:focus,
 .show-option:focus {
@@ -160,6 +167,9 @@ input[type="range"]::-moz-range-thumb {
 }
 .btaction > button {
   width: 100%;
+  padding: 5px;
+  color: white;
+  border: none;
   border-radius: 5px;
   background-color: #b88e2f;
 }
@@ -251,5 +261,29 @@ input[type="range"]::-moz-range-thumb {
 @media (max-width: 600px) {
   .icon-filter {
     margin-left: -4px;
+  }
+  .short {
+    width: 116px;
+  }
+}
+@media (max-width: 530px) {
+  .span-filter {
+    display: none;
+  }
+}
+@media (max-width: 530px) {
+  .span-filter {
+    display: none;
+  }
+}
+@media (max-width: 500px) {
+  .filter {
+    flex-direction: column;
+    height: 130px;
+    gap: 8px;
+  }
+  .showing-text,
+  .results-text {
+    display: inline-block;
   }
 }
