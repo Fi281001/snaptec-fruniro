@@ -182,7 +182,11 @@
 .swal2-popup {
   z-index: 1002 !important; /* Giá trị cao nhất để chắc chắn luôn nổi lên trên */
 }
-
+@media (max-width: 1400px) {
+  .cart-list {
+    height: 50vh;
+  }
+}
 @media ((max-width: 1500px)) {
   .cart-buttons {
     gap: 7px;
@@ -209,5 +213,32 @@
   .total-name {
     font-size: 12px;
     text-align: center;
+  }
+}
+@media ((max-width: 1024px)) {
+  .cart-list {
+    height: 40vh;
+  }
+}
+@media ((max-width: 500px)) {
+  .cart-body img {
+    width: 22%;
+  }
+  .cart-body > div > span {
+    font-size: 14px;
+  }
+  .cart-body > div > div > p {
+    font-size: 14px;
+  }
+}
+@media ((max-width: 400px)) {
+  .cart-body img {
+    width: 22%;
+  }
+  .cart-body > div > span {
+    font-size: 12px;
+  }
+  .cart-body > div > div > p {
+    font-size: 12px;
   }
 }

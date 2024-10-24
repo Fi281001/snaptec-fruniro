@@ -483,3 +483,33 @@ hr {
     font-size: 60px;
   }
 }
+@media (max-width: 600px) {
+  .description,
+  .information,
+  .review {
+    font-size: 20px;
+  }
+  .df {
+    gap: 30px;
+  }
+}
+@media (max-width: 500px) {
+  .description,
+  .information,
+  .review {
+    font-size: 16px;
+  }
+  .df {
+    gap: 20px;
+  }
+}
+@media (max-width: 400px) {
+  .description,
+  .information,
+  .review {
+    font-size: 14px;
+  }
+  .df {
+    gap: 12px;
+  }
+}

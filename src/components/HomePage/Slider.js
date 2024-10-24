@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Living from "../../image/Image-living room.png";
 import Bedroom from "../../image/Mask Group (1).png";
 import Dining from "../../image/Mask Group.png";
-
+import { useNavigate } from "react-router-dom";
 export default function Slider() {
   const settings = {
     dots: true,
@@ -26,7 +26,10 @@ export default function Slider() {
     { id: 5, src: Bedroom },
     { id: 6, src: Dining },
   ];
-
+  const nav = useNavigate();
+  const handlebutton = () => {
+    nav("/shop");
+  };
   return (
     <div className="slider-main">
       <div className="slider-title">
@@ -36,7 +39,13 @@ export default function Slider() {
             Our designer already made a lot of beautiful prototipe of rooms that
             inspire you
           </p>
-          <button>Explore More</button>
+          <button
+            onClick={() => {
+              handlebutton();
+            }}
+          >
+            Explore More
+          </button>
         </div>
       </div>
       <div className="slider-content">

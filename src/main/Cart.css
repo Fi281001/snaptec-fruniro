@@ -202,3 +202,44 @@ input[type="number"]::-webkit-inner-spin-button {
   background-color: #ccc; /* Màu nền cho nút vô hiệu hóa */
   cursor: not-allowed; /* Con trỏ chuột cho nút vô hiệu hóa */
 }
+
+/* mobie */
+@media (max-width: 700px) {
+  .content-table tbody tr th img {
+    width: 75px;
+    height: 75px;
+  }
+  .content-table th {
+    font-size: 14px;
+  }
+  .content-table td {
+    font-size: 14px;
+  }
+}
+@media (max-width: 600px) {
+  .content-table tbody tr th img {
+    width: 45px;
+    height: 45px;
+  }
+  .content-table th {
+    font-size: 14px;
+  }
+  .content-table td {
+    font-size: 14px;
+  }
+  .set-width-height {
+    padding: 67px 10px;
+  }
+}
+/* @media (max-width: 450px) {
+  .content-table tbody tr th img {
+    width: 45px;
+    height: 45px;
+  }
+  .content-table th {
+    font-size: 10px;
+  }
+  .content-table td {
+    font-size: 10px;
+  }
+} */

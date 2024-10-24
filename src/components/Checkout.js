@@ -177,10 +177,35 @@ export default function Checkout() {
                 <span style={{ color: "red" }}>{errorMessage}</span>
               )}
             </div>
+            {/* Nội dung hiển thị sản phẩm và tổng giá trị */}
             <div className="container-contact__group-left2">
-              {/* Nội dung hiển thị sản phẩm và tổng giá trị */}
+              <div className="container-right2">
+                <div className="container-right__cart-totals2">Cart Totals</div>
+                <h3 style={{ marginBottom: "10px" }}>Products</h3>
+                {reversedCartItems.map((item, index) => (
+                  <p style={{ fontSize: "20px", color: "coral" }} key={item.id}>
+                    {item.name} x {item.quantity} x Rs.
+                    {(function () {
+                      const priceString = item.pricesale.replace(/\./g, "");
+                      const priceNumber = parseFloat(
+                        priceString.replace(/,/g, ".")
+                      );
+                      return priceNumber.toLocaleString("vi-VN");
+                    })()}
+                  </p>
+                ))}
+                <div className="container-right__display-flex2">
+                  <span>Total Quantity</span>
+                  <p>{totalQuantity}</p>
+                </div>
+                <div className="container-right__display-flex2">
+                  <span>SubTotal</span>
+                  <p className="container-right__p2">Rs.{formattedSubTotal}</p>
+                </div>
+              </div>
             </div>
           </div>
+
           <div className="button-div">
             <button type="submit" className="submit">
               Confirm Application
