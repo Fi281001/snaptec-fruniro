@@ -263,7 +263,13 @@ export const LoginRegister = () => {
               onChange={(e) => setPasswordAgain(e.target.value)}
             />
             <button type="submit">Sign Up</button>
-            <p id="login2" className="sign-in-submit">
+            <p
+              id="login2"
+              className="sign-in-submit"
+              onClick={() => {
+                setIsActive(false);
+              }}
+            >
               Already have an account? Login
             </p>
           </form>
@@ -292,7 +298,13 @@ export const LoginRegister = () => {
               Forgot Your Password?
             </a>
             <button type="submit">Sign In</button>
-            <p id="register2" className="sign-up-submit">
+            <p
+              id="register2"
+              className="sign-up-submit"
+              onClick={() => {
+                setIsActive(true);
+              }}
+            >
               Don't have an account? Sign up
             </p>
             <span className="span-orSignInUsing">Or Sign In Using: </span>

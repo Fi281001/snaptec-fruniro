@@ -2,7 +2,10 @@
 .compare-cart {
   padding: 100px;
 }
-
+.compare-table-wrapper {
+  overflow-x: auto;
+  width: 100%;
+}
 .compare-table {
   width: 100%; /* Chiều rộng bảng */
   border-collapse: collapse; /* Gộp đường viền */
@@ -23,4 +26,13 @@
   width: 100px; /* Chiều rộng hình ảnh */
   height: auto; /* Chiều cao tự động */
   border-radius: 4px; /* Bo góc cho hình ảnh */
+}
+@media (max-width: 700px) {
+  .compare-cart {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .compare-title {
+    font-size: 25px;
+  }
 }

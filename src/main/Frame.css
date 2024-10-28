@@ -45,7 +45,7 @@ h3 {
     height: 40px;
   }
   .frame-block h3 {
-    font-size: 23px;
+    font-size: 18px;
   }
 }
 @media (max-width: 600px) {
