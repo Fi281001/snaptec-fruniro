@@ -266,3 +266,80 @@ td {
 .scrollable::-webkit-scrollbar-track {
   background: #f1f1f1; /* Màu nền của vùng thanh cuộn */
 }
+.plese-chose {
+  color: red;
+  padding-top: 20px;
+  text-align: center;
+  font-size: 30px;
+}
+/* tablet */
+@media (max-width: 1000px) {
+  .group-1 > span {
+    font-size: 20px;
+  }
+  .view-more {
+    font-size: 16px;
+  }
+  .compare-table__th-td,
+  .compare-table__table > tr > td {
+    font-size: 16px;
+  }
+  .button-add-to-cart {
+    font-size: 16px;
+    padding: 15px 15px;
+  }
+}
+@media (max-width: 800px) {
+  .group-1 {
+    display: none;
+  }
+  .group-2,
+  .group-3 {
+    width: 35%;
+  }
+  .bt-b {
+    font-size: 12px;
+  }
+  .group-3 > p {
+    font-size: 14px;
+  }
+}
+@media (max-width: 700px) {
+  .group-1 {
+    display: none;
+  }
+  .group-2,
+  .group-3 {
+    width: 40%;
+  }
+  .bt-b {
+    font-size: 12px;
+  }
+  .container-compare {
+    gap: 0;
+  }
+}
+@media (max-width: 600px) {
+  .compare-table__th-td,
+  .compare-table__table > tr > td {
+    font-size: 12px;
+  }
+  .container-compare {
+    padding: 21px 15px;
+  }
+  .button-add-to-cart {
+    font-size: 12px;
+  }
+  .compare-table {
+    overflow-x: auto;
+  }
+  .modals-containar span {
+    font-size: 12px;
+    padding-left: 0;
+    max-width: 90px;
+  }
+  .conpare-but {
+    font-size: 10px;
+    width: 25%;
+  }
+}

@@ -14,13 +14,6 @@ export default function Cartheader({ onClose }) {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cart); // Lấy danh sách items từ Redux store
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // const [cartlogin, setCartlogin] = useState(() => {
-  //   const storedItems = localStorage.getItem("cartlogin");
-  //   return storedItems ? JSON.parse(storedItems) : [];
-  // });
-  // useEffect(() => {
-  //   localStorage.setItem("cartlogin", JSON.stringify(cartlogin));
-  // }, [cartlogin]);
 
   useEffect(() => {
     const user = localStorage.getItem("user");

@@ -295,3 +295,53 @@
 .group-icon-input {
   display: flex;
 }
+.sign-in-submit,
+.sign-up-submit {
+  display: none;
+  color: #5c6bc0;
+}
+@media (max-width: 900px) {
+  .sign-up-submit {
+    display: block;
+  }
+  .sign-in-submit {
+    display: block;
+  }
+  .toggle-container {
+    display: none;
+  }
+
+  .sign-in {
+    width: 100%;
+  }
+  .container-login-register form {
+    padding: 100px 30px;
+  }
+  .social-icons {
+    margin-bottom: 70px;
+  }
+  .container-login-register.active .sign-up {
+    transform: none;
+    width: 100%;
+  }
+  .title-login {
+    margin-top: 60px;
+    font-size: 28px;
+  }
+  .container-login-register span {
+    font: 12px;
+  }
+  .container-login-register p {
+    margin: 0;
+  }
+  .container-login-register a {
+    font-size: 12px;
+    margin: 7px 0 10px;
+  }
+  .social-icons a {
+    margin: 0 13px;
+  }
+  .h1-create-account {
+    font-size: 28px;
+  }
+}

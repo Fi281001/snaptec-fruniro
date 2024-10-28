@@ -9,21 +9,21 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 600,
-  bgcolor: "background.paper",
-  border: "1px solid #000",
-  boxShadow: 24,
-  p: 4,
-  maxHeight: 600, // Sửa max-height thành maxHeight
-  overflowY: "auto",
-  borderRadius: 4,
-  paddingRight: "40px",
-};
+// const style = {
+//   position: "absolute",
+//   top: "50%",
+//   left: "50%",
+//   transform: "translate(-50%, -50%)",
+//   width: 600,
+//   bgcolor: "background.paper",
+//   border: "1px solid #000",
+//   boxShadow: 24,
+//   p: 4,
+//   maxHeight: 600, // Sửa max-height thành maxHeight
+//   overflowY: "auto",
+//   borderRadius: 4,
+//   paddingRight: "40px",
+// };
 const Compare = () => {
   const [products, setProducts] = useState([]);
   const { productId } = useParams();
@@ -88,6 +88,31 @@ const Compare = () => {
       toast.error("No data available");
       console.error("Product ID is undefined. Cannot navigate.");
     }
+  };
+  const [width, setWidth] = useState(window.innerWidth < 600 ? 350 : 600);
+  const [height, setHeight] = useState(window.innerWidth < 600 ? 350 : 600);
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(window.innerWidth < 600 ? 350 : 600);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: width,
+    bgcolor: "background.paper",
+    border: "1px solid #000",
+    boxShadow: 24,
+    p: 4,
+    maxHeight: height, // Sửa max-height thành maxHeight
+    overflowY: "auto",
+    borderRadius: 4,
+    paddingRight: "40px",
   };
   return (
     <>
@@ -165,16 +190,7 @@ const Compare = () => {
               </div>
             </>
           ) : (
-            <p
-              style={{
-                color: "red",
-                paddingTop: "20px",
-                textAlign: "center",
-                fontSize: "30px",
-              }}
-            >
-              Please select product
-            </p> // Thông báo nếu chưa chọn sản phẩm
+            <p className="plese-chose">Please select product</p> // Thông báo nếu chưa chọn sản phẩm
           )}
         </div>
         <div className="group-4">
@@ -196,37 +212,37 @@ const Compare = () => {
             <td>Sales Package</td>
             <td>1 sectional sofa</td>
             <td>1 Three Seater, 2 Single Seater</td>
-            <td></td>
+            {/* <td></td> */}
           </tr>
           <tr>
             <td>Model Number</td>
             <td>TFCBLIGRBL6SRHS</td>
             <td>DTUBLIGRBL568</td>
-            <td></td>
+            {/* <td></td> */}
           </tr>
           <tr>
             <td>Secondary Material</td>
             <td>Solid Wood</td>
             <td>Solid Wood</td>
-            <td></td>
+            {/* <td></td> */}
           </tr>
           <tr>
             <td>Configuration</td>
             <td>L-shaped</td>
             <td>L-shaped</td>
-            <td></td>
+            {/* <td></td> */}
           </tr>
           <tr>
             <td>Upholstery Material</td>
             <td>Fabric + Cotton</td>
             <td>Fabric + Cotton</td>
-            <td></td>
+            {/* <td></td> */}
           </tr>
           <tr>
             <td>Upholstery Color</td>
             <td>Bright Grey & Lion</td>
             <td>Bright Grey & Lion</td>
-            <td></td>
+            {/* <td></td> */}
           </tr>
           {/* Products */}
           <tr>
@@ -238,31 +254,31 @@ const Compare = () => {
             <td>Filling Material</td>
             <td>Foam</td>
             <td>Matte</td>
-            <td></td>
+            {/* <td></td> */}
           </tr>
           <tr>
             <td>Finish Type</td>
             <td>Bright Grey & Lion</td>
             <td>Bright Grey & Lion</td>
-            <td></td>
+            {/* <td></td> */}
           </tr>
           <tr>
             <td>Adjustable Headrest</td>
             <td>No</td>
             <td>Yes</td>
-            <td></td>
+            {/* <td></td> */}
           </tr>
           <tr>
             <td>Maximum Load Capacity</td>
             <td>280 KG</td>
             <td>300 KG</td>
-            <td></td>
+            {/* <td></td> */}
           </tr>
           <tr>
             <td>Origin of Manufacture</td>
             <td>India</td>
             <td>India</td>
-            <td></td>
+            {/* <td></td> */}
           </tr>
 
           {/* Dimensions */}
@@ -275,37 +291,37 @@ const Compare = () => {
             <td>Width</td>
             <td>265.32 cm</td>
             <td>265.32 cm</td>
-            <td></td>
+            {/* <td></td> */}
           </tr>
           <tr>
             <td>Height</td>
             <td>76 cm</td>
             <td>76 cm</td>
-            <td></td>
+            {/* <td></td> */}
           </tr>
           <tr>
             <td>Depth</td>
             <td>167.76 cm</td>
             <td>167.76 cm</td>
-            <td></td>
+            {/* <td></td> */}
           </tr>
           <tr>
             <td>Weight</td>
             <td>45 KG</td>
             <td>65 KG</td>
-            <td></td>
+            {/* <td></td> */}
           </tr>
           <tr>
             <td>Seat Height</td>
             <td>41.52 cm</td>
             <td>41.52 cm</td>
-            <td></td>
+            {/* <td></td> */}
           </tr>
           <tr>
             <td>Leg Height</td>
             <td>5.46 cm</td>
             <td>5.46 cm</td>
-            <td></td>
+            {/* <td></td> */}
           </tr>
 
           {/* Dimensions */}
@@ -318,7 +334,7 @@ const Compare = () => {
             <td>Warranty Summary</td>
             <td>1 Year Manufacturing Warranty</td>
             <td>1.2 Year Manufacturing Warranty</td>
-            <td></td>
+            {/* <td></td> */}
           </tr>
           <tr>
             <td>Warranty Service Type</td>
@@ -330,7 +346,7 @@ const Compare = () => {
               For Warranty Claims or Any Product Related Issues Please Email at
               support@xyz.com
             </td>
-            <td></td>
+            {/* <td></td> */}
           </tr>
           <tr>
             <td>Covered in Warranty</td>
@@ -338,7 +354,7 @@ const Compare = () => {
             <td>
               Warranty of the product is limited to manufacturing defects only.
             </td>
-            <td></td>
+            {/* <td></td> */}
           </tr>
           <tr>
             <td>Not Covered in Warranty</td>
@@ -352,13 +368,13 @@ const Compare = () => {
               Beyond Its Intended Use And Wear & Tear In The Natural Course Of
               Product Usage.
             </td>
-            <td></td>
+            {/* <td></td> */}
           </tr>
           <tr>
             <td>Domestic Warranty</td>
             <td>1 Year</td>
             <td>3 Months</td>
-            <td></td>
+            {/* <td></td> */}
           </tr>
           <tr>
             <td></td>
@@ -380,7 +396,7 @@ const Compare = () => {
                 Add To Cart
               </buttuon>
             </td>
-            <td></td>
+            {/* <td></td> */}
           </tr>
         </table>
       </div>

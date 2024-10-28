@@ -106,7 +106,6 @@ export const LoginRegister = () => {
       if (tempCart.length > 0) {
         // Đồng bộ giỏ hàng tạm thời lên Firebase
         for (const item of tempCart) {
-          // Kiểm tra xem sản phẩm đã có trong giỏ hàng hay chưa
           await dispatch(addToCartAsync(item));
         }
         await dispatch(getCartAsync());
@@ -264,11 +263,14 @@ export const LoginRegister = () => {
               onChange={(e) => setPasswordAgain(e.target.value)}
             />
             <button type="submit">Sign Up</button>
+            <p id="login2" className="sign-in-submit">
+              Already have an account? Login
+            </p>
           </form>
         </div>
         <div className="form-container sign-in">
           <form onSubmit={handleSubmit}>
-            <h1>Sign In</h1>
+            <h1 className="title-login">Sign In</h1>
 
             <span>or use your email and password</span>
             <input
@@ -290,6 +292,9 @@ export const LoginRegister = () => {
               Forgot Your Password?
             </a>
             <button type="submit">Sign In</button>
+            <p id="register2" className="sign-up-submit">
+              Don't have an account? Sign up
+            </p>
             <span className="span-orSignInUsing">Or Sign In Using: </span>
             <div className="social-icons">
               <a href="#1" className="icon" onClick={handleGoogleSignIn}>

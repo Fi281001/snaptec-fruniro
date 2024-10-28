@@ -160,7 +160,7 @@
 }
 
 .cart-buttons :hover {
-  background-color: rgba(249, 241, 231, 1);
+  background-color: #b88e2f;
 }
 
 .cart-list {
@@ -240,5 +240,8 @@
   }
   .cart-body > div > div > p {
     font-size: 12px;
+  }
+  .cart-title h3 {
+    font-size: 20px;
   }
 }
