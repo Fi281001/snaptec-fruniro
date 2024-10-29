@@ -147,9 +147,9 @@ input[type="range"]::-moz-range-thumb {
   content: "";
   position: absolute;
   height: 100%;
-  background-color: green;
+  background-color: #eed7a1;
   z-index: 999;
-  margin-top: -1px;
+  margin-top: -2px;
 }
 
 .max-range::before {
