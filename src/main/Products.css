@@ -253,12 +253,68 @@
   .Products {
     padding-left: 25px;
   }
+  .butadd {
+    width: 100px;
+    height: 40px;
+    font-size: 12px;
+    padding: 12px 12px;
+  }
+  .title {
+    gap: 5px;
+    margin-top: 10px;
+    width: 130px;
+  }
+
+  .middle span {
+    color: white;
+    font-size: 12px;
+  }
+  .middle span i {
+    margin-right: 10px;
+  }
 }
 @media (max-width: 500px) {
   .product-item {
-    width: 100%;
+    width: 48%;
   }
   .Products {
-    padding-left: 20px;
+    padding-left: 6px;
+    padding-right: 0px;
+    gap: 10px;
+  }
+  .product-name {
+    font-size: 16px;
+  }
+  .product-title {
+    font-size: 12px;
+  }
+  .price {
+    gap: 4px;
+  }
+
+  .product-price-sale {
+    font-size: 9px;
+  }
+  .product-price {
+    font-size: 10px;
+  }
+  .butadd {
+    width: 100px;
+    height: 40px;
+    font-size: 12px;
+    padding: 12px 12px;
+  }
+  .title {
+    gap: 5px;
+    margin-top: 10px;
+    width: 130px;
+  }
+
+  .middle span {
+    color: white;
+    font-size: 12px;
+  }
+  .middle span i {
+    margin-right: 10px;
   }
 }

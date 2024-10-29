@@ -322,11 +322,15 @@ input[type="range"]::-moz-range-thumb {
 @media (max-width: 500px) {
   .filter {
     flex-direction: column;
-    height: 130px;
+    height: 100px;
     gap: 8px;
   }
   .showing-text,
   .results-text {
     display: inline-block;
+  }
+  .show-option,
+  .short {
+    height: 40px;
   }
 }

@@ -185,6 +185,9 @@
   display: flex;
 }
 @media (max-width: 750px) {
+  .container-contact2 {
+    padding-top: 0px;
+  }
   .container-contact__group2 {
     flex-direction: column;
     align-items: center;
