@@ -50,7 +50,7 @@
 
 .col-2 p {
   font-weight: 500;
-  font-size: 16;
+  font-size: 16px;
   line-height: 24px;
   margin-bottom: 50px;
 }
@@ -159,65 +159,121 @@
 }
 
 /*mobie */
-@media (max-width: 655px) {
-  .input-underline {
-    width: 174px;
-    font-size: 14px;
-  }
-}
-@media (max-width: 660px) {
-  .footer-container {
-    padding-left: 24px;
-  }
-}
-@media (max-width: 510px) {
-  .input-underline {
-    width: 170px;
-  }
-}
-@media (max-width: 500px) {
-  .input-underline {
-    width: 170px;
-  }
-}
-@media only screen and (max-width: 600px) {
+@media (max-width: 800px) {
   .footer-main {
-    gap: 12px;
+    flex-direction: column;
+    gap: 45px;
   }
-  .col-2 {
-    gap: 10px;
-  }
-}
-@media (max-width: 500px) {
   .col-1 h2 {
-    font-size: 25px;
-    margin-top: -2px;
+    font-size: 40px;
   }
   .col-1 span {
-    font-size: 12px;
+    width: 100%;
+    font-size: 25px;
   }
-  .flex-direction-row {
-    gap: 2px;
+  .col-2 {
+    gap: 95px;
   }
-  .title-payment,
-  .title-returns,
-  .title-privacy,
+  .col-2 p {
+    font-size: 25px;
+  }
+  .title-home,
+  .title-shop,
   .title-blog,
   .title-contact,
-  .title-home,
-  .title-shop {
-    font-size: 14px;
+  .title-payment,
+  .title-returns,
+  .title-privacy {
+    font-size: 20px;
   }
   .input-underline {
-    width: 144px;
-    font-size: 12px;
+    font-size: 16px;
+    margin-top: -7px;
   }
-  .input-underline::placeholder {
-    content: "Enter your email";
+  .flex-direction-row {
+    gap: 30px;
+  }
+  .footer-title {
+    margin-top: -30px;
+  }
+}
+@media (max-width: 700px) {
+  .footer-main {
+    flex-direction: column;
+    gap: 45px;
+  }
+  .col-1 h2 {
+    font-size: 35px;
+    margin-bottom: 25px;
+  }
+  .col-1 span {
+    width: 100%;
+    font-size: 22px;
+  }
+  .col-2 {
+    gap: 26px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .col-2 p {
+    font-size: 22px;
+    margin-bottom: 18px;
+  }
+  .title-home,
+  .title-shop,
+  .title-blog,
+  .title-contact,
+  .title-payment,
+  .title-returns,
+  .title-privacy {
+    font-size: 16px;
+  }
+  .input-underline {
+    width: calc(100% - 100px);
+    font-size: 16px;
+    margin-top: -7px;
+  }
+  .flex-direction-row {
+    gap: 10px;
+  }
+  .footer-title {
+    margin-top: -30px;
+  }
+  .footer-container {
+    padding-left: 70px;
+    padding-right: 0px;
+  }
+}
+@media (max-width: 600px) {
+  .input-underline {
+    width: 66%;
+  }
+  .footer-container {
+    padding-left: 50px;
+    padding-left: 30px;
+    padding-top: 6px;
+    padding-bottom: 26px;
   }
 }
 @media (max-width: 400px) {
-  .input-underline {
-    width: 100px;
+  .footer-container {
+    padding-left: 30px;
+    padding-top: 6px;
+    padding-bottom: 26px;
+  }
+  .col-1 span {
+    font-size: 16px;
+  }
+  .title-home,
+  .title-shop,
+  .title-blog,
+  .title-contact,
+  .title-payment,
+  .title-returns,
+  .title-privacy {
+    font-size: 13px;
+  }
+  .col-2 {
+    gap: 4px;
   }
 }

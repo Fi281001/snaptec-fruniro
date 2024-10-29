@@ -22,7 +22,7 @@ export default function Footer() {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 400) {
+      if (window.innerWidth < 500) {
         setPlaceholderText("Enter Your Email");
       } else {
         setPlaceholderText("Enter Your Email Address");
@@ -38,6 +38,18 @@ export default function Footer() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 700);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 700);
+    };
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <>
       <div className="footer">
@@ -83,7 +95,10 @@ export default function Footer() {
                   </Link>
                 </div>
               </div>
-              <div className="col-2-3">
+              <div
+                style={{ display: isMobile ? "none" : "block" }}
+                className="col-2-3"
+              >
                 <p
                   className="
                 title-p"
@@ -97,6 +112,23 @@ export default function Footer() {
                 />
                 <button className="button-underline">SUBSCRIBE</button>
               </div>
+            </div>
+            <div
+              style={{ display: isMobile ? "block" : "none" }}
+              className="col-2-3"
+            >
+              <p
+                className="
+                title-p"
+              >
+                Newsletter
+              </p>
+              <input
+                type="text"
+                className="input-underline"
+                placeholder={placeholderText}
+              />
+              <button className="button-underline">SUBSCRIBE</button>
             </div>
           </div>
           <hr />

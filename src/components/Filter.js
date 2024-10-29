@@ -3,6 +3,7 @@ import "../main/Filter.css";
 import "react-modern-drawer/dist/index.css";
 import Drawer from "react-modern-drawer";
 import debounce from "lodash.debounce";
+import { Maximize } from "@mui/icons-material";
 export default function Filter({
   length,
   onShowItemsChange,
@@ -45,19 +46,6 @@ export default function Filter({
     setMax(value); // Cập nhật giá trị max
     onPriceChange(min, value); // Gọi hàm truyền từ component cha
   };
-  const debouncedPriceChange = useCallback(
-    debounce((min, max) => {
-      onPriceChange(min, max);
-    }, 1000), // Đợi 300ms sau khi người dùng dừng nhập
-    []
-  );
-  useEffect(() => {
-    debouncedPriceChange(min, max);
-    // Hủy debounce khi component bị hủy
-    return () => {
-      debouncedPriceChange.cancel();
-    };
-  }, [min, max, debouncedPriceChange]);
 
   // color
   const [selectedColor, setSelectedColor] = useState("");
@@ -66,13 +54,7 @@ export default function Filter({
     setSelectedColor(color);
   };
 
-  const handleSubmit = () => {
-    if (selectedColor) {
-      alert(`Bạn đã chọn màu ${selectedColor}`);
-    } else {
-      alert("Hãy chọn một màu trước khi submit!");
-    }
-  };
+  const handleSubmit = () => {};
 
   const circleStyle = (color) => ({
     width: "30px",
@@ -82,21 +64,42 @@ export default function Filter({
     border: selectedColor === color ? "3px solid blue" : "none",
     cursor: "pointer",
   });
+  const squareStyle = (color) => ({});
   const style = {
     "--min-range": minValue,
     "--max-range": maxValue,
   };
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 700);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 700);
+    };
+    window.addEventListener("resize", handleResize);
 
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+  const minprice = minValue;
+  const maxprice = maxValue;
+  const formattedMin = minprice.toLocaleString("vi-VN");
+  const formattedMax = maxprice.toLocaleString("vi-VN");
   return (
     <div className="filter">
       <Drawer
         open={isOpen}
         onClose={toggleDrawer}
         direction="left"
-        className="bla bla bla"
+        className="tonger-filter"
       >
         <div className="drawer-content">
-          <h1>Filter</h1>
+          <div className="icon-button-x">
+            <h3>Filter</h3>
+            <span style={{ display: isMobile ? "block" : "none" }}>
+              <i onClick={toggleDrawer} className="bi bi-x"></i>
+            </span>
+          </div>
+
           <div className="price-filter">
             <span>Price</span>
             <div class="range-input" style={style}>
@@ -121,14 +124,14 @@ export default function Filter({
               />
             </div>
             <div className="price-filter-title">
-              <p>{minValue}</p>
-              <p>{maxValue}</p>
+              <p>{formattedMin} Rp</p>
+              <p>{formattedMax} Rp</p>
             </div>
           </div>
           <div className="Color-filter">
-            <span>Color</span>
+            <span>Colors</span>
             <div className="checkbox-main">
-              <div className="">
+              <div className="style">
                 <label>
                   <div
                     style={circleStyle("#816dfa")}
@@ -136,7 +139,7 @@ export default function Filter({
                   ></div>
                 </label>
               </div>
-              <div>
+              <div className="style">
                 <label>
                   <div
                     style={circleStyle("#b88e2f")}
@@ -144,7 +147,7 @@ export default function Filter({
                   ></div>
                 </label>
               </div>
-              <div>
+              <div className="style">
                 <label>
                   <div
                     style={circleStyle("black")}
@@ -152,10 +155,61 @@ export default function Filter({
                   ></div>
                 </label>
               </div>
+              <div className="style">
+                <label>
+                  <div
+                    style={circleStyle("red")}
+                    onClick={() => handleCircleClick("red")}
+                  ></div>
+                </label>
+              </div>
+              <div className="style">
+                <label>
+                  <div
+                    style={circleStyle("yellow")}
+                    onClick={() => handleCircleClick("yellow")}
+                  ></div>
+                </label>
+              </div>
+              <div className="style">
+                <label>
+                  <div
+                    style={circleStyle("green")}
+                    onClick={() => handleCircleClick("green")}
+                  ></div>
+                </label>
+              </div>
+
+              <div className="style">
+                <label>
+                  <div
+                    style={circleStyle("gray")}
+                    onClick={() => handleCircleClick("gray")}
+                  ></div>
+                </label>
+              </div>
+              <div className="style">
+                <label>
+                  <div
+                    style={circleStyle("pink")}
+                    onClick={() => handleCircleClick("pink")}
+                  ></div>
+                </label>
+              </div>
             </div>
           </div>
+          <div className="Color-filter">
+            <span>Size</span>
+            <div className="size-filter">
+              <button class="btn btn-M">Size M</button>
+              <button class="btn btn-l">Size L</button>
+              <button class="btn btn-xl">Size XL</button>
+              <button class="btn btn-xxl">Size XXL</button>
+            </div>
+          </div>
+
           <div className="btaction">
-            <button onClick={handleSubmit}>Apply</button>
+            <button onClick={toggleDrawer}>Apply</button>
           </div>
         </div>
       </Drawer>

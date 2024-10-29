@@ -53,10 +53,15 @@ export default function Shop() {
     setMinPrice(min);
     setMaxPrice(max);
   };
+
   const handleDelete = () => {
     setMinPrice(150000);
     setMaxPrice(8000000);
   };
+  const min = minPrice;
+  const max = maxPrice;
+  const formattedMin = min.toLocaleString("vi-VN");
+  const formattedMax = max.toLocaleString("vi-VN");
   return (
     <div>
       <Rectangle title="Shop" />
@@ -76,7 +81,7 @@ export default function Shop() {
             <div>
               <span>price</span>
               <p>
-                {minPrice} - {maxPrice}
+                {formattedMin} Rp - {formattedMax} Rp
               </p>
             </div>
             <span
@@ -86,7 +91,6 @@ export default function Shop() {
             >
               x
             </span>{" "}
-            {/* Dấu "x" để đóng hoặc xóa */}
           </div>
         )}
       </div>

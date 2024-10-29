@@ -59,6 +59,9 @@
   }
 }
 @media (max-width: 600px) {
+  .text-container {
+    width: 100%;
+  }
   .text-container h1 {
     font-size: 18px;
   }

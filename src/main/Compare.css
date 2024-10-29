@@ -342,4 +342,7 @@ td {
     font-size: 10px;
     width: 25%;
   }
+  .bt-modals {
+    padding: 8px;
+  }
 }

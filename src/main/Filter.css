@@ -87,7 +87,7 @@ i {
   background-color: #f8f9fa !important;
 }
 .drawer-content {
-  margin-top: 200px;
+  margin-top: 120px;
 }
 .drawer-content > h1 {
   color: black;
@@ -103,7 +103,7 @@ i {
 /* ranginput */
 .range-input {
   position: relative;
-  width: 200px; /* Chiều rộng của vùng chứa */
+  width: 100%; /* Chiều rộng của vùng chứa */
   margin-top: 10px;
   margin-bottom: 30px;
 }
@@ -188,18 +188,20 @@ input[type="range"]::-moz-range-thumb {
   display: flex;
   flex-direction: column; /* Sắp xếp theo cột */
   align-items: flex-start; /* Canh trái các checkbox */
-  gap: 10px; /* Khoảng cách giữa các dòng */
-  padding: 20px;
+  padding-inline: 20px;
 }
 .Color-filter label {
   display: inline-flex;
   align-items: center;
   cursor: pointer;
   justify-content: flex-start; /* Tạo khoảng cách giữa chữ và ô */
-  width: 150px; /* Điều chỉnh chiều rộng nhãn để tách chữ và checkbox */
 }
+.size-filter,
 .checkbox-main {
-  margin-left: 30px;
+  display: flex;
+  margin-top: 10px;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 .Color-filter input[type="checkbox"] {
   margin-right: 20px;
@@ -254,7 +256,15 @@ input[type="range"]::-moz-range-thumb {
   margin-left: 10px; /* Khoảng cách giữa nội dung và dấu "x" */
   cursor: pointer; /* Con trỏ chuột thành dạng trỏ tay khi hover */
   font-size: 16px;
-  color: red; /* Màu sắc của dấu "x" */
+  color: gray; /* Màu sắc của dấu "x" */
+}
+.btn {
+  background-color: rgba(240, 240, 240, 1);
+  border: none;
+}
+.btn:hover {
+  background-color: rgba(0, 0, 0, 1);
+  color: white;
 }
 @media (max-width: 1705px) {
   .icon-filter {
@@ -322,8 +332,8 @@ input[type="range"]::-moz-range-thumb {
 @media (max-width: 500px) {
   .filter {
     flex-direction: column;
-    height: 100px;
-    gap: 8px;
+    height: 83px;
+    gap: 0px;
   }
   .showing-text,
   .results-text {
@@ -332,5 +342,73 @@ input[type="range"]::-moz-range-thumb {
   .show-option,
   .short {
     height: 40px;
+    font-size: 11px;
+  }
+  .options {
+    gap: 10px;
+  }
+  .show-page {
+    font-size: 14px;
+  }
+  .EZDrawer__container.tonger-filter {
+    width: 100% !important;
+    border-radius: 20px !important;
+    top: 123px !important;
+  }
+  .drawer-content {
+    margin-top: 16px;
+  }
+  .icon-button-x {
+    display: flex;
+    justify-content: space-between;
+    font-size: 40px;
+    padding-inline: 20px;
+  }
+  .bi.bi-x {
+    margin-top: 3px;
+    font-size: 50px;
+  }
+  .Color-filter,
+  .price-filter {
+    padding-inline: 20px;
+  }
+  .Color-filter > span,
+  .price-filter > span {
+    font-size: 20px;
+    line-height: 40px;
+    font-weight: 700;
+  }
+  .price-filter-title > p {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 18.9px;
+  }
+  input[type="range"]::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    width: 25px; /* Kích thước tay cầm */
+    height: 25px; /* Kích thước tay cầm */
+  }
+
+  input[type="range"] {
+    height: 3px;
+  }
+  .max-range::after {
+    content: "";
+    margin-top: -3px;
+  }
+  .btaction {
+    margin-top: 8px;
+  }
+  .btaction > button {
+    padding: 16px;
+  }
+  .btn {
+    padding: 6px 22px 6px 22px;
+    font-size: 16px;
+    background-color: rgba(240, 240, 240, 1);
+    border: none;
   }
 }

@@ -9,21 +9,7 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-// const style = {
-//   position: "absolute",
-//   top: "50%",
-//   left: "50%",
-//   transform: "translate(-50%, -50%)",
-//   width: 600,
-//   bgcolor: "background.paper",
-//   border: "1px solid #000",
-//   boxShadow: 24,
-//   p: 4,
-//   maxHeight: 600, // Sửa max-height thành maxHeight
-//   overflowY: "auto",
-//   borderRadius: 4,
-//   paddingRight: "40px",
-// };
+
 const Compare = () => {
   const [products, setProducts] = useState([]);
   const { productId } = useParams();
@@ -90,7 +76,7 @@ const Compare = () => {
     }
   };
   const [width, setWidth] = useState(window.innerWidth < 600 ? 350 : 600);
-  const [height, setHeight] = useState(window.innerWidth < 600 ? 350 : 600);
+  const [height, setHeight] = useState(window.innerWidth < 600 ? "80vh" : 600);
   useEffect(() => {
     const handleResize = () => {
       setWidth(window.innerWidth < 600 ? 350 : 600);
@@ -99,6 +85,7 @@ const Compare = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
   const style = {
     position: "absolute",
     top: "50%",
@@ -190,13 +177,13 @@ const Compare = () => {
               </div>
             </>
           ) : (
-            <p className="plese-chose">Please select product</p> // Thông báo nếu chưa chọn sản phẩm
+            <p className="plese-chose">Please select product</p>
           )}
         </div>
         <div className="group-4">
           {/* <span>Add A Porduct</span> */}
           <button className="bt-b" onClick={handleOpen}>
-            Choose a Product
+            ADD
           </button>
         </div>
       </div>
