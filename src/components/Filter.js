@@ -82,6 +82,11 @@ export default function Filter({
     border: selectedColor === color ? "3px solid blue" : "none",
     cursor: "pointer",
   });
+  const style = {
+    "--min-range": minValue,
+    "--max-range": maxValue,
+  };
+
   return (
     <div className="filter">
       <Drawer
@@ -94,7 +99,7 @@ export default function Filter({
           <h1>Filter</h1>
           <div className="price-filter">
             <span>Price</span>
-            <div class="range-input">
+            <div class="range-input" style={style}>
               <input
                 type="range"
                 className="min-range"

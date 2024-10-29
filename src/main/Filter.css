@@ -124,21 +124,64 @@ input[type="range"]::-webkit-slider-thumb {
   background: #dfcc9f; /* Màu tay cầm */
   cursor: pointer; /* Đổi con trỏ khi rê chuột vào tay cầm */
   position: relative; /* Đặt vị trí tay cầm */
-  z-index: 3; /* Đặt z-index cho tay cầm */
+  z-index: 9999; /* Đặt z-index cho tay cầm */
   border-radius: 100%;
 }
 
 input[type="range"]::-moz-range-thumb {
-  width: 15px; /* Kích thước tay cầm cho Firefox */
-  height: 15px; /* Kích thước tay cầm cho Firefox */
+  width: 15px;
+  height: 15px;
   background: #dfcc9f; /* Màu tay cầm */
-  cursor: pointer; /* Đổi con trỏ khi rê chuột vào tay cầm */
+  cursor: pointer;
+  pointer-events: auto;
+  position: relative;
 }
 
 .range-values {
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
+}
+.max-range::before,
+.max-range::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  background-color: green;
+  z-index: 999;
+  margin-top: -1px;
+}
+
+.max-range::before {
+  left: 0;
+  width: calc((var(--min-range, 0) - 150000) * 100% / (8000000 - 150000));
+}
+
+.max-range::after {
+  right: 0;
+  width: calc(
+    (8000000 - var(--max-range, 8000000)) * 100% / (8000000 - 150000)
+  );
+}
+.min-range::before,
+.min-range::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  background-color: red;
+  z-index: -1;
+}
+
+.min-range::before {
+  left: 0;
+  width: calc((var(--min-range, 0) - 150000) * 100% / (8000000 - 150000));
+}
+
+.min-range::after {
+  right: 0;
+  width: calc(
+    (8000000 - var(--max-range, 8000000)) * 100% / (8000000 - 150000)
+  );
 }
 
 .Color-filter {
