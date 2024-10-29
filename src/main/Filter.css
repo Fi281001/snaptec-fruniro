@@ -100,7 +100,7 @@ i {
   display: flex;
   justify-content: space-between;
 }
-
+/* ranginput */
 .range-input {
   position: relative;
   width: 200px; /* Chiều rộng của vùng chứa */
