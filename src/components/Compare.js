@@ -85,7 +85,9 @@ const Compare = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
+  const hanldeldelete = () => {
+    setProduct2(null);
+  };
   const style = {
     position: "absolute",
     top: "50%",
@@ -163,7 +165,12 @@ const Compare = () => {
         <div className="group-3">
           {product2 ? ( // Kiểm tra xem product2 có giá trị hay không
             <>
-              <img src={product2.imgSrc} alt={product2.name} />
+              <div className="product-image-container">
+                <img src={product2.imgSrc} alt={product2.name} />
+                <button onClick={hanldeldelete} className="delete-button">
+                  X
+                </button>
+              </div>
               <span>{product2.name}</span>
               <p>Rs. {product2.pricesale}</p>
               <div className="group-start">
@@ -177,15 +184,19 @@ const Compare = () => {
               </div>
             </>
           ) : (
-            <p className="plese-chose">Please select product</p>
+            <>
+              <div className="img-choose">
+                <i onClick={handleOpen} class="bi bi-plus-circle"></i>
+              </div>
+            </>
           )}
         </div>
-        <div className="group-4">
-          {/* <span>Add A Porduct</span> */}
+        {/* <div className="group-4">
+     
           <button className="bt-b" onClick={handleOpen}>
             ADD
           </button>
-        </div>
+        </div> */}
       </div>
       {/* General */}
       <div className="compare-table">

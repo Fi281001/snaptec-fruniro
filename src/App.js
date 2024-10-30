@@ -92,6 +92,7 @@ const Layout = () => {
   return (
     <>
       {!hideHeaderFooter && <Header />}
+      <Routerposition />
       <Routes>
         {/* Route cho các trang chính */}
         <Route path="/" element={<Homepage />} />

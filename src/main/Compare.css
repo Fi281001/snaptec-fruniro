@@ -39,6 +39,7 @@
   text-decoration: none;
 }
 
+.img-choose,
 .group-2,
 .group-3 {
   width: 25%;
@@ -62,15 +63,56 @@
   color: white;
 }
 
-.group-2 > img,
-.group-3 > img {
+.group-2 > img {
   width: 90%;
   height: 42%;
   border-radius: 10px;
   margin-bottom: 10px;
   cursor: pointer;
 }
-
+.img-choose {
+  width: 100%;
+  height: 42%;
+  background-color: rgb(240 240 240);
+  border-radius: 10px;
+  text-align: center;
+  align-content: center;
+}
+.product-image-container {
+  position: relative;
+  display: inline-block;
+}
+.product-image-container {
+  width: 100%;
+  height: 42%;
+  margin-bottom: 10px;
+}
+.product-image-container img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+.delete-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: rgb(222 223 238);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bi.bi-plus-circle {
+  font-size: 50px;
+  color: #83c0e5;
+  cursor: pointer;
+}
 .group-2 > span,
 .group-3 > span {
   font-size: 24px;
@@ -272,6 +314,7 @@ td {
   text-align: center;
   font-size: 30px;
 }
+
 /* tablet */
 @media (max-width: 1000px) {
   .group-1 > span {
@@ -324,6 +367,7 @@ td {
   .compare-table__table > tr > td {
     font-size: 12px;
   }
+
   .container-compare {
     padding: 21px 15px;
   }
@@ -344,5 +388,24 @@ td {
   }
   .bt-modals {
     padding: 8px;
+  }
+}
+@media (max-width: 500px) {
+  .img-choose,
+  .group-2,
+  .group-3 {
+    width: 50%;
+  }
+  .img-choose {
+    width: 100%;
+  }
+  .group-start > p {
+    font-size: 14px;
+  }
+  .container-compare {
+    padding: 16px 10px;
+  }
+  .compare-table__th {
+    font-size: 22px;
   }
 }

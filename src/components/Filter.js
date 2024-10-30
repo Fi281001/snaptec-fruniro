@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import "../main/Filter.css";
 import "react-modern-drawer/dist/index.css";
 import Drawer from "react-modern-drawer";
-import debounce from "lodash.debounce";
+import useDetectType from "../untils/useDeviceType";
 import { Maximize } from "@mui/icons-material";
 export default function Filter({
   length,
@@ -48,22 +48,35 @@ export default function Filter({
   };
 
   // color
-  const [selectedColor, setSelectedColor] = useState("");
-
+  const [selectedColor, setSelectedColor] = useState([]);
   const handleCircleClick = (color) => {
-    setSelectedColor(color);
+    if (selectedColor.includes(color)) {
+      // Nếu có, xóa màu khỏi mảng
+      setSelectedColor(selectedColor.filter((c) => c !== color));
+    } else {
+      // Nếu chưa, thêm màu vào mảng
+      setSelectedColor([...selectedColor, color]);
+    }
   };
-
-  const handleSubmit = () => {};
+  const colors = [
+    "#816dfa",
+    "#b88e2f",
+    "black",
+    "red",
+    "yellow",
+    "green",
+    "gray",
+    "pink",
+  ];
 
   const circleStyle = (color) => ({
     width: "30px",
     height: "30px",
     borderRadius: "100%",
     backgroundColor: color,
-    border: selectedColor === color ? "3px solid blue" : "none",
     cursor: "pointer",
   });
+
   const squareStyle = (color) => ({});
   const style = {
     "--min-range": minValue,
@@ -84,12 +97,15 @@ export default function Filter({
   const maxprice = maxValue;
   const formattedMin = minprice.toLocaleString("vi-VN");
   const formattedMax = maxprice.toLocaleString("vi-VN");
+  // customhoook
+  const deviceType = useDetectType();
+  const direction = deviceType === "mobile" ? "bottom" : "left";
   return (
     <div className="filter">
       <Drawer
         open={isOpen}
         onClose={toggleDrawer}
-        direction="left"
+        direction={direction}
         className="tonger-filter"
       >
         <div className="drawer-content">
@@ -128,7 +144,7 @@ export default function Filter({
               <p>{formattedMax} Rp</p>
             </div>
           </div>
-          <div className="Color-filter">
+          {/* <div className="Color-filter">
             <span>Colors</span>
             <div className="checkbox-main">
               <div className="style">
@@ -196,6 +212,24 @@ export default function Filter({
                   ></div>
                 </label>
               </div>
+            </div>
+          </div> */}
+          <div className="Color-filter">
+            <span>Colors</span>
+            <div className="checkbox-main">
+              {colors.map((color) => (
+                <div className="style" key={color}>
+                  <label>
+                    <div
+                      style={circleStyle(color)}
+                      onClick={() => handleCircleClick(color)}
+                      className={
+                        selectedColor.includes(color) ? "selected" : "blue"
+                      } // Thêm lớp nếu màu đã được chọn
+                    ></div>
+                  </label>
+                </div>
+              ))}
             </div>
           </div>
           <div className="Color-filter">

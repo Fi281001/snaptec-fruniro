@@ -344,6 +344,7 @@ hr {
 
 .related-products {
   width: 100%;
+  padding: 10px;
 }
 
 .related-products h1 {
@@ -450,6 +451,7 @@ hr {
     font-size: 14px;
   }
   .compare {
+    margin-right: 10px;
     font-size: 14px;
   }
 }

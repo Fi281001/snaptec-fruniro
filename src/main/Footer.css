@@ -200,7 +200,7 @@
 @media (max-width: 700px) {
   .footer-main {
     flex-direction: column;
-    gap: 45px;
+    gap: 20px;
   }
   .col-1 h2 {
     font-size: 35px;

@@ -168,7 +168,7 @@ input[type="range"]::-moz-range-thumb {
   content: "";
   position: absolute;
   height: 100%;
-  background-color: red;
+  background-color: #eed7a1;
   z-index: -1;
 }
 
@@ -203,10 +203,7 @@ input[type="range"]::-moz-range-thumb {
   gap: 10px;
   flex-wrap: wrap;
 }
-.Color-filter input[type="checkbox"] {
-  margin-right: 20px;
-  margin-top: 0px;
-}
+
 .btaction {
   padding: 20px;
 }
@@ -262,9 +259,12 @@ input[type="range"]::-moz-range-thumb {
   background-color: rgba(240, 240, 240, 1);
   border: none;
 }
-.btn:hover {
-  background-color: rgba(0, 0, 0, 1);
+.btn:active {
+  background-color: rgba(0, 0, 0, 1) !important;
   color: white;
+}
+.style div.selected {
+  border: 2px solid blue; /* Đường viền màu đen cho màu đã chọn */
 }
 @media (max-width: 1705px) {
   .icon-filter {
@@ -354,9 +354,13 @@ input[type="range"]::-moz-range-thumb {
     width: 100% !important;
     border-radius: 20px !important;
     top: 123px !important;
+    height: 100% !important;
   }
   .drawer-content {
     margin-top: 16px;
+  }
+  .icon-button-x h3 {
+    padding-right: 10px;
   }
   .icon-button-x {
     display: flex;
@@ -395,10 +399,7 @@ input[type="range"]::-moz-range-thumb {
   input[type="range"] {
     height: 3px;
   }
-  .max-range::after {
-    content: "";
-    margin-top: -3px;
-  }
+
   .btaction {
     margin-top: 8px;
   }

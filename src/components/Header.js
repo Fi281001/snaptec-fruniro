@@ -12,7 +12,7 @@ import Drawer from "react-modern-drawer";
 export default function Header() {
   const [isCartVisible, setIsCartVisible] = useState(false);
   const cartRef = useRef(null);
-
+  const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cart);
@@ -23,7 +23,6 @@ export default function Header() {
     dispatch(getCartAsync());
   }, [dispatch]);
 
-  const navigate = useNavigate();
   const auth = getAuth();
 
   useEffect(() => {
@@ -171,8 +170,20 @@ export default function Header() {
                   title="menu"
                 ></i>
               </span>
-              <img src={logo} alt="" />
-              <h2>Funiro</h2>
+              <img
+                onClick={() => {
+                  navigate(`/`);
+                }}
+                src={logo}
+                alt=""
+              />
+              <h2
+                onClick={() => {
+                  navigate(`/`);
+                }}
+              >
+                Funiro
+              </h2>
             </div>
           </div>
 

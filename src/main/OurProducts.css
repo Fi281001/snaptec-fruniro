@@ -16,3 +16,12 @@
   line-height: 48px;
   margin-bottom: 40px;
 }
+@media (max-width: 500px) {
+  .Ourproducts {
+    margin-top: -10px;
+  }
+  .Ourproducts-title h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+}

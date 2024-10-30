@@ -305,4 +305,7 @@
   .overlay.show {
     width: 30%;
   }
+  .nav2 ul li a {
+    font-size: 24px;
+  }
 }

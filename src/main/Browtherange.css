@@ -57,3 +57,26 @@
     gap: 10px;
   }
 }
+@media (max-width: 500px) {
+  .range-item {
+    flex-direction: column;
+    width: 100%;
+  }
+  .range-item img {
+    border-radius: 30px;
+    height: 36vh;
+  }
+  .range-title h2 {
+    font-size: 28px;
+  }
+  .range-title > span {
+    font-size: 17px;
+    margin-left: 5px;
+  }
+  .hp-container {
+    margin-top: 5px;
+  }
+  .range-item span {
+    font-size: 20px;
+  }
+}
