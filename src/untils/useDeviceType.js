@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+// customhook
 function useDeviceType() {
   const [deviceType, setDeviceType] = useState(
     window.innerWidth <= 768 ? "mobile" : "desktop"

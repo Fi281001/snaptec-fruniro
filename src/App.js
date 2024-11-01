@@ -67,9 +67,10 @@ function App() {
             <Route
               path="/cart"
               element={
-                <PrivateRoute>
-                  <Cart />
-                </PrivateRoute>
+                <Cart />
+                // <PrivateRoute>
+                //   <Cart />
+                // </PrivateRoute>
               }
             />
           </Route>
@@ -115,9 +116,10 @@ const Layout = () => {
         <Route
           path="/cart"
           element={
-            <PrivateRoute>
-              <Cart />
-            </PrivateRoute>
+            // <PrivateRoute>
+            //   <Cart />
+            // </PrivateRoute>
+            <Cart />
           }
         />
       </Routes>

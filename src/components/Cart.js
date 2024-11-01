@@ -25,6 +25,7 @@ const Cart = () => {
     dispatch(getCartAsync()); // Lấy giỏ hàng khi người dùng đăng nhập
   }, [dispatch]);
   const reversedCartItems = cartItems ? [...cartItems].reverse() : [];
+  console.log(reversedCartItems);
 
   // hàm tính subtotal
   const ProductRow = ({ priceString, quantity }) => {

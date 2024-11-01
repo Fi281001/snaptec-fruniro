@@ -4,7 +4,6 @@ import Swal from "sweetalert2";
 
 const PrivateRoute = ({ children }) => {
   const user = localStorage.getItem("user");
-
   if (!user) {
     // Hiển thị modal yêu cầu đăng nhập bằng SweetAlert2
     Swal.fire({
@@ -18,13 +17,13 @@ const PrivateRoute = ({ children }) => {
       if (result.isConfirmed) {
         // Chuyển hướng đến trang đăng nhập nếu người dùng chọn 'Đăng nhập'
         window.location.href = "/login";
+      } else {
+        window.location.href = "/";
       }
     });
-
     // Dừng hiển thị trang con cho đến khi người dùng xác nhận
     return null;
   }
-
   // Nếu đã đăng nhập, cho phép truy cập vào trang con
   return children;
 };
